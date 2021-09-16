@@ -29,7 +29,6 @@ namespace SimpleGraphEditor
         public int NewNodeBorderWidth { get; set; } = 3;
         public bool NewNodeDrawBorder { get; set; } = false;
         public Settings.NodeShape NewNodeShape { get; set; } = Settings.NodeShape.Circle;
-        public Color BackgroundColor { get; } = Settings.CanvasColor;
         #endregion
 
         #region new edge template data
@@ -44,6 +43,7 @@ namespace SimpleGraphEditor
         public string NewLableTextValue { get; set; }
         #endregion
 
+        public Color CanvasBackColor { get; private set; } = Settings.CanvasDefaultColor;
         public List<(int x, int y)> ActiveNodesPositions { get; set; } = new List<(int x, int y)>();
         public (int X, int Y) MouseCoords { get; set; }
 
@@ -58,8 +58,6 @@ namespace SimpleGraphEditor
         private Pen _currentEdgePen = new Pen(Color.Black, Settings.DefaultEdgeWidth);
 
         private int _arrowSize = 10; //TODO:
-
-        static readonly Color _backgroudColor = Color.White;
 
         private Dictionary<(int x, int y), Label> _elementsValuesTexts = new Dictionary<(int x, int y), Label>();
 
@@ -108,7 +106,7 @@ namespace SimpleGraphEditor
 
         private void InitializeCanvas() {
             _mouseRectangle = new Rectangle(0, 0, NewNodeSize, NewNodeSize);
-            MainCanvas.BackColor = BackgroundColor;
+            MainCanvas.BackColor = CanvasBackColor;
             if(IsCanvasSizeValid())
                 MainCanvas.Image = new Bitmap(MainCanvas.Width, MainCanvas.Height);
             _canvasGraphics = Graphics.FromImage(MainCanvas.Image);
@@ -179,7 +177,8 @@ namespace SimpleGraphEditor
             MainPresenter?.UpdataNodes();
         }
 
-        public void ClearCanvas() => _canvasGraphics.Clear(_backgroudColor);
+        public void ClearCanvas() => _canvasGraphics.Clear(CanvasBackColor);
+
         #endregion
 
         private void MainForm_MouseMove(object sender, MouseEventArgs e) {
@@ -199,7 +198,6 @@ namespace SimpleGraphEditor
                 if (_mouseRectangle.Top < 0) _mouseRectangle.Y = 0;
                 if (_mouseRectangle.Left < 0) _mouseRectangle.X = 0;
             #endregion
-
             MainCanvas.Invalidate();
         }
 
@@ -280,6 +278,6 @@ namespace SimpleGraphEditor
             _currentPropertiesForm = _edgePropertiesForm;
             SetPropertiesPanel();
         }
-
     }
 }
+

@@ -5,16 +5,16 @@ using System.IO;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
 
-namespace SimpleGraphEditor.Models
+namespace SimpleGraphEditor.Models.Export
 {
-    public class ExportAdjancencyList : IExportGraphData
+    public class ExportAdjacencyList : IExportGraphData
     {
         private IGraphRepresentation<NodeData, EdgeData> _graphData;
         private string _filePath;
         public char DefaultDelimiter { get; set; } = '-';
         public char DefaultNeighbourDelimiter { get; set; } = ',';
 
-        public ExportAdjancencyList (
+        public ExportAdjacencyList (
         IGraphRepresentation<NodeData, EdgeData> graphData,
         string filePath 
             )

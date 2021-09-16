@@ -11,6 +11,7 @@ using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Utils;
 using System.IO;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace SimpleGraphEditor
 {
@@ -26,6 +27,7 @@ namespace SimpleGraphEditor
             ExportAdjacencyListBtn.Click += (sender, e) => ExportAdjacencyListItemClicked();
             ExportEdgeListBtn.Click += (sender, e) => ExportEdgeListItemClicked();
             ExportScreenshotBtn.Click += (sender, e) => ExportScreenshot();
+            ToolStripTop.Renderer = new CustomToolStripRenderer();
         }
 
 
@@ -51,6 +53,45 @@ namespace SimpleGraphEditor
             if (saveFileDialog.ShowDialog() == DialogResult.OK) {
                 saveAction.Invoke(saveFileDialog.FileName);
             }
+        }
+    }
+
+    public class CustomToolStripRenderer : ToolStripProfessionalRenderer
+    {
+
+        public CustomToolStripRenderer()
+        {
+            this.RoundedEdges = false;
+        }
+
+        protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+        {
+            // Rectangle rc = new Rectangle(Point.Empty, e.Item.Size);
+            //e.Graphics.DrawRectangle = 
+            //e.Item.ForeColor = Color.Blue;
+            Rectangle rc = new Rectangle(Point.Empty, e.Item.Size);
+            e.Graphics.DrawRectangle(new Pen(Color.FromArgb(50,50,50)), 1, 0, rc.Width - 2, rc.Height - 1);
+            e.Item.BackColor = Color.FromArgb(62, 62, 62);
+
+            if (e.Item.Selected)
+                e.Graphics.FillRectangle(Brushes.DarkGray, rc);
+            else
+                base.OnRenderMenuItemBackground(e);
+
+        }
+        protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e) {
+            e.TextColor = Color.White;
+            base.OnRenderItemText(e);
+        }
+        protected override void OnRenderSeparator(ToolStripSeparatorRenderEventArgs e) {
+           //e.ToolStrip.BackColor = Color.Black;
+        }
+
+        protected override void OnRenderToolStripPanelBackground(ToolStripPanelRenderEventArgs e) {
+        }
+
+        protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e) {
+            //e.ToolStrip.BackColor = Color.Green;
         }
     }
 }

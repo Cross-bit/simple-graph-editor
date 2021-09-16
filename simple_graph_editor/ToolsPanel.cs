@@ -25,6 +25,8 @@ namespace SimpleGraphEditor
         ToolTip NodeBtnToolTip = new ToolTip();
         ToolTip edgeBtnToolTip = new ToolTip();
 
+        private ColorDialog _colorPicker = new ColorDialog();
+
         private void InitializeToolsPanel() {
             NodeBtnToolTip.SetToolTip(AddNodeBtn, "Add node to graph." );
             NodeBtnToolTip.SetToolTip(AddEdgeBtn, "Add edge to graph.");
@@ -33,6 +35,7 @@ namespace SimpleGraphEditor
             NodeBtnToolTip.SetToolTip(InsertValueBtn, "Insert value.");
             NodeBtnToolTip.SetToolTip(UndoBtn, "Undo (ctrl + z)");
             NodeBtnToolTip.SetToolTip(RedoBtn, "Redo (ctrl + y)");
+            NodeBtnToolTip.SetToolTip(BackgroundColorBtn, "Set background color.");
         }
 
         private void MoveNodeBtn_MouseClick(object sender, MouseEventArgs e) {
@@ -88,6 +91,17 @@ namespace SimpleGraphEditor
 
                 e.Graphics.DrawRectangle(pen, rectangle);
             }
+        }
+
+        private void BackgroundColorBtn_Click(object sender, EventArgs e) {
+
+            if (_colorPicker.ShowDialog(this) == DialogResult.OK) {
+                BackgroundColorBtn.BackColor = _colorPicker.Color;
+                CanvasBackColor = _colorPicker.Color;
+                UpdateCanvas();
+            }
+
+
         }
 
     }

@@ -47,6 +47,7 @@ namespace SimpleGraphEditor
             this.InsertValueBtn = new System.Windows.Forms.Button();
             this.UndoBtn = new System.Windows.Forms.Button();
             this.RedoBtn = new System.Windows.Forms.Button();
+            this.BackgroundColorBtn = new System.Windows.Forms.Button();
             this.PropertiesPanel = new System.Windows.Forms.Panel();
             this.ColorDialog = new System.Windows.Forms.ColorDialog();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,13 +60,15 @@ namespace SimpleGraphEditor
             // ToolStripTop
             // 
             this.ToolStripTop.AllowDrop = true;
+            this.ToolStripTop.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ToolStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileDropDown});
             this.ToolStripTop.Location = new System.Drawing.Point(0, 0);
             this.ToolStripTop.Name = "ToolStripTop";
+            this.ToolStripTop.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.ToolStripTop.Size = new System.Drawing.Size(1159, 25);
             this.ToolStripTop.TabIndex = 0;
-            this.ToolStripTop.Text = "toolStrip1";
+            this.ToolStripTop.Text = "ToolStrip";
             // 
             // FileDropDown
             // 
@@ -161,6 +164,7 @@ namespace SimpleGraphEditor
             this.flowLayoutPanel1.Controls.Add(this.InsertValueBtn);
             this.flowLayoutPanel1.Controls.Add(this.UndoBtn);
             this.flowLayoutPanel1.Controls.Add(this.RedoBtn);
+            this.flowLayoutPanel1.Controls.Add(this.BackgroundColorBtn);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(917, 0);
@@ -328,6 +332,21 @@ namespace SimpleGraphEditor
             this.RedoBtn.UseVisualStyleBackColor = false;
             this.RedoBtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RedoBtn_MouseClick);
             // 
+            // BackgroundColorBtn
+            // 
+            this.BackgroundColorBtn.BackColor = System.Drawing.Color.White;
+            this.BackgroundColorBtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BackgroundColorBtn.FlatAppearance.BorderSize = 0;
+            this.BackgroundColorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BackgroundColorBtn.ForeColor = System.Drawing.Color.Red;
+            this.BackgroundColorBtn.Location = new System.Drawing.Point(5, 334);
+            this.BackgroundColorBtn.Margin = new System.Windows.Forms.Padding(5);
+            this.BackgroundColorBtn.Name = "BackgroundColorBtn";
+            this.BackgroundColorBtn.Size = new System.Drawing.Size(30, 30);
+            this.BackgroundColorBtn.TabIndex = 7;
+            this.BackgroundColorBtn.UseVisualStyleBackColor = false;
+            this.BackgroundColorBtn.Click += new System.EventHandler(this.BackgroundColorBtn_Click);
+            // 
             // PropertiesPanel
             // 
             this.PropertiesPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -354,7 +373,8 @@ namespace SimpleGraphEditor
             this.Controls.Add(this.DrawPanel);
             this.Controls.Add(this.ToolStripTop);
             this.Controls.Add(this.panel1);
-            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditorForm";
             this.Text = "GraphToTex";
             this.TransparencyKey = System.Drawing.Color.DimGray;
@@ -395,6 +415,7 @@ namespace SimpleGraphEditor
         private System.Windows.Forms.ToolStripMenuItem ExportEdgeListBtn;
         private System.Windows.Forms.ToolStripMenuItem ExportAdjacencyListBtn;
         private System.Windows.Forms.ToolStripMenuItem ExportScreenshotBtn;
+        private System.Windows.Forms.Button BackgroundColorBtn;
     }
 }
 

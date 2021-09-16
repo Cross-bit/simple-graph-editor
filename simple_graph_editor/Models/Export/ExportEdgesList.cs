@@ -6,7 +6,7 @@ using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
 using System.Diagnostics;
 
-namespace SimpleGraphEditor.Models
+namespace SimpleGraphEditor.Models.Export
 {
     public class ExportEdgesList : IExportGraphData {
 

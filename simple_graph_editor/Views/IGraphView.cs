@@ -31,7 +31,7 @@ namespace SimpleGraphEditor.Views
         bool NewNodeDrawBorder { get; set; }
 
         Color NewNodeColor { get; set; }
-        Color BackgroundColor { get; }
+        Color CanvasBackColor { get; }
         int NewNodeSize { get; set; }
 
         // new lable

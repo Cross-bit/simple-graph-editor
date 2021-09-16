@@ -10,7 +10,7 @@ namespace SimpleGraphEditor
     {
         public enum NodeShape { Circle, Square };
         
-        public static readonly Color CanvasColor = Color.White;
+        public static readonly Color CanvasDefaultColor = Color.White;
 
         public static readonly int DefaultEdgeWidth = 2;
         public static readonly bool IsEdgeDirectedDefault = true;

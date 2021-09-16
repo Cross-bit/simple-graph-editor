@@ -4,6 +4,7 @@ using System.Text;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Models.Interface;
+using SimpleGraphEditor.Models.Export;
 
 
 namespace SimpleGraphEditor.Presenters
@@ -29,7 +30,7 @@ namespace SimpleGraphEditor.Presenters
         }
 
         public void ExportAdjancencyList(string savePath) {
-            _exportEdgeList = new ExportAdjancencyList(_graphModel, savePath);
+            _exportEdgeList = new ExportAdjacencyList(_graphModel, savePath);
             _exportEdgeList.ExportData();
         }
 
