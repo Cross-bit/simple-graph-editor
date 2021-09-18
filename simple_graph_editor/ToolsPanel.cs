@@ -27,7 +27,7 @@ namespace SimpleGraphEditor
 
         private ColorDialog _colorPicker = new ColorDialog();
 
-        private void InitializeToolsPanel() {
+        public void InitializeToolsPanel() {
             NodeBtnToolTip.SetToolTip(AddNodeBtn, "Add node to graph." );
             NodeBtnToolTip.SetToolTip(AddEdgeBtn, "Add edge to graph.");
             NodeBtnToolTip.SetToolTip(MoveNodeBtn, "Move node.");

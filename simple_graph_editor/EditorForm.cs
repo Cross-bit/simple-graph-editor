@@ -69,11 +69,11 @@ namespace SimpleGraphEditor
 
         public event EventHandler<EventArgs> ClientConfirmedOperation;
 
-        private EdgeProperties _edgePropertiesForm;
-        private NodeProperties _nodePropertiesForm;
+        private EdgePropertiesForm _edgePropertiesForm;
+        private NodePropertiesForm _nodePropertiesForm;
         private Form _currentPropertiesForm;
 
-        public EditorForm(NodeProperties nodePropertiesForm, EdgeProperties edgePropertiesForm) {
+        public EditorForm(NodePropertiesForm nodePropertiesForm, EdgePropertiesForm edgePropertiesForm) {
             this.DoubleBuffered = true;
             this.KeyPreview = true;
 

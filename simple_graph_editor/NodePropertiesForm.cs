@@ -16,9 +16,9 @@ using SimpleGraphEditor.Vendor;
 
 namespace SimpleGraphEditor
 {
-    public partial class NodeProperties : System.Windows.Forms.Form, INodePropertiesView
+    public partial class NodePropertiesForm : System.Windows.Forms.Form, INodePropertiesView
     {
-        public NodeProperties()  
+        public NodePropertiesForm()  
         {
             InitializeComponent();
 
@@ -43,7 +43,7 @@ namespace SimpleGraphEditor
         public Color NewBorderColor { get; set; } = Color.Black;
         public Color NewBackColor { get; set; } = Color.Red;
         public int NewBorderWidth { get; set; } = 0;
-        public NodePropertiesPresenter propPresenter { get; set; }
+        public NodePropertiesPresenter PropPresenter { get; set; }
         public Settings.NodeShape NewNodeShape { get; set; } = Settings.NodeShape.Circle;
 
         ColorDialog ColorPicker = new ColorDialog();
@@ -97,11 +97,11 @@ namespace SimpleGraphEditor
         }
 
         private void UpdateData() {
-            propPresenter.UpdatePropertiesModel();
-            propPresenter.UpdateCurrentTemplate();
+            PropPresenter.UpdatePropertiesModel();
+            PropPresenter.UpdateCurrentTemplate();
         }
 
-        public void UpdatePropertiesUI() {
+        public void UpdatePropertiesControls() {
             ColorPicker.Color = NewBackColor;
             NdBackColorBtn.BackColor = NewBackColor;
             NdBorderColorBtn.BackColor = NewBorderColor;

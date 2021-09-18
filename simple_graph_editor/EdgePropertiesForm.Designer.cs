@@ -13,7 +13,7 @@ using SimpleGraphEditor.Vendor;
 
 namespace SimpleGraphEditor.Views
 {
-    partial class EdgeProperties
+    partial class EdgePropertiesForm
     {
 
         private void InitializeComponent()

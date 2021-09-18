@@ -14,9 +14,9 @@ namespace SimpleGraphEditor.Views
         int NewBorderWidth { get; set; }
         Settings.NodeShape NewNodeShape { get; set; }
 
-        NodePropertiesPresenter propPresenter { get; set; }
+        NodePropertiesPresenter PropPresenter { get; set; }
 
-        void UpdatePropertiesUI();
+        void UpdatePropertiesControls();
 
     }
 }

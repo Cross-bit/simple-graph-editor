@@ -7,8 +7,10 @@ using SimpleGraphEditor.Presenters;
 namespace SimpleGraphEditor.Views
 {
     public interface IInfoTextBoxView {
-        InfoTextBoxPresenter textBoxPresenter { get; set; }
-        string MoouseCoordsText { get; set; }
+        InfoTextBoxPresenter TextBoxPresenter { get; set; }
+        string DataText { get; set; }
         bool IsMouseCoordsVisible { get; set; }
+
+        void InitializeInfoTextBox();
     }
 }

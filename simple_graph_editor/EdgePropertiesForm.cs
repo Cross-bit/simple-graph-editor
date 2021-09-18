@@ -16,10 +16,10 @@ using SimpleGraphEditor.Vendor;
 
 namespace SimpleGraphEditor.Views
 {
-    public partial class EdgeProperties : System.Windows.Forms.Form, IEdgePropertiesView
+    public partial class EdgePropertiesForm : System.Windows.Forms.Form, IEdgePropertiesView
     {
 
-        public EdgeProperties() {
+        public EdgePropertiesForm() {
             InitializeComponent();
             InitializeColorPicker();
         }

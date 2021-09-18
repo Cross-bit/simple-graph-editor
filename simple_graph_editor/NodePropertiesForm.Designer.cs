@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SimpleGraphEditor
 {
-    partial class NodeProperties
+    partial class NodePropertiesForm
     {
 
         private void InitializeComponent()
@@ -272,12 +272,12 @@ namespace SimpleGraphEditor
             this.BorderWidthUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntery);
             this.BorderWidthUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntery);
             // 
-            // NodeProperties
+            // NodePropertiesForm
             // 
             this.ClientSize = new System.Drawing.Size(284, 398);
             this.Controls.Add(this.NodePropertiesPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "NodeProperties";
+            this.Name = "NodePropertiesForm";
             this.NodePropertiesPanel.ResumeLayout(false);
             this.NodePropertiesPanel.PerformLayout();
             this.NodePropetiesInner1.ResumeLayout(false);

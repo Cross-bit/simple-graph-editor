@@ -23,7 +23,7 @@ namespace SimpleGraphEditor.Presenters
             _propertiesView = propView;
             _editorModel = editorModel;
 
-            _propertiesView.propPresenter = this;
+            _propertiesView.PropPresenter = this;
         }
 
 /*        private void BindNewTemplateAndProperties(object sender, EditorTemplateChangedEventArgs args) {

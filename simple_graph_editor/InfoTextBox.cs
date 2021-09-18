@@ -12,9 +12,9 @@ namespace SimpleGraphEditor
     class Dummy3 { }
 
     public partial class EditorForm : System.Windows.Forms.Form, IInfoTextBoxView {
-        public string MoouseCoordsText { get; set; }
-        public bool IsMouseCoordsVisible { get; set; } // TODO: možná odstranit asi nebudu implementovat...
-        public InfoTextBoxPresenter textBoxPresenter { get; set; }
+        public string DataText { get; set; }
+        public bool IsMouseCoordsVisible { get; set; } = true;
+        public InfoTextBoxPresenter TextBoxPresenter { get; set; }
 
         public void InitializeInfoTextBox() {
             InfoTextBox.Parent = MainCanvas;
@@ -22,8 +22,9 @@ namespace SimpleGraphEditor
             
         }
 
-        public void InfoTextBoxPaint(object sender, EventArgs e) {
-            InfoTextBox.Text = this.MoouseCoordsText;
+        private void InfoTextBoxPaint(object sender, EventArgs e) {
+            if(IsMouseCoordsVisible)
+                InfoTextBox.Text = this.DataText;
         }
     }
 }

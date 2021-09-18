@@ -21,7 +21,7 @@ namespace SimpleGraphEditor.Presenters
             _editorModel.MouseMove += OnMouseMove;
             _infoTextBoxView = infoTextBoxView;
 
-            _infoTextBoxView.textBoxPresenter = this;
+            _infoTextBoxView.TextBoxPresenter = this;
         }
 
         private void OnMouseMove(object sender, EventArgs e)  {
@@ -38,7 +38,7 @@ namespace SimpleGraphEditor.Presenters
             _stringBuilder.Append(" y: ");
             _stringBuilder.Append(mouseY);
 
-            _infoTextBoxView.MoouseCoordsText = _stringBuilder.ToString();
+            _infoTextBoxView.DataText = _stringBuilder.ToString();
             _stringBuilder.Clear();
         }
     }

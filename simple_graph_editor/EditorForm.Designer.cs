@@ -141,7 +141,7 @@ namespace SimpleGraphEditor
             // 
             // MainCanvas
             // 
-            this.MainCanvas.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.MainCanvas.BackColor = System.Drawing.SystemColors.Window;
             this.MainCanvas.Cursor = System.Windows.Forms.Cursors.Cross;
             this.MainCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainCanvas.Location = new System.Drawing.Point(0, 0);

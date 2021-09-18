@@ -20,27 +20,27 @@ namespace SimpleGraphEditor.Views
         void UpdateEdgePen();
         void ShowValueInsertionBox((int x, int y) coords, string defaultValue = "");
         void HideValueInsertionBox();
-
+        
         void OpenNodeProperties();
         void OpenEdgeProperties();
         void ClosePropertiesPanel();
-
+        
         // new node template
         int NewNodeBorderWidth { get; set; }
         Color NewNodeBorderColor { get; set; }
         bool NewNodeDrawBorder { get; set; }
-
+        
         Color NewNodeColor { get; set; }
         Color CanvasBackColor { get; }
         int NewNodeSize { get; set; }
-
+        
         // new lable
         public int NewLabelFontSize { get; set; }
         public Color NewLabelFontColor { get; set; }
         string NewLableTextValue { get; set; }
-
+        
         event EventHandler<EventArgs> ClientConfirmedOperation; // something 
-
+        
         Settings.NodeShape NewNodeShape { get; set; }
         bool NewEdgeIsDirected { get; set; }
         Color NewEdgeColor { get; set; }

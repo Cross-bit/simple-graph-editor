@@ -25,8 +25,8 @@ namespace SimpleGraphEditor
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var ndPropForm = new NodeProperties();
-            var edgePropForm = new EdgeProperties();
+            var ndPropForm = new NodePropertiesForm();
+            var edgePropForm = new EdgePropertiesForm();
             var editorForm = new EditorForm(ndPropForm, edgePropForm);
 
             IGraphRepresentation<NodeData, EdgeData> graphRepresentatioModel = new GraphRepresentationModel();

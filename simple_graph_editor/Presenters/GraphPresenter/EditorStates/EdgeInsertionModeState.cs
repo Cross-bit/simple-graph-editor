@@ -68,7 +68,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         }
         public override void TurnOnValueEditState() {
             this.ClearEdgeNodesData();
-            base.TurnOnNodeInsertionMode();
+            base.TurnOnValueEditState();
         }
 
         private void ClearEdgeNodesData() {

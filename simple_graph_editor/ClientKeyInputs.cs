@@ -61,13 +61,5 @@ namespace SimpleGraphEditor
 
         protected virtual void OnOperatationConfirmed() =>
             ClientConfirmedOperation?.Invoke(this, EventArgs.Empty);
-
-        /*private void SupressDingSound(KeyEventArgs e) {
-            // e.Handled = true;
-            //e.SuppressKeyPress = true;
-            //Form.AcceptButton
-            
-
-        }*/
     }
 }
