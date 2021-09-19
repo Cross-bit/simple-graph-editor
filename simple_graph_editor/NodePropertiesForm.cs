@@ -97,7 +97,6 @@ namespace SimpleGraphEditor
         }
 
         private void UpdateData() {
-            PropPresenter.UpdatePropertiesModel();
             PropPresenter.UpdateCurrentTemplate();
         }
 

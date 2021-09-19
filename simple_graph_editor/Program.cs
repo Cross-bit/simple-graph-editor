@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using SimpleGraphEditor.Presenters;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
-using SimpleGraphEditor.Models.Properties;
 using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Utils;
 
@@ -37,13 +36,9 @@ namespace SimpleGraphEditor
 
             var ToolStripPresenter = new ToolStripPresenter((IToolStripView)editorForm, graphRepresentatioModel);
 
-            /* properties panels */
-            INodePropertiesModel ndPropertiesModel = new NodePropertiesModel();
-            IEdgePropertiesModel edgePropertiesModel = new EdgePropertiesModel();
 
-
-            var NdPropertiesPresenter = new NodePropertiesPresenter(ndPropForm, ndPropertiesModel, editorModel);
-            var EdgePropertiesPresenter = new EdgePropertiesPresenter(edgePropForm, edgePropertiesModel, editorModel);
+            var NdPropertiesPresenter = new NodePropertiesPresenter(ndPropForm, editorModel);
+            var EdgePropertiesPresenter = new EdgePropertiesPresenter(edgePropForm, editorModel);
 
 
             Application.Run(editorForm);
