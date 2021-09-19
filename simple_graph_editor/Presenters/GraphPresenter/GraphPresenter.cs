@@ -1,11 +1,6 @@
 ﻿using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Views;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System;
-
-using SimpleGraphEditor.Utils;
-using SimpleGraphEditor.Presenters.EditorStates;
 using SimpleGraphEditor.Presenters.CanvasRendererMachine;
 using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Models.GraphEditingStates;
@@ -61,7 +56,7 @@ namespace SimpleGraphEditor.Presenters
         #region Updates view based on models
 
         #region data binding
-        public void BindNewNodeShapeTemplate(INodeTemplate template) {
+        private void BindNewNodeShapeTemplate(INodeTemplate template) {
 
             _graphView.NewNodeColor = template.BackColor;
             _graphView.NewNodeShape = template.Shape;

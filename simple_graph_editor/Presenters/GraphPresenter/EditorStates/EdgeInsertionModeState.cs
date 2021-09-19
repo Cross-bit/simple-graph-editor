@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using SimpleGraphEditor.Models;
+﻿using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
-
-using SimpleGraphEditor.Presenters.CanvasRendererMachine;
 using SimpleGraphEditor.Views;
 
 namespace SimpleGraphEditor.Presenters.EditorStates

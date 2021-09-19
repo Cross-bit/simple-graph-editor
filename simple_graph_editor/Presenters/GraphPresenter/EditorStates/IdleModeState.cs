@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using SimpleGraphEditor.Presenters.CanvasRendererMachine;
-using SimpleGraphEditor.Views;
+﻿using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
 

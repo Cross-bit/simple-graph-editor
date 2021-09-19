@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SimpleGraphEditor.Models.GraphEditingStates
 {
-    public class EditorGraphHistory //(careTaker)  
+    public class EditorGraphHistory //(careTaker)
     {
         public Stack<GraphMemento> historyUndo = new Stack<GraphMemento>();
         public GraphMemento current { get; private set; } = null;
@@ -32,8 +32,7 @@ namespace SimpleGraphEditor.Models.GraphEditingStates
 
         }
 
-        public GraphMemento GetPrewiousState(int steps = 1)
-        {
+        public GraphMemento GetPrewiousState(int steps = 1) {
             if (historyUndo.Count == 0) return null;
 
             for (int i = 0; i < steps; i++)
@@ -46,8 +45,7 @@ namespace SimpleGraphEditor.Models.GraphEditingStates
             return current;
         }
 
-        public GraphMemento GetFutureState(int steps = 1)
-        {
+        public GraphMemento GetFutureState(int steps = 1) {
 
             if (historyRedo.Count == 0) return null;
 

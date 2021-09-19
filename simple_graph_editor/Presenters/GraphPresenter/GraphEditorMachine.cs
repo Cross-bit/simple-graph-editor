@@ -1,7 +1,4 @@
 ﻿using SimpleGraphEditor.Presenters.EditorStates;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Models;
@@ -44,14 +41,8 @@ namespace SimpleGraphEditor.Presenters
             DeletionModeState = new DeletionModeState(_graphPresenter, _graphView, _editorModel);
             DragNodeModeState = new DragNodeState(_graphPresenter, _graphView, _graphModel, _editorModel);
             ValueEditModeState = new ValueEditModeState(_graphPresenter, _graphModel, _editorModel, _graphView);
-
-            SetNewEditorState(IdleModeState);
+            
             CurrentState = IdleModeState;
-        }
-
-        public void SetNewEditorState(EditorState newState) {
-            if (newState != null & newState != CurrentState)
-                CurrentState = newState;
         }
     }
 }

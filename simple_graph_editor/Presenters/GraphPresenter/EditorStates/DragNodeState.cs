@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Presenters.CanvasRendererMachine;
 using SimpleGraphEditor.Models.Interface;
-using System.Diagnostics;
 
 namespace SimpleGraphEditor.Presenters.EditorStates
 {

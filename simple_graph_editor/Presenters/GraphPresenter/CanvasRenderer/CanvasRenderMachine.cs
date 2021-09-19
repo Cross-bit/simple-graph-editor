@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Xml.Serialization;
+
 namespace SimpleGraphEditor.Presenters.CanvasRendererMachine
 {
 
@@ -58,13 +56,6 @@ namespace SimpleGraphEditor.Presenters.CanvasRendererMachine
                     CurrentRenderQueue.Enqueue(_graphPresenter.UpdataNodes);
                 });
 
-                /*_rendererMap.Add(RenderState.REND4, () => {
-                    CurrentRenderQueue.Enqueue(_graphPresenter.ClearCanvas);
-                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdateEdges);
-                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdateMouseDummyEdge);
-                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdataNodes);
-                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdateMouseDummyNode);
-                });*/
             #endregion
 
             SetCurrentRenderTo(RenderState.REND1);

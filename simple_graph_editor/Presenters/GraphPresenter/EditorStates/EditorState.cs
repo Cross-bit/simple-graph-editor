@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SimpleGraphEditor.Models.Interface;
-using SimpleGraphEditor.Models;
+﻿using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Presenters.CanvasRendererMachine;
 
@@ -31,7 +27,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         public virtual void TurnOnDeletationMode() {
             _graphView.ClosePropertiesPanel();
             _graphPresenter.CanvasRenderer.SetCurrentRenderTo(CanvasRenderMachine.RenderState.REND1);
-            _graphPresenter.EditorMachine.SetNewEditorState(_graphPresenter.EditorMachine.DeletionModeState);
+            _graphPresenter.EditorMachine.CurrentState = _graphPresenter.EditorMachine.DeletionModeState;
         }
 
         public virtual void TurnOnDragMode() {
