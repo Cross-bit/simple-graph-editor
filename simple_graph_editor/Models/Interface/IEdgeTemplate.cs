@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 
-namespace SimpleGraphEditor.Models
+namespace SimpleGraphEditor.Models.Interface
 {
     public interface IEdgeTemplate {
         Color Color { get; set; }

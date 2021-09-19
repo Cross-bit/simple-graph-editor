@@ -1,12 +1,10 @@
-﻿using System;
+﻿using SimpleGraphEditor.Models.Interface;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace SimpleGraphEditor.Models.GraphModel.Operations
 {
     using graphDataType = Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>;
-
 
     public class CopyGraphData  {
         private graphDataType _originalData = new graphDataType();

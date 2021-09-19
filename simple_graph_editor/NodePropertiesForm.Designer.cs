@@ -173,6 +173,11 @@ namespace SimpleGraphEditor
             0,
             0,
             0});
+            this.SizeUpDown.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.SizeUpDown.Name = "SizeUpDown";
             this.SizeUpDown.Size = new System.Drawing.Size(40, 25);
             this.SizeUpDown.TabIndex = 3;
@@ -269,8 +274,8 @@ namespace SimpleGraphEditor
             this.BorderWidthUpDown.TabIndex = 8;
             this.BorderWidthUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.BorderWidthUpDown.ValueChanged += new System.EventHandler(this.BorderWidthUpDown_ValueChanged);
-            this.BorderWidthUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntery);
-            this.BorderWidthUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntery);
+            this.BorderWidthUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntry);
+            this.BorderWidthUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntry);
             // 
             // NodePropertiesForm
             // 

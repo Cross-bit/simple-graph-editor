@@ -18,6 +18,14 @@ namespace SimpleGraphEditor.Views
 {
     public partial class EdgePropertiesForm : System.Windows.Forms.Form, IEdgePropertiesView
     {
+        public GraphPresenter graphPresenter { get; set; }
+        public EdgePropertiesPresenter propPresenter { get; set; }
+        public Color NewEdgeColor { get; set; } = Settings.DefaultEdgeColor;
+        public bool NewEdgeIsDirected { get; set; } = Settings.IsEdgeDirectedDefault;
+        public int NewEdgeWidth { get; set; } = Settings.DefaultEdgeWidth;
+
+        private Color _cellsBorderColor = Settings.EditorColorDarkTransparent1;
+        private int _cellsBorderWidth = 2; // todo asi do settings
 
         public EdgePropertiesForm() {
             InitializeComponent();
@@ -29,15 +37,6 @@ namespace SimpleGraphEditor.Views
             ColorPicker.AnyColor = true;
             ColorPicker.SolidColorOnly = false;
         }
-
-        public GraphPresenter graphPresenter { get; set; }
-        public EdgePropertiesPresenter propPresenter { get; set; }
-        public Color NewEdgeColor { get; set; } = Color.Black;
-        public bool NewEdgeIsDirected { get; set; } = Settings.IsEdgeDirectedDefault;
-        public int NewEdgeWidth { get; set; } = Settings.DefaultEdgeWidth;
-
-        private Color _cellsBorderColor = Color.FromArgb(50, 45, 45, 45);
-        private int _cellsBorderWidth = 2; // todo asi do settings
 
         private void IsDirectedCheckBox_MouseClick(object sender, MouseEventArgs e) {
             NewEdgeIsDirected = IsDirectedCheckBox.Checked;

@@ -34,5 +34,9 @@ namespace SimpleGraphEditor
         public static readonly int DefaultLableDistFromEdge = 20;
         #endregion
 
+        #region editor colors
+        public static readonly Color EditorColorDarkTransparent1 = Color.FromArgb(50, 45, 45, 45);
+        #endregion
+
     }
 }

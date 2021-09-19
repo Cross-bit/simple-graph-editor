@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleGraphEditor.Models
+namespace SimpleGraphEditor.Models.Interface
 {
     public interface INode<T> {
         int Y { get; set; }

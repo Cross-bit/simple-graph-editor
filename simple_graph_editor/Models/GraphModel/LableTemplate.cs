@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using SimpleGraphEditor.Models.Interface;
 
 namespace SimpleGraphEditor.Models

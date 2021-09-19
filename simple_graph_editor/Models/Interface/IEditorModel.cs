@@ -22,8 +22,6 @@ namespace SimpleGraphEditor.Models.Interface
 
         event EventHandler<EventArgs> MouseMove;
 
-        //event EventHandler<EventArgs> OnNodePropertiesChanged;
-
         event EventHandler<EditorTemplateChangedEventArgs> TemplateChanged;
 
     }

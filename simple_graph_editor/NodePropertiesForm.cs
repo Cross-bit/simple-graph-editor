@@ -16,10 +16,10 @@ using SimpleGraphEditor.Vendor;
 
 namespace SimpleGraphEditor
 {
-    public partial class NodePropertiesForm : System.Windows.Forms.Form, INodePropertiesView
+    public partial class NodePropertiesForm : System.Windows.Forms.Form, INodePropertiesView 
     {
-        public NodePropertiesForm()  
-        {
+        public NodePropertiesForm() {
+
             InitializeComponent();
 
             InitializeColorPicker();
@@ -40,22 +40,22 @@ namespace SimpleGraphEditor
         }
 
         public int NewNodeSize { get; set; } = Settings.DefaultNodeRadius;
-        public Color NewBorderColor { get; set; } = Color.Black;
-        public Color NewBackColor { get; set; } = Color.Red;
-        public int NewBorderWidth { get; set; } = 0;
+        public Color NewBackColor { get; set; } = Settings.DefaultNodeColor;
+        public Color NewBorderColor { get; set; } = Settings.DefaultNodeBorderColor;
+        public int NewBorderWidth { get; set; } = Settings.DefaultNodeBorderWidth;
         public NodePropertiesPresenter PropPresenter { get; set; }
         public Settings.NodeShape NewNodeShape { get; set; } = Settings.NodeShape.Circle;
 
         ColorDialog ColorPicker = new ColorDialog();
 
-        private Color _cellsBorderColor = Color.FromArgb(50, 45, 45, 45);
-        private int _cellsBorderWidth = 2; // todo asi do settings
+        private Color _cellsBorderColor = Settings.EditorColorDarkTransparent1;
+        private int _cellsBorderWidth = 2;
 
         private void NdBorderColorBtn_Click(object sender, EventArgs e) {
             if (ColorPicker.ShowDialog(this) == DialogResult.OK) {
                 NdBorderColorBtn.BackColor = ColorPicker.Color;
                 NewBorderColor = ColorPicker.Color;
-                UpdateData();
+                PropPresenter.UpdateCurrentTemplate();
             }
         }
 
@@ -63,18 +63,16 @@ namespace SimpleGraphEditor
             if (ColorPicker.ShowDialog(this) == DialogResult.OK) {
                 NdBackColorBtn.BackColor = ColorPicker.Color;
                 NewBackColor = ColorPicker.Color;
-                UpdateData();
+                PropPresenter.UpdateCurrentTemplate();
             }
         }
         #region node size control
         private void SizeUpDown_ValueChanged(object sender, EventArgs e) {
             NewNodeSize = (int)SizeUpDown.Value;
-            Debug.WriteLine(NewNodeSize);
-            UpdateData();
+            PropPresenter.UpdateCurrentTemplate();
         }
         private void SizeUpDown_ClientEntery(object sender, KeyEventArgs e) {
-            NewNodeSize = (int)SizeUpDown.Value;
-            UpdateData();
+
         }
         #endregion
 
@@ -82,21 +80,17 @@ namespace SimpleGraphEditor
 
         private void BorderWidthUpDown_ValueChanged(object sender, EventArgs e) {            
             NewBorderWidth = (int)BorderWidthUpDown.Value;
-            UpdateData();
+            PropPresenter.UpdateCurrentTemplate();
         }
-        private void BorderWidthUpDown_ClientEntery(object sender, KeyEventArgs e) {
+        private void BorderWidthUpDown_ClientEntry(object sender, KeyEventArgs e) {
             NewBorderWidth = (int)BorderWidthUpDown.Value;
-            UpdateData();
+            PropPresenter.UpdateCurrentTemplate();
         }
 
         #endregion
 
         private void ShapeSelection_ClientSelected(object sender, EventArgs e) {
             NewNodeShape = (Settings.NodeShape)ShapeSelection.SelectedItem;
-            UpdateData();
-        }
-
-        private void UpdateData() {
             PropPresenter.UpdateCurrentTemplate();
         }
 
