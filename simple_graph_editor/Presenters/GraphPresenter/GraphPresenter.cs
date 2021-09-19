@@ -29,7 +29,7 @@ namespace SimpleGraphEditor.Presenters
             _editorModel = newEditorModel;
 
             _graphView.MainPresenter = this;
-            _editorModel.CurrentNodeTemplate = new NodeTemplate();
+            _editorModel.CurrentNewNodeTemplate = new NodeTemplate();
 
             // TODO: skrze injection
             this.CanvasRenderer = new CanvasRenderMachine(this);
@@ -183,7 +183,7 @@ namespace SimpleGraphEditor.Presenters
 
             IEdge<EdgeData, NodeData> newEdge = new Edge(startNode, endNode, edgeData);
             IEdge<EdgeData, NodeData> newEdgeBack = new Edge(endNode, startNode, edgeData);
-
+            // todo: zítra přesunout do modelu
             _graphModel.GraphData[startNode].Add(newEdge);
 
             if(!edgeData.Template.IsDirected)// undirected
@@ -229,8 +229,9 @@ namespace SimpleGraphEditor.Presenters
             // save modified graph
             this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
         }
-        public void UpdateMousePosition() =>
-            _editorModel.OnMousePositionChanged(_graphView.MouseCoords);
+
+        public void UpdateMousePosition() => // Update mouse position in editor model
+            _editorModel.SetMousePosition(_graphView.MouseCoords);
 
         #endregion updates model
     }

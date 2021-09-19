@@ -39,7 +39,7 @@ namespace SimpleGraphEditor.Presenters
             template.Shape = _propertiesView.NewNodeShape;
 
             // set in editor
-            _editorModel.CurrentNodeTemplate = template;
+            _editorModel.CurrentNewNodeTemplate = template;
         }
 
         #endregion

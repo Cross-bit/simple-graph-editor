@@ -33,7 +33,7 @@ namespace SimpleGraphEditor.Presenters
             newEdgeTemplate.IsDirected = _propertiesView.NewEdgeIsDirected;
             newEdgeTemplate.Width = _propertiesView.NewEdgeWidth;
 
-            _editorModel.CurrentEdgeTemplate = newEdgeTemplate;
+            _editorModel.CurrentNewEdgeTemplate = newEdgeTemplate;
         }
         #endregion
     }
