@@ -39,6 +39,7 @@ namespace SimpleGraphEditor.Presenters
             }
         }*/
 
+
         #region update model
         public void UpdatePropertiesModel() {
             _propertiesModel.LineColor = _propertiesView.NewEdgeColor;
