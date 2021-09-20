@@ -34,7 +34,7 @@ namespace SimpleGraphEditor.Models
 
         public event EventHandler<EventArgs> MouseMove;
 
-      //  public event EventHandler<EditorTemplateChangedEventArgs> TemplateChanged;
+      //  public event EventHandler<EditorTemplateChangedEventArgs> TemplateChanged; TODO:!
 
         protected virtual void OnPropertyChanged(EditorTemplateChangedEventArgs.PropChanged property) {
             /*TemplateChanged?.Invoke(this, new EditorTemplateChangedEventArgs() {
@@ -45,15 +45,14 @@ namespace SimpleGraphEditor.Models
             });*/
         }
 
-        public IEdgeTemplate GetCurrentEdgeTemplate() {
+        public IEdgeTemplate GetCopyOfCurrentEdgeTemplate() {
             return ((ICloneable)CurrentNewEdgeTemplate).Clone() as IEdgeTemplate;
         }
 
-        public INodeTemplate GetCurrentNodeTemplate() {
-            //Debug.WriteLine("Idaho" + CurrentNodeTemplate.BorderWidth);
+        public INodeTemplate GetCopyOfCurrentNodeTemplate() {
             return ((ICloneable)CurrentNewNodeTemplate).Clone() as INodeTemplate;
         }
-        public IValueLabelTemplate GetCurrentLableTemplate() {
+        public IValueLabelTemplate GetCopyOfCurrentLableTemplate() {
             return ((ICloneable)CurrentNewLableTemplate).Clone() as IValueLabelTemplate;
         }
 

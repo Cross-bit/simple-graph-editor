@@ -98,13 +98,13 @@ namespace SimpleGraphEditor.Presenters
 
         // AllowsFreeMovement of node in editor
         public void UpdateMouseDummyNode() {
-            BindNewNodeShapeTemplate(_editorModel.GetCurrentNodeTemplate());
+            BindNewNodeShapeTemplate(_editorModel.GetCopyOfCurrentNodeTemplate());
             _graphView.AddNodeShape(_editorModel.CanvasMousePosition); // update view
         }
         public void UpdateMouseDummyEdge() {
             if (_editorModel.SelectedNode == null) return;
             //Debug.WriteLine(_editorModel.GetCurrentEdgeTemplate().Width);
-            BindNewEdgeShapeTemplate(_editorModel.GetCurrentEdgeTemplate());
+            BindNewEdgeShapeTemplate(_editorModel.GetCopyOfCurrentEdgeTemplate());
             var startCords = (_editorModel.SelectedNode.X, _editorModel.SelectedNode.Y);
             _graphView.AddEdgeShape(startCords, _editorModel.CanvasMousePosition); // update view
         }
@@ -179,7 +179,7 @@ namespace SimpleGraphEditor.Presenters
 
             // Update model
             var edgeData = new EdgeData();
-            edgeData.Template = _editorModel.GetCurrentEdgeTemplate();
+            edgeData.Template = _editorModel.GetCopyOfCurrentEdgeTemplate();
 
             IEdge<EdgeData, NodeData> newEdge = new Edge(startNode, endNode, edgeData);
             IEdge<EdgeData, NodeData> newEdgeBack = new Edge(endNode, startNode, edgeData);
@@ -198,7 +198,7 @@ namespace SimpleGraphEditor.Presenters
             var nodeData = new NodeData();
             nodeData.Name = "node" + _graphModel.GraphData.Count + 1;
 
-            nodeData.Template = _editorModel.GetCurrentNodeTemplate(); // TODO: moc se mi nelíbí v editor modelu...
+            nodeData.Template = _editorModel.GetCopyOfCurrentNodeTemplate(); // TODO: moc se mi nelíbí v editor modelu...
 
             INode<NodeData> newNode = new Node(coordinates.x, coordinates.y, nodeData);
 
@@ -210,7 +210,7 @@ namespace SimpleGraphEditor.Presenters
         }
         public void DeleteNode((int x, int y) coordinates) {
             // todo: move radius somewhere global constant
-            var nodeToDelete = _graphModel.GetNodeInRadius(coordinates, Settings.DefaultNodeRadius);
+            var nodeToDelete = _graphModel.GetNodeOnCoords(coordinates);
             if (nodeToDelete == null) return;
             // updata model
             _graphModel.RemoveNodeFromGraph(nodeToDelete);

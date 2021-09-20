@@ -28,7 +28,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
 
         public override void OnClientInteract((int x, int y) coords) {
 
-            var nodeClientInteracted = _graphModel.GetNodeInRadius(coords, Settings.DefaultNodeRadius);
+            var nodeClientInteracted = _graphModel.GetNodeOnCoords(coords);
 
             if (nodeClientInteracted == null) return;
 

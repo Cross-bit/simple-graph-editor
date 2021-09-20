@@ -31,7 +31,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         }
 
         public override void OnClientInteract((int x, int y) coords) {
-            INode<NodeData> nodeClientInteracted = _graphModel.GetNodeInRadius(coords, Settings.DefaultNodeRadius);
+            INode<NodeData> nodeClientInteracted = _graphModel.GetNodeOnCoords(coords);
             IEdge<EdgeData, NodeData> edgeClientInteracted = null; 
 
             if(nodeClientInteracted == null)

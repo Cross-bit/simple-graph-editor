@@ -19,15 +19,15 @@ namespace SimpleGraphEditor.Models.Interface
         void AddEdgeToGraph(IEdge<S, T> newEdge, INode<NodeData> node);
         void RemoveEdgeFromGraph(IEdge<EdgeData, NodeData> edgeToDelete);
 
-        INode<T> GetNodeInRadius((int x, int y) coordinates, int radius);
+       // INode<T> GetNodeInRadius((int x, int y) coordinates, int radius);
 
         IEdge<EdgeData, NodeData> GetEdgeOnCoords((int x, int y) coordinates);
-
+        INode<T> GetNodeOnCoords((int x, int y) coords);
         INode<T> GetColsestNodeInRectangle((int x, int y) coordinates, int radius);
 
         HashSet<(INode<T>, IEdge<S, T>)> GetConnectionsUndirected(INode<T> baseNode);
 
-        bool IsNodeInRadius((int x, int y) coordinates, int radius);
+        //bool IsNodeInRadius((int x, int y) coordinates, int radius);
 
         // directed check for neighbour of baseNode
         bool HasThisNeighbour(INode<NodeData> baseNode, INode<NodeData> searchedNeighbour);

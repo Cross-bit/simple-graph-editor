@@ -107,15 +107,19 @@ namespace SimpleGraphEditor.Models
         }
 
         #endregion
-        
-        public INode<NodeData> GetNodeInRadius((int x, int y) coord, int radius){
+
+        public INode<NodeData> GetNodeOnCoords((int x, int y) coord) {
             foreach (var node in _graphData.Keys) {
-                var res = Math.Sqrt(Math.Pow(node.X - coord.x, 2d) + Math.Pow(node.Y - coord.y, 2d));
-                if (res < radius && node.Data.IsEnabled) return node; // TODO: is enabled kontrolu dát spíš jinam... 
+                if (IsCoordInNodeInRadius(coord, node)) return node;
             }
             return null;
         }
         
+        private bool IsCoordInNodeInRadius((int x, int y) coord, INode<NodeData> node){
+            var res = Math.Sqrt(Math.Pow(node.X - coord.x, 2d) + Math.Pow(node.Y - coord.y, 2d));
+            return res < node.Data.Template.Size / 2 && node.Data.IsEnabled;
+        }
+
         public IEdge<EdgeData, NodeData> GetEdgeOnCoords((int x, int y) coord) {
             var alreadyChecked = new HashSet<IEdge<EdgeData, NodeData>>();
             foreach (var incidentEdges in _graphData.Values) {
@@ -154,12 +158,14 @@ namespace SimpleGraphEditor.Models
             return null;
         }
 
-        public bool IsNodeInRadius((int x, int y) coord, int radius) {
+        /*public bool IsNodeInRadius((int x, int y) coord, int radius) {
             return GetNodeInRadius(coord, radius) != null ? true : false;
-        }
+        }*/
+
 
         public INode<NodeData> GetColsestNodeInRectangle((int x, int y) coordinates, int radius) {
             throw new NotImplementedException(); // TODO?
         }
+
     }
 }

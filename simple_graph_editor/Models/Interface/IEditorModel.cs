@@ -13,9 +13,9 @@ namespace SimpleGraphEditor.Models.Interface
         (int X, int Y) CanvasMousePosition { get; }
         void SetMousePosition((int X, int Y) coords);
         void SetActiveObjects(HashSet<(INode<NodeData>, IEdge<EdgeData, NodeData>)> data);
-        INodeTemplate GetCurrentNodeTemplate();
-        IEdgeTemplate GetCurrentEdgeTemplate();
-        IValueLabelTemplate GetCurrentLableTemplate();
+        INodeTemplate GetCopyOfCurrentNodeTemplate();
+        IEdgeTemplate GetCopyOfCurrentEdgeTemplate();
+        IValueLabelTemplate GetCopyOfCurrentLableTemplate();
         event EventHandler<EventArgs> MouseMove;
 
 //        event EventHandler<EditorTemplateChangedEventArgs> TemplateChanged;
