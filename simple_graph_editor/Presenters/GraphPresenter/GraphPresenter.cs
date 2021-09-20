@@ -120,8 +120,12 @@ namespace SimpleGraphEditor.Presenters
                         if (!updatedEdges.Contains(edge)) {
                             // Bind new edgeTemplate
                             var edgeTemplate = edge.Data.Template;
-                            BindNewEdgeShapeTemplate(edgeTemplate);
 
+                            // Bind end node data e. g. for the line cap of oriented edges, ( the start is based on nodes data)
+                            BindNewNodeShapeTemplate(edge.Node2.Data.Template);
+
+                            BindNewEdgeShapeTemplate(edgeTemplate);
+                            
                             var edgeStartCoords = (edge.Node1.X, edge.Node1.Y);
                             var edgeEndCoords = (edge.Node2.X, edge.Node2.Y);
 

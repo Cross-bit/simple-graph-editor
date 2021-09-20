@@ -25,6 +25,7 @@ namespace SimpleGraphEditor.GeneralSettings
         public static readonly int EdgeSelectionTolerancCoef = 2;
         public static readonly int DefaultEdgeWidth = 2;
         public static readonly bool IsEdgeDirectedDefault = true;
+        public static readonly int EdgeLineTipSize = 5;
         #endregion
 
         #region default lable settings

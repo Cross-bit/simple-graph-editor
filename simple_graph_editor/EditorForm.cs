@@ -51,7 +51,7 @@ namespace SimpleGraphEditor
 
         private Pen _currentEdgePen = new Pen(Color.Black, Settings.DefaultEdgeWidth);
 
-        private int _arrowSize = 10; //TODO:
+        private int _arrowSize = Settings.EdgeLineTipSize;
 
         private Dictionary<(int x, int y), Label> _elementsValuesTexts = new Dictionary<(int x, int y), Label>();
 
@@ -178,7 +178,6 @@ namespace SimpleGraphEditor
         private void MainForm_MouseMove(object sender, MouseEventArgs e) {
             MouseCoords = (e.X , e.Y);
 
-
             MainPresenter.UpdateMousePosition();
 
             #region check for valid mouse region
@@ -241,11 +240,33 @@ namespace SimpleGraphEditor
         // (Triangle lineCap)
         private CustomLineCap SetCustomLineCap() {
             GraphicsPath capPath = new GraphicsPath();
-            var pointes = new Point[3] { new Point(-3, -15), new Point(3, -15), new Point(0, -10) };
-            //_arrowSize
-            capPath.AddClosedCurve(pointes); // AddPoligon - rovný čáry
+
+            int tipBaseYPos = (-1)*((NewNodeSize / 4) + _arrowSize);
+
+            // bottom, bottom, tip
+            var points = new Point[3] { new Point(-3, tipBaseYPos), new Point(3, tipBaseYPos), new Point(0, (-1)*(NewNodeSize / 4)) }; 
+
+            capPath.AddClosedCurve(points); // AddPoligon - rovný čáry
             return new CustomLineCap(capPath, null);
         }
+
+        /*private int GetCustomLineCapTipPosition() {
+        TODO: asi remove zítra!
+            switch (NewNodeShape) {
+                case Settings.NodeShape.Circle: return (-1) * ((NewNodeSize / 4) + _arrowSize);
+                case Settings.NodeShape.Square:
+                /* = max(| newnode |, | y |);
+                    xp = x / u;
+                    yp = y / u;*/
+
+                    /*return (xp, yp);
+                    return tipBaseYPos
+
+                break;
+            }
+
+            //return tipBaseYPos;
+        }*/
 
         private void SetPropertiesPanel() {
             _currentPropertiesForm.TopLevel = false;
