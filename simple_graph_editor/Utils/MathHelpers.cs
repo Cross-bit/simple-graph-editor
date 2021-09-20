@@ -35,11 +35,5 @@ namespace SimpleGraphEditor.Utils
         public static int GetDotProduct((int x, int y) vec1, (int x, int y) vec2) =>
             vec1.x * vec2.x + vec1.y * vec2.y;
 
-        /*public static int GetAproximatedPointOnSquareFromCenter(int size) {
-            //int position = (1 - Math.Abs(size*))
-
-        }*/
-
-
     }
 }
