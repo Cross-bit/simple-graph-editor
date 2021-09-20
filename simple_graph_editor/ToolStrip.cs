@@ -78,6 +78,15 @@ namespace SimpleGraphEditor
             base.OnRenderButtonBackground(e);
         }
 
+        protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e) {
+            if (e.Item.Selected != false)
+                e.ArrowColor = Color.White;
+            else
+                e.ArrowColor = Color.Gray;
+
+            base.OnRenderArrow(e);
+        }
+
         protected override void OnRenderDropDownButtonBackground(ToolStripItemRenderEventArgs e) {
             Rectangle rc = new Rectangle(Point.Empty, e.Item.Size);
             if(e.Item.Selected)
