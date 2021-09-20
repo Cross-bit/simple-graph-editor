@@ -29,7 +29,7 @@ namespace SimpleGraphEditor.Models.Export
 
                 foreach (var node in _graphData.GraphData.Keys) {
                     if (_graphData.GraphData[node].Count == 0) {
-                        NodesWithoutEdge.Add(node);
+                        NodesWithoutEdge.Add(_graphData.GraphData[node][0].Node1);
                         continue; 
                     }
 

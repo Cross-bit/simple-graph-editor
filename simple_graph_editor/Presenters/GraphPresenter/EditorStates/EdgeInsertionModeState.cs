@@ -81,7 +81,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         private void PlaceEdgeToGraph(INode<NodeData> nodeClientInteracted) {
             _endEdgeNode = nodeClientInteracted;
 
-            var startNodeNeighbours = _graphModel.GraphData[_startEdgeNode];
+            var startNodeNeighbours = _graphModel.GraphData[_startEdgeNode.Coords];
 
             _graphPresenter.AddEdge(_startEdgeNode, _endEdgeNode);
             _endEdgeNode = null;

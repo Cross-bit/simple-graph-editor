@@ -11,7 +11,7 @@ namespace SimpleGraphEditor.Models.Interface
     /// <typeparam name="S">Edge data</typeparam>
     public interface IGraphRepresentation<T, S> {
 
-        IReadOnlyDictionary<INode<T>, List<IEdge<S, T>>> GraphData { get; }
+        IReadOnlyDictionary<(int X, int Y), List<IEdge<S, T>>> GraphData { get; }
 
         //List<INode<T>> ActiveNodes { get; set; }
         void AddNodeToGraph(INode<T> newNode);

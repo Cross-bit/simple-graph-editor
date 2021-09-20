@@ -12,12 +12,12 @@ namespace SimpleGraphEditor.Models.GraphModel
     public class GraphRepresentationModel : IGraphRepresentation<NodeData, EdgeData>, IMementoOriginator
     { // (originator for memento)
 
-        private Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> _graphData;
+        private Dictionary<(int x, int y), List<IEdge<EdgeData, NodeData>>> _graphData;
 
-        public IReadOnlyDictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> GraphData { get => _graphData; }
+        public IReadOnlyDictionary<(int X, int Y), List<IEdge<EdgeData, NodeData>>> GraphData { get => _graphData; }
         
         public GraphRepresentationModel() {
-            _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
+            _graphData = new Dictionary<(int x, int y), List<IEdge<EdgeData, NodeData>>>();
         }
 
         #region history
@@ -37,9 +37,9 @@ namespace SimpleGraphEditor.Models.GraphModel
                 Debug.WriteLine(item);
             }
 
-            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Basenode does not exist in graph database!");
+            if (!_graphData.ContainsKey(baseNode.Coords)) throw new Exception("Basenode does not exist in graph database!");
 
-            var baseNodeEdges = _graphData[baseNode];
+            var baseNodeEdges = _graphData[baseNode.Coords];
             if (baseNodeEdges == null) return false;
 
             foreach (var edgesData in baseNodeEdges) {
@@ -54,21 +54,21 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         #region Graph editing operations
         public void AddNodeToGraph(INode<NodeData> newNode) {
-            if (_graphData.ContainsKey(newNode)) throw new Exception("Trying to add already existing node to database!");
+            if (_graphData.ContainsKey(newNode.Coords)) throw new Exception("Trying to add already existing node to database!");
 
-            _graphData.Add(newNode, new List<IEdge<EdgeData, NodeData>>());
+            _graphData.Add(newNode.Coords, new List<IEdge<EdgeData, NodeData>>() { new Edge(newNode, newNode, new EdgeData()) });
         }
 
         public void AddEdgeToGraph(IEdge<EdgeData, NodeData> newEdge, INode<NodeData> node) {
             if (node == null) throw new ArgumentNullException();
-            if(!_graphData.ContainsKey(node)) throw new Exception("Database doesn't contain given node key!");
-            if (_graphData[node].Contains(newEdge)) throw new Exception("Trying to add already existing edge to database!");
+            if(!_graphData.ContainsKey(node.Coords)) throw new Exception("Database doesn't contain given node key!");
+            if (_graphData[node.Coords].Contains(newEdge)) throw new Exception("Trying to add already existing edge to database!");
 
-            _graphData[node].Add(newEdge);
+            _graphData[node.Coords].Add(newEdge);
         }
         public void RemoveNodeFromGraph(INode<NodeData> nodeToDelete) {
             if(nodeToDelete == null) throw new Exception("Given node is null!");
-            if (!_graphData.ContainsKey(nodeToDelete)) throw new Exception("Node is not in database!");
+            if (!_graphData.ContainsKey(nodeToDelete.Coords)) throw new Exception("Node is not in database!");
 
             // remove incident edges
             foreach (var edges in _graphData.Values) {
@@ -76,7 +76,7 @@ namespace SimpleGraphEditor.Models.GraphModel
                 //TODO: možná ještě předělat reprezentaci grafu na seznam následovníků a hrany dát jako separátní list?
             }
 
-            _graphData.Remove(nodeToDelete);
+            _graphData.Remove(nodeToDelete.Coords);
         }
 
         public void RemoveEdgeFromGraph(IEdge<EdgeData, NodeData> edgeToRemove) {
@@ -91,16 +91,16 @@ namespace SimpleGraphEditor.Models.GraphModel
         // Undirectly
         public HashSet<(INode<NodeData>, IEdge<EdgeData, NodeData>)> GetConnectionsUndirected(INode<NodeData> baseNode) {
             if (baseNode == null) throw new ArgumentNullException("baseNode is null");
-            if (!_graphData.ContainsKey(baseNode)) throw new Exception("baseNode is not in graph!");
+            if (!_graphData.ContainsKey(baseNode.Coords)) throw new Exception("baseNode is not in graph!");
 
             var searchResult = new HashSet<(INode<NodeData>, IEdge<EdgeData, NodeData>)>();
 
             // correct edges
-            foreach (var edge in _graphData[baseNode]) searchResult.Add((edge.Node2, edge));
+            foreach (var edge in _graphData[baseNode.Coords]) searchResult.Add((edge.Node2, edge));
 
             // also edges in oposite direction
             foreach (var data in _graphData) {
-                if(data.Key != baseNode)
+                if(data.Key != baseNode.Coords)
                 foreach (var edge in data.Value) { 
                     // TODO: maybe change a bit representation and turn this to O(m)... by separating list of edges from list
                     if(edge.Node2 == baseNode && !searchResult.Contains((edge.Node2, edge)))
@@ -115,7 +115,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public INode<NodeData> GetNodeOnCoords((int x, int y) coord) {
             foreach (var node in _graphData.Keys) {
-                if (IsCoordInNodeInRadius(coord, node)) return node;
+                if (IsCoordInNodeInRadius(coord, _graphData[node][0].Node1)) return _graphData[node][0].Node1;
             }
             return null;
         }

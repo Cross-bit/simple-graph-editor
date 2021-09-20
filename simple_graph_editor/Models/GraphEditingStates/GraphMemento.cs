@@ -10,7 +10,7 @@ using SimpleGraphEditor.Models.GraphModel.Operations;
 
 namespace SimpleGraphEditor.Models
 {
-    using graphDataType = Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>;
+    using graphDataType = Dictionary<(int x, int y), List<IEdge<EdgeData, NodeData>>>;
 
     public class GraphMemento { // (memento)
 

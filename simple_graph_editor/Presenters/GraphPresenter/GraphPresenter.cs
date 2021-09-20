@@ -139,16 +139,18 @@ namespace SimpleGraphEditor.Presenters
 
             foreach (var node in _graphModel.GraphData.Keys) {
 
+                var nodeObject = _graphModel.GraphData[node][0].Node1;
+
                 // Bind model current node settings and view current node
-                var template = node.Data.Template; // TODO: nastavení uživatelem
+                var template = nodeObject.Data.Template; // TODO: nastavení uživatelem
                 BindNewNodeShapeTemplate(template);
 
                 // Update node shapes in view
-                if (node.Data.CanBeRendered)
+                if (nodeObject.Data.CanBeRendered)
                     _graphView.AddNodeShape((node.X, node.Y));
 
                 // update the lable value
-                this.UpdateNodeLable(node);
+                this.UpdateNodeLable(nodeObject);
             }
         }
 
@@ -184,10 +186,10 @@ namespace SimpleGraphEditor.Presenters
             IEdge<EdgeData, NodeData> newEdge = new Edge(startNode, endNode, edgeData);
             IEdge<EdgeData, NodeData> newEdgeBack = new Edge(endNode, startNode, edgeData);
             // todo: zítra přesunout do modelu
-            _graphModel.GraphData[startNode].Add(newEdge);
+            _graphModel.GraphData[startNode.Coords].Add(newEdge);
 
             if(!edgeData.Template.IsDirected)// undirected
-                _graphModel.GraphData[endNode].Add(newEdgeBack); 
+                _graphModel.GraphData[endNode.Coords].Add(newEdgeBack); 
 
             // save modified graph
             this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());

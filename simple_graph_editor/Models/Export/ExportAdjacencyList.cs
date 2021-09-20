@@ -27,7 +27,7 @@ namespace SimpleGraphEditor.Models.Export
             using (var file = new StreamWriter(_filePath)) {
 
                 foreach (var node in _graphData.GraphData.Keys) {
-                    string record = node.Data.Name;
+                    string record = _graphData.GraphData[node][0].Node1.Data.Name;
                     int e_ctr = 0;
                     foreach (var edge in _graphData.GraphData[node]) {
                         if (e_ctr == 0) {
