@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleGraphEditor.Presenters;
 using SimpleGraphEditor.Models;
+using SimpleGraphEditor.Models.GraphModel;
 using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Views;
 using SimpleGraphEditor.Utils;

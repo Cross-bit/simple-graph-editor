@@ -5,8 +5,9 @@ using System.Text;
 using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Models.GraphEditingStates;
 using SimpleGraphEditor.Utils;
+using SimpleGraphEditor.Models;
 
-namespace SimpleGraphEditor.Models
+namespace SimpleGraphEditor.Models.GraphModel
 {
     public class GraphRepresentationModel : IGraphRepresentation<NodeData, EdgeData>, IMementoOriginator
     { // (originator for memento)
@@ -116,8 +117,8 @@ namespace SimpleGraphEditor.Models
         }
         
         private bool IsCoordInNodeInRadius((int x, int y) coord, INode<NodeData> node){
-            var res = Math.Sqrt(Math.Pow(node.X - coord.x, 2d) + Math.Pow(node.Y - coord.y, 2d));
-            return res < node.Data.Template.Size / 2 && node.Data.IsEnabled;
+            var distance = Math.Sqrt(Math.Pow(node.X - coord.x, 2d) + Math.Pow(node.Y - coord.y, 2d));
+            return distance < node.Data.Template.Size / 2 && node.Data.IsEnabled;
         }
 
         public IEdge<EdgeData, NodeData> GetEdgeOnCoords((int x, int y) coord) {
@@ -125,30 +126,10 @@ namespace SimpleGraphEditor.Models
             foreach (var incidentEdges in _graphData.Values) {
                 foreach (var edge in incidentEdges) {
                     if (alreadyChecked.Contains(edge)) continue;
-                    // Direction vector of edge
-                    (int x, int y) directionVect = (edge.Node1.X - edge.Node2.X, edge.Node1.Y - edge.Node2.Y);
 
-                    // TODO: uklidit někam výpočet projekcí
-
-                    // calculate projections on line
-                    var coordsProjection = MathHelpers.GetProjectionOnLine(coord, directionVect);
-
-                    var projStartNode = MathHelpers.GetProjectionOnLine((edge.Node1.X, edge.Node1.Y), directionVect);
-                    var projEndNode = MathHelpers.GetProjectionOnLine((edge.Node2.X, edge.Node2.Y), directionVect);
-
-                    int dist1 = MathHelpers.GetVectorsDistance(projStartNode, coordsProjection);
-                    int dist2 = MathHelpers.GetVectorsDistance(projEndNode, coordsProjection);
-
-                    int edgeLength = MathHelpers.GetVectorNorm(
-                        (edge.Node1.X - edge.Node2.X, edge.Node1.Y - edge.Node2.Y)); // ortogonal projections keeps lengths :)
-
-                    int perpDistFromLine = Math.Abs(MathHelpers.GetVectorsDistance(coord, coordsProjection) - MathHelpers.GetVectorsDistance((edge.Node1.X, edge.Node1.Y), projStartNode));
-
-                    int distFromEndsDiff = Math.Abs((dist1 + dist2) - edgeLength);
-
-                    if (perpDistFromLine <= ((edge.Data.Template.Width / 2) + (edge.Data.Template.Width / 2) * Settings.EdgeSelectionTolerancCoef) && distFromEndsDiff <= 1) {
-                        return edge;
-                    }
+                    // check if coords lies on the edge
+                    var coordsOnEdge = new CoordsOnEdge(coord, edge);
+                    if (coordsOnEdge.CheckIfCoordsOnEdge()) return edge;
 
                     alreadyChecked.Add(edge);
                 }
@@ -157,6 +138,7 @@ namespace SimpleGraphEditor.Models
 
             return null;
         }
+
 
         /*public bool IsNodeInRadius((int x, int y) coord, int radius) {
             return GetNodeInRadius(coord, radius) != null ? true : false;
