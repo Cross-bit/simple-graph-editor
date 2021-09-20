@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using SimpleGraphEditor.Models.Interface;
+﻿using System.Drawing;
+using SimpleGraphEditor.GeneralSettings;
 using SimpleGraphEditor.Presenters;
 
 namespace SimpleGraphEditor.Views

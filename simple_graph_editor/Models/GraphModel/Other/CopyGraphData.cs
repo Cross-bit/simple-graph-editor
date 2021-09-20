@@ -58,9 +58,5 @@ namespace SimpleGraphEditor.Models.GraphModel.Operations
 
             return newNode1;
         }
-
-
-
-
     }
 }

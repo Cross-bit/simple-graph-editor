@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SimpleGraphEditor.Models;
-using System.Windows.Forms;
+using SimpleGraphEditor.GeneralSettings;
 using SimpleGraphEditor.Presenters;
 using System.Drawing;
 

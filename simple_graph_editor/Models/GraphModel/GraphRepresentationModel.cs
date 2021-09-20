@@ -33,7 +33,11 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public bool HasThisNeighbour(INode<NodeData> baseNode, INode<NodeData> searchedNeighbour) {
 
-            if (!_graphData.ContainsKey(baseNode)) throw new Exception("basenode does not exist in graph database!");
+            foreach (var item in _graphData.Keys) {
+                Debug.WriteLine(item);
+            }
+
+            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Basenode does not exist in graph database!");
 
             var baseNodeEdges = _graphData[baseNode];
             if (baseNodeEdges == null) return false;

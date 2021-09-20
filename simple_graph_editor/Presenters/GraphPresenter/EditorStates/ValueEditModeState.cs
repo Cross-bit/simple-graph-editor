@@ -54,6 +54,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             _graphView.ShowValueInsertionBox(lablePosition, _editedEdge.Data.Value);
             _graphView.ClientConfirmedOperation += OnClientAcceptedEdgeValue;
         }
+
         private void SetNodeValueInsertion(INode<NodeData> nodeInteracted) {
             _isInsertingValue = true;
             _editedNode = nodeInteracted;

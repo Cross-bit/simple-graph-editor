@@ -4,7 +4,7 @@ using System.Text;
 using System.Drawing;
 
 
-namespace SimpleGraphEditor
+namespace SimpleGraphEditor.GeneralSettings
 {
     public static class Settings
     {

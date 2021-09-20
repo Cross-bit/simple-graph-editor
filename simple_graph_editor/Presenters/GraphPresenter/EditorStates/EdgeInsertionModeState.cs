@@ -32,13 +32,18 @@ namespace SimpleGraphEditor.Presenters.EditorStates
 
             if (nodeClientInteracted == null) return;
 
+            
+
             if (_startEdgeNode == null) {
                 SetFirstSelectedNode(nodeClientInteracted);
             }
-            else if (_endEdgeNode == null 
-                && (!_graphModel.AreNodesConectedByEdge(_startEdgeNode, nodeClientInteracted) )) 
-            {
-                this.PlaceEdgeToGraph(nodeClientInteracted);
+            else if(_endEdgeNode == null) {
+                // race condition: _startEdgeNode was modified before the second was selected ! (e. g. because of undo operation etc. )
+                /*if ((_startEdgeNode.X == nodeClientInteracted.X && _startEdgeNode.Y == nodeClientInteracted.Y) && _startEdgeNode != nodeClientInteracted)
+                    SetFirstSelectedNode(nodeClientInteracted); // so ... select new first node*/
+
+                if (!_graphModel.AreNodesConectedByEdge(_startEdgeNode, nodeClientInteracted)) 
+                    this.PlaceEdgeToGraph(nodeClientInteracted);
             }
         }
 

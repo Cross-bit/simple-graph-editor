@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using SimpleGraphEditor.Models.GraphModel;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace XUnitTestSimpleGraphEditor
             Assert.Throws<Exception>(() => graph.HasThisNeighbour(nd2, nd1));
 
             graph.AddNodeToGraph(nd2);
-            //Assert.False(graph.HasThisNeighbour(nd2, nd1));
+            
 
             //graph.GraphData[nd2] = new List<IEdge<EdgeData, NodeData>>() { e1_2 };
             Assert.True(graph.HasThisNeighbour(nd2, nd1));

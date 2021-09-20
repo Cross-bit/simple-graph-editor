@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using SimpleGraphEditor.Models.Interface;
+using SimpleGraphEditor.GeneralSettings;
 
 namespace SimpleGraphEditor.Models
 {

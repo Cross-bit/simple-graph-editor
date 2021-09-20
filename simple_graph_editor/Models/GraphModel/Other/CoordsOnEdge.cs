@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Utils;
+using SimpleGraphEditor.Models.Interface;
+using SimpleGraphEditor.GeneralSettings;
 
 namespace SimpleGraphEditor.Models.GraphModel
 {
@@ -23,7 +24,7 @@ namespace SimpleGraphEditor.Models.GraphModel
         public CoordsOnEdge((int x, int y) coords, IEdge<EdgeData, NodeData> edge) {
             _coords = coords;
             _edge = edge;
-            _maxDistCoef = GetDefaultDistanceCoef();
+            _maxDistCoef = this.GetDefaultDistanceCoef();
         }
 
         public bool CheckIfCoordsOnEdge() {
@@ -46,7 +47,7 @@ namespace SimpleGraphEditor.Models.GraphModel
         private bool IsCoordOnLine() {
 
             int distRef = MathHelpers.GetVectorsDistance((_edge.Node1.X, _edge.Node1.Y), _projStartNode);
-            int perpDistFromLine = Math.Abs(MathHelpers.GetVectorsDistance(_coords, _coordsProjection));
+            int perpDistFromLine = MathHelpers.GetVectorsDistance(_coords, _coordsProjection);
             int realDist = Math.Abs(perpDistFromLine - distRef);
 
             Debug.WriteLine(realDist);
@@ -64,8 +65,5 @@ namespace SimpleGraphEditor.Models.GraphModel
 
             return Math.Abs((distToStartNodeProjection + distToEndNodeProjection) - edgeLength) <= MaxDistToleranceCoef;
         }
-
-
-
     }
 }

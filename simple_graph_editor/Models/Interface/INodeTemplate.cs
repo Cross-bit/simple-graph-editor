@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SimpleGraphEditor.GeneralSettings;
 using System.Drawing;
 
 namespace SimpleGraphEditor.Models.Interface
