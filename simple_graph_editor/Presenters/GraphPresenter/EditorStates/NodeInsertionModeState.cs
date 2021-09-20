@@ -24,7 +24,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         public override void TurnOnNodeInsertionMode() { return; }
 
         public override void OnClientInteract((int x, int y) coords) {
-            if (_graphModel.GetNodeOnCoords(coords) == null) {
+            if (_graphModel.GetNodeOnCoordsBySize(coords) == null) {
                 _graphPresenter.AddNode(coords);
             }
         }

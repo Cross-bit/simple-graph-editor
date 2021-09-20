@@ -28,19 +28,17 @@ namespace SimpleGraphEditor.Presenters.EditorStates
 
         public override void OnClientInteract((int x, int y) coords) {
 
-            var nodeClientInteracted = _graphModel.GetNodeOnCoords(coords);
+            var nodeClientInteracted = _graphModel.GetNodeOnCoordsBySize(coords);
 
             if (nodeClientInteracted == null) return;
 
-            
 
             if (_startEdgeNode == null) {
                 SetFirstSelectedNode(nodeClientInteracted);
             }
             else if(_endEdgeNode == null) {
-                // race condition: _startEdgeNode was modified before the second was selected ! (e. g. because of undo operation etc. )
-                /*if ((_startEdgeNode.X == nodeClientInteracted.X && _startEdgeNode.Y == nodeClientInteracted.Y) && _startEdgeNode != nodeClientInteracted)
-                    SetFirstSelectedNode(nodeClientInteracted); // so ... select new first node*/
+                // race condition fix: _startEdgeNode was changed before the second was selected ! (e. g. because of undo operation etc. )
+                _startEdgeNode = _graphModel.GetNodeByPosition((_startEdgeNode.X, _startEdgeNode.Y));
 
                 if (!_graphModel.AreNodesConectedByEdge(_startEdgeNode, nodeClientInteracted)) 
                     this.PlaceEdgeToGraph(nodeClientInteracted);

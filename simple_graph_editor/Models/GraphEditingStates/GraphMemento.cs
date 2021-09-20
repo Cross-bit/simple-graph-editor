@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using SimpleGraphEditor.Models.GraphModel.Operations;
 using SimpleGraphEditor.Models.Interface;
-using SimpleGraphEditor.Models;
-using System.Linq;
+using System.Collections.Generic;
 using System.Diagnostics;
-using SimpleGraphEditor.Models.GraphModel.Operations;
 
 namespace SimpleGraphEditor.Models
 {

@@ -29,22 +29,22 @@ namespace SimpleGraphEditor
             ToolStripTop.Renderer = new CustomToolStripRenderer();
         }
 
-
         private void ExportAdjacencyListItemClicked() {
-            OpenFileSaveDialog(StripPresenter.ExportAdjancencyList, _txtFileFilter);
+            OpenFileSaveDialog(StripPresenter.ExportAdjancencyList, _txtFileFilter, "txt");
         }
 
         private void ExportEdgeListItemClicked() {
-            OpenFileSaveDialog(StripPresenter.ExportListOfEdges, _txtFileFilter);
+            OpenFileSaveDialog(StripPresenter.ExportListOfEdges, _txtFileFilter, "txt");
         }
 
         private void ExportScreenshot() {
-            OpenFileSaveDialog(MainCanvas.Image.Save, _jpgFileFilter);
+            OpenFileSaveDialog(MainCanvas.Image.Save, _jpgFileFilter, "jpg");
         }
 
-        private void OpenFileSaveDialog(Action<string> saveAction, string filter = "All files (*.*)|*.*") {
+        private void OpenFileSaveDialog(Action<string> saveAction, string filter = "All files (*.*)|*.*", string defalutExt = "") {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
+            saveFileDialog.DefaultExt = defalutExt;
             saveFileDialog.Filter = filter;
             saveFileDialog.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;

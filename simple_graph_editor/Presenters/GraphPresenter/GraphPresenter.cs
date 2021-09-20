@@ -183,7 +183,8 @@ namespace SimpleGraphEditor.Presenters
 
             IEdge<EdgeData, NodeData> newEdge = new Edge(startNode, endNode, edgeData);
             IEdge<EdgeData, NodeData> newEdgeBack = new Edge(endNode, startNode, edgeData);
-            // todo: zítra přesunout do modelu
+
+            // todo: zítra přesunout do modelu todo: zítra fakt už přesunout do modelu !!!
             _graphModel.GraphData[startNode].Add(newEdge);
 
             if(!edgeData.Template.IsDirected)// undirected
@@ -210,7 +211,7 @@ namespace SimpleGraphEditor.Presenters
         }
         public void DeleteNode((int x, int y) coordinates) {
             // todo: move radius somewhere global constant
-            var nodeToDelete = _graphModel.GetNodeOnCoords(coordinates);
+            var nodeToDelete = _graphModel.GetNodeOnCoordsBySize(coordinates);
             if (nodeToDelete == null) return;
             // updata model
             _graphModel.RemoveNodeFromGraph(nodeToDelete);

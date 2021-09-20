@@ -7,8 +7,6 @@ namespace SimpleGraphEditor.Models
         public int X { get; set; }
         public int Y { get; set; }
 
-        // public (int X, int Y) Coords { get; set; }
-
         public NodeData Data { get; set; }
 
         public Node(int newX, int newY, NodeData newData) {

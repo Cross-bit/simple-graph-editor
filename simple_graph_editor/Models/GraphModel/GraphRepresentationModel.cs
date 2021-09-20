@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using SimpleGraphEditor.Models.Interface;
-using SimpleGraphEditor.Models.GraphEditingStates;
-using SimpleGraphEditor.Utils;
-using SimpleGraphEditor.Models;
+
 
 namespace SimpleGraphEditor.Models.GraphModel
 {
@@ -73,7 +70,6 @@ namespace SimpleGraphEditor.Models.GraphModel
             // remove incident edges
             foreach (var edges in _graphData.Values) {
                 edges?.RemoveAll(edge => edge.Node1 == nodeToDelete || edge.Node2 == nodeToDelete);
-                //TODO: možná ještě předělat reprezentaci grafu na seznam následovníků a hrany dát jako separátní list?
             }
 
             _graphData.Remove(nodeToDelete);
@@ -81,7 +77,6 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public void RemoveEdgeFromGraph(IEdge<EdgeData, NodeData> edgeToRemove) {
             if (edgeToRemove == null) throw new Exception("Given edge is null!");
-            //if(edgeToRemove.Data.Template.Shape == Settings.EdgeShape.Directed) TODO: dalo by se ušetřit nějaké procházení pro undirected graph
 
             foreach (var edges in _graphData.Values) {
                  edges?.RemoveAll(edge => edge == edgeToRemove);
@@ -113,14 +108,22 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         #endregion
 
-        public INode<NodeData> GetNodeOnCoords((int x, int y) coord) {
+        public INode<NodeData> GetNodeOnCoordsBySize((int x, int y) coord) {
             foreach (var node in _graphData.Keys) {
-                if (IsCoordInNodeInRadius(coord, node)) return node;
+                if (IsCoordsInNodesRadius(coord, node)) return node;
             }
             return null;
         }
-        
-        private bool IsCoordInNodeInRadius((int x, int y) coord, INode<NodeData> node){
+
+        public INode<NodeData> GetNodeByPosition((int x, int y) coord) {
+            foreach (var node in _graphData.Keys) {
+                if (node.X == coord.x && node.Y == coord.y) return node;
+            }
+            return null;
+        }
+
+
+        private bool IsCoordsInNodesRadius((int x, int y) coord, INode<NodeData> node){
             var distance = Math.Sqrt(Math.Pow(node.X - coord.x, 2d) + Math.Pow(node.Y - coord.y, 2d));
             return distance < node.Data.Template.Size / 2 && node.Data.IsEnabled;
         }
@@ -142,16 +145,5 @@ namespace SimpleGraphEditor.Models.GraphModel
 
             return null;
         }
-
-
-        /*public bool IsNodeInRadius((int x, int y) coord, int radius) {
-            return GetNodeInRadius(coord, radius) != null ? true : false;
-        }*/
-
-
-        public INode<NodeData> GetColsestNodeInRectangle((int x, int y) coordinates, int radius) {
-            throw new NotImplementedException(); // TODO?
-        }
-
     }
 }

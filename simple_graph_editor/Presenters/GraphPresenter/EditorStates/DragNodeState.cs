@@ -26,7 +26,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         }
 
         public override void OnClientInteract((int x, int y) coords) {
-            var nodeClientInteracted = _graphModel.GetNodeOnCoords(coords);
+            var nodeClientInteracted = _graphModel.GetNodeOnCoordsBySize(coords);
 
             // Get Selected Node
             if (_editorModel.SelectedNode == null && nodeClientInteracted != null) {
