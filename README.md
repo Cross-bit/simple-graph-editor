@@ -3,4 +3,4 @@ Simple grap editor in windows forms.
 
 **Detailed documentation**
 
-[a link](https://github.com/user/repo/blob/branch/other_file.md)
+[Dokumentace](https://github.com/Cross-bit/SimpleGraphEditor/blob/b1e3b7435e3d7b3737172dadd5cfe98d042b04c4/dokumentace.pdf)
