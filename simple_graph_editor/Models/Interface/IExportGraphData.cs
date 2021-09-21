@@ -6,6 +6,6 @@ namespace SimpleGraphEditor.Models.Interface
 {
     public interface IExportGraphData {
 
-        public void ExportData();
+        void ExportData();
     }
 }

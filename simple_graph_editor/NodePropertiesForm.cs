@@ -64,7 +64,8 @@ namespace SimpleGraphEditor
             PropPresenter.UpdateCurrentTemplate();
         }
         private void SizeUpDown_ClientEntery(object sender, KeyEventArgs e) {
-
+            NewNodeSize = (int)SizeUpDown.Value;
+            PropPresenter.UpdateCurrentTemplate();
         }
         #endregion
 

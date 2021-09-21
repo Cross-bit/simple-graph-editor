@@ -32,7 +32,6 @@ namespace SimpleGraphEditor.Presenters
             _graphView.MainPresenter = this;
             _editorModel.CurrentNewNodeTemplate = new NodeTemplate();
 
-            // TODO: skrze injection
             this.CanvasRenderer = new CanvasRenderMachine(this);
             this.EditorMachine = new GraphEditorMachine(this, _graphView, _graphModel, _editorModel);
             this.GraphHistory = new EditorGraphHistory();
@@ -117,8 +116,7 @@ namespace SimpleGraphEditor.Presenters
             _graphView.AddEdgeShape(startCords, _editorModel.CanvasMousePosition); // update view
         }
         #endregion
-        
-        // TODO: update only needed stuff (only real node and edge intersections etc.)
+        // updates all edges/nodes (better approach: update just part of the canvas)
         public void UpdateEdges() {
             HashSet<IEdge<EdgeData, NodeData>> updatedEdges = new HashSet<IEdge<EdgeData, NodeData>>();
             foreach (var edgeList in _graphModel.GraphData.Values) {
@@ -199,7 +197,7 @@ namespace SimpleGraphEditor.Presenters
             IEdge<EdgeData, NodeData> newEdge = new Edge(startNode, endNode, edgeData);
             IEdge<EdgeData, NodeData> newEdgeBack = new Edge(endNode, startNode, edgeData);
 
-            // todo: zítra přesunout do modelu todo: zítra fakt už přesunout do modelu !!!
+            // todo: zítra přesunout do modelu todo: zítra fakt už přesunout do modelu !!! - odstranit kometář... !!!!
             _graphModel.GraphData[startNode].Add(newEdge);
 
             if(!edgeData.Template.IsDirected)// undirected
