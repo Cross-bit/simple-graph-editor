@@ -17,7 +17,7 @@ namespace SimpleGraphEditor.GeneralSettings
         public static readonly Color DefaultNodeColor = Color.Red;
         public static readonly Color DefaultNodeBorderColor = Color.Black;
         public static readonly int DefaultNodeRadius = 40;
-        public static readonly int DefaultNodeBorderWidth = 2;
+        public static readonly int DefaultNodeBorderWidth = 0;
         #endregion
 
         #region defalult edge settings
