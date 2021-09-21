@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SimpleGraphEditor.Models.GraphEditingStates
 {
-    public class EditorGraphHistory //(careTaker)
+    public class EditorGraphHistory //(careTaker for graph data memento p.)
     {
         public Stack<GraphMemento> historyUndo = new Stack<GraphMemento>();
         public GraphMemento current { get; private set; } = null;

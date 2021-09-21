@@ -75,10 +75,6 @@ namespace SimpleGraphEditor
             NewBorderWidth = (int)BorderWidthUpDown.Value;
             PropPresenter.UpdateCurrentTemplate();
         }
-        private void BorderWidthUpDown_ClientEntry(object sender, KeyEventArgs e) {
-            NewBorderWidth = (int)BorderWidthUpDown.Value;
-            PropPresenter.UpdateCurrentTemplate();
-        }
 
         #endregion
 

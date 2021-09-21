@@ -29,10 +29,10 @@ namespace SimpleGraphEditor.Presenters
         }
 
         public void BindTextLableAndData() {
-            // todo: decorator pattern
+
             var mouseX = _editorModel.CanvasMousePosition.X;
             var mouseY = _editorModel.CanvasMousePosition.Y;
-
+            // set mouse coords text
             _stringBuilder.Append("x: ");
             _stringBuilder.Append(mouseX);
             _stringBuilder.Append(" y: ");

@@ -188,7 +188,6 @@ namespace SimpleGraphEditor
             0,
             0});
             this.SizeUpDown.ValueChanged += new System.EventHandler(this.SizeUpDown_ValueChanged);
-            this.SizeUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SizeUpDown_ClientEntery);
             this.SizeUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SizeUpDown_ClientEntery);
             // 
             // label4
@@ -274,8 +273,6 @@ namespace SimpleGraphEditor
             this.BorderWidthUpDown.TabIndex = 8;
             this.BorderWidthUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.BorderWidthUpDown.ValueChanged += new System.EventHandler(this.BorderWidthUpDown_ValueChanged);
-            this.BorderWidthUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntry);
-            this.BorderWidthUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BorderWidthUpDown_ClientEntry);
             // 
             // NodePropertiesForm
             // 
