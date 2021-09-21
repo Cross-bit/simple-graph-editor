@@ -62,7 +62,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         private void OnMouseMoved(object sender, EventArgs e) {
             if (_editorModel.SelectedNode == null) return;
             _editorModel.SelectedNode.X = _editorModel.CanvasMousePosition.X;
-            _editorModel.SelectedNode.Y = _editorModel.CanvasMousePosition.Y; // TODO: případně v budoucnu odstranit z editorModel SelectedNode a MousePosition a pouze tady bindnout _view a nějaký lokální selectedNode?
+            _editorModel.SelectedNode.Y = _editorModel.CanvasMousePosition.Y;
         }
         public override void TurnOnValueEditState() {
             this.ClearOperation();

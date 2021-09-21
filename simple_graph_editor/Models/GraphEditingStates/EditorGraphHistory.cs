@@ -28,8 +28,6 @@ namespace SimpleGraphEditor.Models.GraphEditingStates
             historyUndo.Push(current);
             current = graphMemento;
 
-            Debug.WriteLine(historyUndo.Count);
-
         }
 
         public GraphMemento GetPrewiousState(int steps = 1) {

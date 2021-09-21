@@ -49,7 +49,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         private void SetEdgeValueInsertion(IEdge<EdgeData,NodeData> edgeInteracted) {
             _isInsertingValue = true;
             _editedEdge = edgeInteracted;
-            //TODO: asi odstranit public selectedNode v insertion modu z editorModelu
+
             var lablePosition = _editedEdge.Data.CalculateEdgeLablePosition(_editedEdge);
             _graphView.ShowValueInsertionBox(lablePosition, _editedEdge.Data.Value);
             _graphView.ClientConfirmedOperation += OnClientAcceptedEdgeValue;

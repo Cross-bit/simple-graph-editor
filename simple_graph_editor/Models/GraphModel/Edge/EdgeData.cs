@@ -16,7 +16,6 @@ namespace SimpleGraphEditor.Models
             (int x, int y) perpendicularVec = (dirVector.y, (-1) * dirVector.x);
             (int x, int y) sizedPerpendicular = MathHelpers.GetVectorOfGivenLength(perpendicularVec, Settings.DefaultLableDistFromEdge);
 
-            // Move scaled vector back to the center of edge (TODO: dynamical change of location along the edge based on intersections?)
             return (sizedPerpendicular.x + centerPoint.x, sizedPerpendicular.y + centerPoint.y);
         }
     }

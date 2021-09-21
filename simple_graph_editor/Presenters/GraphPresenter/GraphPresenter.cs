@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SimpleGraphEditor.Presenters.CanvasRendererMachine;
 using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Models.GraphEditingStates;
+using System.Diagnostics;
 
 namespace SimpleGraphEditor.Presenters
 {
@@ -210,7 +211,7 @@ namespace SimpleGraphEditor.Presenters
 
             var nodeData = new NodeData();
 
-            nodeData.Template = _editorModel.GetCopyOfCurrentNodeTemplate(); // TODO: moc se mi nelíbí v editor modelu...
+            nodeData.Template = _editorModel.GetCopyOfCurrentNodeTemplate();
 
             INode<NodeData> newNode = new Node(coordinates.x, coordinates.y, nodeData);
 

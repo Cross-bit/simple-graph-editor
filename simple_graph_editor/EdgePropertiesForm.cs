@@ -16,7 +16,7 @@ namespace SimpleGraphEditor.Views
         public int NewEdgeWidth { get; set; } = Settings.DefaultEdgeWidth;
 
         private Color _cellsBorderColor = Settings.EditorColorDarkTransparent1;
-        private int _cellsBorderWidth = 2; // todo asi do settings
+        private int _cellsBorderWidth = 2;
 
         public EdgePropertiesForm() {
             InitializeComponent();

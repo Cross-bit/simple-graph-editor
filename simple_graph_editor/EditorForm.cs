@@ -183,8 +183,6 @@ namespace SimpleGraphEditor
         private void MainDrawSpace_Paint(object sender, PaintEventArgs e) => 
             MainPresenter.RenderCanvas();
 
-        //private void OnMouseAttachedEvent() => MouseAttachedEvent?.Invoke(this, EventArgs.Empty);
-        //TODO: v momentu co MouseAttachedEvent != null, zavolat this.Refresh(), ale pouze jednou...
         private void ToolsMenu_Paint(object sender, PaintEventArgs e) {
             var panel = (Panel)sender;
         }

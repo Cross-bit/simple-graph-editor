@@ -19,22 +19,23 @@ namespace SimpleGraphEditor
         /// </summary>
         [STAThread]
         static void Main() {
-            //MathHelpers.GetProjectionOnLine((1, 3), (3, 2));
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
 
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // Forms
             var ndPropForm = new NodePropertiesForm();
             var edgePropForm = new EdgePropertiesForm();
             var editorForm = new EditorForm(ndPropForm, edgePropForm);
 
+            // models
             IGraphRepresentation<NodeData, EdgeData> graphRepresentatioModel = new GraphRepresentationModel();
             IEditorModel editorModel = new EditorModel();
-            InfoTextBoxPresenter infoTextBoxPresenter = new InfoTextBoxPresenter(editorForm, editorModel);
-            
-            var GraphPresenter = new GraphPresenter(editorForm, graphRepresentatioModel, editorModel);
 
+            // presenters
+            var infoTextBoxPresenter = new InfoTextBoxPresenter(editorForm, editorModel);
+            var GraphPresenter = new GraphPresenter(editorForm, graphRepresentatioModel, editorModel);
             var ToolStripPresenter = new ToolStripPresenter((IToolStripView)editorForm, graphRepresentatioModel);
 
 

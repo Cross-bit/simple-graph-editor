@@ -16,7 +16,7 @@ namespace XUnitTestSimpleGraphEditor
 
         [Fact]
         public void TestHasThisNeighbour() {
-            //TODO: fixnout
+            
             var nd1 = new Node(0, 0, new NodeData());
             var nd2 = new Node(1, 1, new NodeData());
             var e1_2 = new Edge(nd1, nd2, new EdgeData());

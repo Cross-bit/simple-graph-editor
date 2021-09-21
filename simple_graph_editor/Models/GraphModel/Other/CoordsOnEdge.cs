@@ -50,7 +50,6 @@ namespace SimpleGraphEditor.Models.GraphModel
             int perpDistFromLine = MathHelpers.GetVectorsDistance(_coords, _coordsProjection);
             int realDist = Math.Abs(perpDistFromLine - distRef);
 
-            Debug.WriteLine(realDist);
             return realDist < _maxDistCoef;
         }
 

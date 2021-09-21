@@ -34,7 +34,7 @@ namespace SimpleGraphEditor.Models
 
         public event EventHandler<EventArgs> MouseMove;
 
-      //  public event EventHandler<EditorTemplateChangedEventArgs> TemplateChanged; TODO:!
+      //  public event EventHandler<EditorTemplateChangedEventArgs> TemplateChanged; TODO:
 
         protected virtual void OnPropertyChanged(EditorTemplateChangedEventArgs.PropChanged property) {
             /*TemplateChanged?.Invoke(this, new EditorTemplateChangedEventArgs() {

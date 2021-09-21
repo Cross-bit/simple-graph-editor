@@ -53,7 +53,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         }
 
         public virtual void TurnOnValueEditState() {
-            _graphView.ClosePropertiesPanel(); // todo: maybe true...
+            _graphView.ClosePropertiesPanel();
             _graphPresenter.CanvasRenderer.SetCurrentRenderTo(CanvasRenderMachine.RenderState.REND1);
             _graphPresenter.EditorMachine.CurrentState = _graphPresenter.EditorMachine.ValueEditModeState;
         }

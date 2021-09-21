@@ -32,10 +32,6 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public bool HasThisNeighbour(INode<NodeData> baseNode, INode<NodeData> searchedNeighbour) {
 
-            foreach (var item in _graphData.Keys) {
-                Debug.WriteLine(item);
-            }
-
             if (!_graphData.ContainsKey(baseNode)) throw new Exception("Basenode does not exist in graph database!");
 
             var baseNodeEdges = _graphData[baseNode];
@@ -100,7 +96,7 @@ namespace SimpleGraphEditor.Models.GraphModel
             foreach (var data in _graphData) {
                 if(data.Key != baseNode)
                 foreach (var edge in data.Value) { 
-                    // TODO: maybe change a bit representation and turn this to O(m)... by separating list of edges from list
+                    // edit maybe change a bit representation and turn this to O(m)... by separating list of edges from list
                     if(edge.Node2 == baseNode && !searchResult.Contains((edge.Node2, edge)))
                             searchResult.Add((edge.Node2, edge));
                 }
