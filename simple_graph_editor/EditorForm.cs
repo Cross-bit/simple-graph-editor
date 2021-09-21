@@ -41,8 +41,6 @@ namespace SimpleGraphEditor
         public List<(int x, int y)> ActiveNodesPositions { get; set; } = new List<(int x, int y)>();
         public (int X, int Y) MouseCoords { get; set; }
 
-        private Rectangle _mouseRectangle;
-
         private Point _currentEdgeStart = new Point(0, 0);
 
         // Pen settings
@@ -99,7 +97,6 @@ namespace SimpleGraphEditor
         }
 
         private void InitializeCanvas() {
-            _mouseRectangle = new Rectangle(0, 0, NewNodeSize, NewNodeSize);
             MainCanvas.BackColor = CanvasBackColor;
             if(IsCanvasSizeValid())
                 MainCanvas.Image = new Bitmap(MainCanvas.Width, MainCanvas.Height);
@@ -180,17 +177,6 @@ namespace SimpleGraphEditor
 
             MainPresenter.UpdateMousePosition();
 
-            #region check for valid mouse region
-                _mouseRectangle.X = e.X - NewNodeSize / 2;
-                _mouseRectangle.Y = e.Y - NewNodeSize / 2;
-
-                if (_mouseRectangle.Right > MainCanvas.Width)
-                    _mouseRectangle.X = MainCanvas.Width - _mouseRectangle.Width;
-                if (_mouseRectangle.Bottom > MainCanvas.Height)
-                    _mouseRectangle.Y = MainCanvas.Height - _mouseRectangle.Height;
-                if (_mouseRectangle.Top < 0) _mouseRectangle.Y = 0;
-                if (_mouseRectangle.Left < 0) _mouseRectangle.X = 0;
-            #endregion
             MainCanvas.Invalidate();
         }
 
