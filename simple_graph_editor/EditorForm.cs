@@ -241,9 +241,9 @@ namespace SimpleGraphEditor
         private CustomLineCap SetCustomLineCap() {
             GraphicsPath capPath = new GraphicsPath();
             
-            int tipBaseYPos = GetCustomLineCapTipPosition();//(-1)*((NewNodeSize / 4) + _arrowSize);
+            int tipBaseYPos = (-1) * ((NewNodeSize / 4) + 5);
 
-            
+
             var points = new Point[3] { 
                 new Point(-3, tipBaseYPos), // bottom
                 new Point(3, tipBaseYPos), // bottom
@@ -254,23 +254,6 @@ namespace SimpleGraphEditor
             var customLineCap = new CustomLineCap(capPath, null);
             customLineCap.WidthScale = 1/4;
             return customLineCap;
-        }
-
-        private int GetCustomLineCapTipPosition() {
-            switch (NewNodeShape) {
-                case Settings.NodeShape.Circle: return (-1) * ((NewNodeSize / 4) + 5);
-                case Settings.NodeShape.Square:
-                    int t = Math.Max(Math.Abs(NewNodeCoords.x), Math.Abs(NewNodeCoords.y));
-                    float xp = NewNodeCoords.x / (float)t;
-                    float yp = NewNodeCoords.y / (float)t;
-                    Debug.WriteLine("tady" + (xp, yp));
-                    return 0;
-
-                    //https://stackoverflow.com/questions/1585525/how-to-find-the-intersection-point-between-a-line-and-a-rectangle todo nebo se na to vykašli...
-                    //return tipBaseYPos
-            }
-
-            return 0;
         }
 
         private void SetPropertiesPanel() {
