@@ -8,8 +8,7 @@ using SimpleGraphEditor.GeneralSettings;
 
 namespace SimpleGraphEditor
 {
-    public partial class NodePropertiesForm : System.Windows.Forms.Form, INodePropertiesView 
-    {
+    public partial class NodePropertiesForm : System.Windows.Forms.Form, INodePropertiesView  {
         public NodePropertiesForm() {
 
             InitializeComponent();
@@ -35,6 +34,7 @@ namespace SimpleGraphEditor
         public Color NewBackColor { get; set; } = Settings.DefaultNodeColor;
         public Color NewBorderColor { get; set; } = Settings.DefaultNodeBorderColor;
         public int NewBorderWidth { get; set; } = Settings.DefaultNodeBorderWidth;
+        public (int X, int Y) NewNodeCoords { get; set; }
         public NodePropertiesPresenter PropPresenter { get; set; }
         public Settings.NodeShape NewNodeShape { get; set; } = Settings.NodeShape.Circle;
 

@@ -16,7 +16,7 @@ namespace SimpleGraphEditor
         public GraphPresenter MainPresenter { private get; set; }
 
         #region new node template data
-        // Mouse node
+        public (int x, int y) NewNodeCoords { get; set; }
         public Color NewNodeBorderColor { get; set; } = Color.Black;
         public Color NewNodeColor { get; set; } = Color.Black;
         public int NewNodeSize { get; set; } = 40;
@@ -51,7 +51,7 @@ namespace SimpleGraphEditor
 
         private Pen _currentEdgePen = new Pen(Color.Black, Settings.DefaultEdgeWidth);
 
-        private int _arrowSize = Settings.EdgeLineTipSize;
+        private float _arrowSize = Settings.EdgeArrowScaleFactor;
 
         private Dictionary<(int x, int y), Label> _elementsValuesTexts = new Dictionary<(int x, int y), Label>();
 
@@ -230,7 +230,7 @@ namespace SimpleGraphEditor
             _currentEdgePen.Width = NewEdgeWidth;
 
 
-            if(NewEdgeIsDirected)
+            if (NewEdgeIsDirected)
                 _currentEdgePen.CustomEndCap = this.SetCustomLineCap();
             else
                 _currentEdgePen.EndCap = LineCap.Round;
@@ -240,33 +240,38 @@ namespace SimpleGraphEditor
         // (Triangle lineCap)
         private CustomLineCap SetCustomLineCap() {
             GraphicsPath capPath = new GraphicsPath();
+            
+            int tipBaseYPos = GetCustomLineCapTipPosition();//(-1)*((NewNodeSize / 4) + _arrowSize);
 
-            int tipBaseYPos = (-1)*((NewNodeSize / 4) + _arrowSize);
-
-            // bottom, bottom, tip
-            var points = new Point[3] { new Point(-3, tipBaseYPos), new Point(3, tipBaseYPos), new Point(0, (-1)*(NewNodeSize / 4)) }; 
+            
+            var points = new Point[3] { 
+                new Point(-3, tipBaseYPos), // bottom
+                new Point(3, tipBaseYPos), // bottom
+                new Point(0, (-1)*(NewNodeSize / 4)) // tip 
+            }; 
 
             capPath.AddClosedCurve(points); // AddPoligon - rovný čáry
-            return new CustomLineCap(capPath, null);
+            var customLineCap = new CustomLineCap(capPath, null);
+            customLineCap.WidthScale = 1/4;
+            return customLineCap;
         }
 
-        /*private int GetCustomLineCapTipPosition() {
-        TODO: asi remove zítra!
+        private int GetCustomLineCapTipPosition() {
             switch (NewNodeShape) {
-                case Settings.NodeShape.Circle: return (-1) * ((NewNodeSize / 4) + _arrowSize);
+                case Settings.NodeShape.Circle: return (-1) * ((NewNodeSize / 4) + 5);
                 case Settings.NodeShape.Square:
-                /* = max(| newnode |, | y |);
-                    xp = x / u;
-                    yp = y / u;*/
+                    int t = Math.Max(Math.Abs(NewNodeCoords.x), Math.Abs(NewNodeCoords.y));
+                    float xp = NewNodeCoords.x / (float)t;
+                    float yp = NewNodeCoords.y / (float)t;
+                    Debug.WriteLine("tady" + (xp, yp));
+                    return 0;
 
-                    /*return (xp, yp);
-                    return tipBaseYPos
-
-                break;
+                    //https://stackoverflow.com/questions/1585525/how-to-find-the-intersection-point-between-a-line-and-a-rectangle todo nebo se na to vykašli...
+                    //return tipBaseYPos
             }
 
-            //return tipBaseYPos;
-        }*/
+            return 0;
+        }
 
         private void SetPropertiesPanel() {
             _currentPropertiesForm.TopLevel = false;

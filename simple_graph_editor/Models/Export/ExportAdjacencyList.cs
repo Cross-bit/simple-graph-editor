@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using SimpleGraphEditor.Models;
+﻿using System.IO;
 using SimpleGraphEditor.Models.Interface;
 
 namespace SimpleGraphEditor.Models.Export
@@ -27,14 +23,18 @@ namespace SimpleGraphEditor.Models.Export
             using (var file = new StreamWriter(_filePath)) {
 
                 foreach (var node in _graphData.GraphData.Keys) {
-                    string record = node.Data.Name;
+                    string record = "";
+                    this.AddNodeRecordToLine(node, ref record);
+
                     int e_ctr = 0;
                     foreach (var edge in _graphData.GraphData[node]) {
                         if (e_ctr == 0) {
                             record += " " + DefaultDelimiter.ToString();
                         }
-                        record += " " + edge.Node2.Data.Name;
-                        if(e_ctr < _graphData.GraphData[node].Count-1)
+                        record += " ";
+                        this.AddNodeRecordToLine(edge.Node2, ref record);
+                        this.AddEdgeRecordToLine(edge, ref record);
+                        if (e_ctr < _graphData.GraphData[node].Count-1)
                             record += DefaultNeighbourDelimiter;
                         e_ctr++;
                     }
@@ -42,6 +42,19 @@ namespace SimpleGraphEditor.Models.Export
                     file.WriteLine(record);
                 }
             }
+        }
+
+        private void AddEdgeRecordToLine(IEdge<EdgeData, NodeData> edge, ref string record) {
+
+            if (edge.Data.Value != null && edge.Data.Value != "")
+                record += "[" + edge.Data.Value + "]";
+        }
+
+        private void AddNodeRecordToLine(INode<NodeData> node, ref string record) {
+            record += node.Data.Name;
+
+            if (node.Data.Value != null && node.Data.Value != "")
+                record += "(" + node.Data.Value + ")";
         }
     }
 }

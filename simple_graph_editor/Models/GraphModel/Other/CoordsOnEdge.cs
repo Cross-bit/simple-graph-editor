@@ -16,7 +16,7 @@ namespace SimpleGraphEditor.Models.GraphModel
         (int x, int y) _projStartNode;
         (int x, int y) _projEndNode;
 
-        private int _maxDistCoef;
+        private float _maxDistCoef;
 
         public int MaxDistToleranceCoef { get; set; } = 1;
 
@@ -41,8 +41,8 @@ namespace SimpleGraphEditor.Models.GraphModel
             _projStartNode = MathHelpers.GetProjectionOnLine((_edge.Node1.X, _edge.Node1.Y), _dirVector);
             _projEndNode = MathHelpers.GetProjectionOnLine((_edge.Node2.X, _edge.Node2.Y), _dirVector);
         }
-        private int GetDefaultDistanceCoef() =>
-            (_edge.Data.Template.Width / 2) + (_edge.Data.Template.Width / 2) * Settings.EdgeSelectionTolerancCoef;
+        private float GetDefaultDistanceCoef() =>
+            (_edge.Data.Template.Width / 2) + Settings.EdgeSelectionTolerancCoef;
 
         private bool IsCoordOnLine() {
 

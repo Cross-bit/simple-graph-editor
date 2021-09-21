@@ -13,7 +13,7 @@ namespace SimpleGraphEditor.Models
 
         public GraphMemento(graphDataType graphDataSave) {
             var copyGraphData = new CopyGraphData(graphDataSave);
-            _graphData = copyGraphData.Copy();
+            _graphData = copyGraphData.CreateCopy();
         }
 
         public GraphMemento GetCopyOfMemento() {

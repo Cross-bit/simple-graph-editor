@@ -19,6 +19,7 @@ namespace SimpleGraphEditor.Presenters
         public EditorGraphHistory GraphHistory { get; set; }
         public enum HistoryMoveDir { forward, backward };
 
+        private int _added = 0;
         public GraphPresenter(
             IGraphView newGraphView,
             IGraphRepresentation<NodeData, EdgeData> newGraphRepresentation,
@@ -64,7 +65,7 @@ namespace SimpleGraphEditor.Presenters
             _graphView.NewNodeDrawBorder = template.DrawBorder;
             _graphView.NewNodeBorderWidth = template.BorderWidth;
             _graphView.NewNodeBorderColor = template.BorderColor;
-           // Debug.WriteLine("Idaho" + template.BackColor);
+           
             // Update view tools
             _graphView.UpdateNodeBrush();
             _graphView.UpdateNodePen();
@@ -84,6 +85,11 @@ namespace SimpleGraphEditor.Presenters
             _graphView.NewLabelFontColor = template.fontColor;
             _graphView.NewLabelFontSize = template.fontSize;
         }
+
+        private void BindNewNodePosition((int x, int y) Coords) {
+            _graphView.NewNodeCoords = Coords;
+        }
+
         #endregion
 
         #region whole canvas actions
@@ -99,11 +105,13 @@ namespace SimpleGraphEditor.Presenters
         // AllowsFreeMovement of node in editor
         public void UpdateMouseDummyNode() {
             BindNewNodeShapeTemplate(_editorModel.GetCopyOfCurrentNodeTemplate());
+            BindNewNodePosition(_editorModel.CanvasMousePosition);
             _graphView.AddNodeShape(_editorModel.CanvasMousePosition); // update view
         }
         public void UpdateMouseDummyEdge() {
             if (_editorModel.SelectedNode == null) return;
-            //Debug.WriteLine(_editorModel.GetCurrentEdgeTemplate().Width);
+            
+            BindNewNodePosition(_editorModel.CanvasMousePosition);
             BindNewEdgeShapeTemplate(_editorModel.GetCopyOfCurrentEdgeTemplate());
             var startCords = (_editorModel.SelectedNode.X, _editorModel.SelectedNode.Y);
             _graphView.AddEdgeShape(startCords, _editorModel.CanvasMousePosition); // update view
@@ -122,6 +130,7 @@ namespace SimpleGraphEditor.Presenters
                             var edgeTemplate = edge.Data.Template;
 
                             // Bind end node data e. g. for the line cap of oriented edges, ( the start is based on nodes data)
+                            BindNewNodePosition(_editorModel.CanvasMousePosition);
                             BindNewNodeShapeTemplate(edge.Node2.Data.Template);
 
                             BindNewEdgeShapeTemplate(edgeTemplate);
@@ -144,7 +153,9 @@ namespace SimpleGraphEditor.Presenters
             foreach (var node in _graphModel.GraphData.Keys) {
 
                 // Bind model current node settings and view current node
-                var template = node.Data.Template; // TODO: nastavení uživatelem
+                var template = node.Data.Template;
+
+                BindNewNodePosition((node.X, node.Y));
                 BindNewNodeShapeTemplate(template);
 
                 // Update node shapes in view
@@ -201,7 +212,6 @@ namespace SimpleGraphEditor.Presenters
         public void AddNode((int x, int y) coordinates) {
 
             var nodeData = new NodeData();
-            nodeData.Name = "node" + _graphModel.GraphData.Count + 1;
 
             nodeData.Template = _editorModel.GetCopyOfCurrentNodeTemplate(); // TODO: moc se mi nelíbí v editor modelu...
 

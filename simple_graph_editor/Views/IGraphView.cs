@@ -26,7 +26,8 @@ namespace SimpleGraphEditor.Views
         int NewNodeBorderWidth { get; set; }
         Color NewNodeBorderColor { get; set; }
         bool NewNodeDrawBorder { get; set; }
-        
+        (int x, int y) NewNodeCoords { get; set; }
+
         Color NewNodeColor { get; set; }
         Color CanvasBackColor { get; }
         int NewNodeSize { get; set; }

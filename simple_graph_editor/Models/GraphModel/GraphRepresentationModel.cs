@@ -17,6 +17,8 @@ namespace SimpleGraphEditor.Models.GraphModel
             _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
         }
 
+        private int _newNodeCtr = 0; // 
+
         #region history
         public GraphMemento CreateMemento() { // Save current graph state
             return new GraphMemento(_graphData);
@@ -53,6 +55,7 @@ namespace SimpleGraphEditor.Models.GraphModel
         public void AddNodeToGraph(INode<NodeData> newNode) {
             if (_graphData.ContainsKey(newNode)) throw new Exception("Trying to add already existing node to database!");
 
+            newNode.Data.Name = "node" + (_newNodeCtr++).ToString("D3");
             _graphData.Add(newNode, new List<IEdge<EdgeData, NodeData>>());
         }
 

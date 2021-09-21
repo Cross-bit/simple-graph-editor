@@ -17,7 +17,7 @@ namespace SimpleGraphEditor.Models.GraphModel.Operations
             _originalData = originalData;
         }
 
-        public graphDataType Copy() {
+        public graphDataType CreateCopy() {
             _newGraphData = new graphDataType();
             _visitedNodes = new Dictionary<INode<NodeData>, INode<NodeData>>();
 
@@ -28,8 +28,6 @@ namespace SimpleGraphEditor.Models.GraphModel.Operations
                         SetGraphCopy(node);
                 }            
             }
-
-            Debug.WriteLine(_newGraphData.Count);
 
             return _newGraphData;
         }

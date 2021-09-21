@@ -14,6 +14,9 @@ namespace SimpleGraphEditor.Models.Export
         private string _filePath;
         public char DefaultDelimiter { get; set; } = '-';
 
+        private HashSet<INode<NodeData>> _nodesWithoutEdge;
+        private HashSet<INode<NodeData>> _nodesExported;
+
         public ExportEdgesList(IGraphRepresentation<NodeData, EdgeData> graphData,
             string filePath
             )
@@ -24,28 +27,61 @@ namespace SimpleGraphEditor.Models.Export
 
         public void ExportData() {
             using (var file = new StreamWriter(_filePath)) {
-                HashSet<INode<NodeData>> NodesWithoutEdge = new HashSet<INode<NodeData>>();
-                HashSet<INode<NodeData>> NodesExported = new HashSet<INode<NodeData>>();
+                _nodesWithoutEdge = new HashSet<INode<NodeData>>();
+                _nodesExported = new HashSet<INode<NodeData>>();
 
-                foreach (var node in _graphData.GraphData.Keys) {
-                    if (_graphData.GraphData[node].Count == 0) {
-                        NodesWithoutEdge.Add(node);
-                        continue; 
-                    }
+                this.ExportEdges(file);
 
-                    foreach (var edge in _graphData.GraphData[node]) {
-                        NodesExported.Add(edge.Node1);
-                        NodesExported.Add(edge.Node2);
-                        string record = edge.Node1.Data.Name + " " + DefaultDelimiter.ToString() + " " + edge.Node2.Data.Name;
-                        file.WriteLine(record);
-                    }
+                this.ExportSingleNodes(file);
+
+            }
+        }
+
+        private void ExportEdges(StreamWriter file) {
+            foreach (var node in _graphData.GraphData.Keys) {
+                if (_graphData.GraphData[node].Count == 0)
+                {
+                    _nodesWithoutEdge.Add(node);
+                    continue;
                 }
 
-                foreach (var singleNode in NodesWithoutEdge) {
-                    if(!NodesExported.Contains(singleNode))
-                        file.WriteLine(singleNode.Data.Name);
+                foreach (var edge in _graphData.GraphData[node])
+                {
+                    _nodesExported.Add(edge.Node1);
+                    _nodesExported.Add(edge.Node2);
+                    string record = "";
+
+                    this.AddNodeRecordToLine(edge.Node1, ref record);
+                    record += " " + DefaultDelimiter.ToString() + " ";
+                    this.AddNodeRecordToLine(edge.Node2, ref record);
+                    this.AddEdgeRecordToLine(edge, ref record);
+                    file.WriteLine(record);
                 }
             }
         }
+
+        private void ExportSingleNodes(StreamWriter file) {
+            foreach (var singleNode in _nodesWithoutEdge) {
+                if (!_nodesExported.Contains(singleNode)) {
+                    string record = "";
+                    this.AddNodeRecordToLine(singleNode, ref record);
+                    file.WriteLine(record);
+                }
+            }
+        }
+
+
+        private void AddEdgeRecordToLine(IEdge<EdgeData, NodeData> edge, ref string record) {
+            if (edge.Data.Value != null && edge.Data.Value != "")
+                record += "[" + edge.Data.Value + "]";
+        }
+
+        private void AddNodeRecordToLine(INode<NodeData> node, ref string record) {
+            record += node.Data.Name;
+
+            if (node.Data.Value != null && node.Data.Value != "")
+                record += "(" + node.Data.Value + ")";
+        }
+
     }
 }
