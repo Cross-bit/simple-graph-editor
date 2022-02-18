@@ -20,7 +20,6 @@ namespace SimpleGraphEditor.Presenters
         public EditorGraphHistory GraphHistory { get; set; }
         public enum HistoryMoveDir { forward, backward };
 
-        private int _added = 0;
         public GraphPresenter(
             IGraphView newGraphView,
             IGraphRepresentation<NodeData, EdgeData> newGraphRepresentation,
@@ -230,8 +229,8 @@ namespace SimpleGraphEditor.Presenters
 
             // save modified graph
             this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
-
         }
+
         public void DeleteEdge((int x, int y) coordinates) {
             var edge = _graphModel.GetEdgeOnCoords(coordinates);
             if (edge == null) return;

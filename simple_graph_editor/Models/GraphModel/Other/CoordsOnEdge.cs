@@ -6,6 +6,7 @@ using SimpleGraphEditor.GeneralSettings;
 
 namespace SimpleGraphEditor.Models.GraphModel
 {
+
     public class CoordsOnEdge {
         (int x, int y) _coords;
         IEdge<EdgeData, NodeData> _edge;

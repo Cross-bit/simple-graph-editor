@@ -4,7 +4,6 @@ namespace SimpleGraphEditor.Utils
 {
     public static class MathHelpers {
 
-
         /// <summary> Calculates projection of projectedVec to a line with directional vector dirVector. </summary>
         /// <param name="projectedVect"></param>
         /// <param name="dirVector"></param>
@@ -49,6 +48,5 @@ namespace SimpleGraphEditor.Utils
         /// <returns></returns>
         public static int GetDotProduct((int x, int y) vec1, (int x, int y) vec2) =>
             vec1.x * vec2.x + vec1.y * vec2.y;
-
     }
 }

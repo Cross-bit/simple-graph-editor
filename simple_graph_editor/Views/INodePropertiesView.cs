@@ -10,10 +10,7 @@ namespace SimpleGraphEditor.Views
         Color NewBorderColor { get; set; }
         int NewBorderWidth { get; set; }
         Settings.NodeShape NewNodeShape { get; set; }
-
         NodePropertiesPresenter PropPresenter { get; set; }
-
         void UpdatePropertiesControls();
-
     }
 }

@@ -21,7 +21,6 @@ namespace SimpleGraphEditor.Models
         }
         
         public graphDataType GetStateData() {
-
             return _graphData;
         }
 

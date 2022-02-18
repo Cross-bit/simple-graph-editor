@@ -11,7 +11,7 @@ namespace SimpleGraphEditor.Models
         public Color fontColor { get; set; } = Settings.DefaultLableColor;
         public int fontSize { get; set; } = Settings.DefaultLableFontSize;
 
-        public object Clone() {//shallow copy of data...
+        public object Clone() { //shallow copy of data...
             return this.MemberwiseClone();
         }
     }

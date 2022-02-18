@@ -10,6 +10,8 @@ namespace SimpleGraphEditor.Models.Export
 {
     public class ExportAdjacencyMatrix : IExportGraphData
     {
+        // TODO:
+
         private IGraphRepresentation<NodeData, EdgeData> _graphData;
         private string _filePath;
         private int[,] _matrix; // cell options 0, 1, -1
