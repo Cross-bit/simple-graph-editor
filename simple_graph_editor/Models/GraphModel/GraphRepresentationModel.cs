@@ -17,6 +17,10 @@ namespace SimpleGraphEditor.Models.GraphModel
             _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
         }
 
+        public GraphRepresentationModel(Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> initialData) {
+            _graphData = initialData;
+        }
+
         private int _newNodeCtr = 0; // 
 
         #region history
