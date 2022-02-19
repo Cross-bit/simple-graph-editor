@@ -118,6 +118,7 @@ namespace SimpleGraphEditor.Presenters
         #endregion
         // updates all edges/nodes (better approach: update just part of the canvas)
         public void UpdateEdges() {
+            //   HashSet<IEdge<EdgeData, NodeData>> updatedEdges = new HashSet<IEdge<EdgeData, NodeData>>();
             HashSet<IEdge<EdgeData, NodeData>> updatedEdges = new HashSet<IEdge<EdgeData, NodeData>>();
             foreach (var edgeList in _graphModel.GraphData.Values) {
 
@@ -141,8 +142,16 @@ namespace SimpleGraphEditor.Presenters
                                 _graphView.AddEdgeShape(edgeStartCoords, edgeEndCoords);
 
                             UpdateEdgeLable(edge);
+
+                            // for undirected edge mark bacward edge to
+                            if (!edge.Data.Template.IsDirected) {
+                                _graphModel.GraphData[edge.Node2].ForEach((edgeBacward) => { 
+                                    if(edgeBacward.Node2 == edge.Node1) updatedEdges.Add(edgeBacward);
+                                });
+                            }
+
+                            updatedEdges.Add(edge);
                         }
-                        updatedEdges.Add(edge);
                     }
             }
         }
@@ -200,7 +209,7 @@ namespace SimpleGraphEditor.Presenters
             _graphModel.GraphData[startNode].Add(newEdge);
 
             if(!edgeData.Template.IsDirected)// undirected
-                _graphModel.GraphData[endNode].Add(newEdgeBack); 
+                _graphModel.GraphData[endNode].Add(newEdgeBack);
 
             // save modified graph
             this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());

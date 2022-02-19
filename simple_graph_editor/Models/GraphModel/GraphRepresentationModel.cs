@@ -8,7 +8,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 {
     public class GraphRepresentationModel : IGraphRepresentation<NodeData, EdgeData>, IMementoOriginator
     { // (originator for graph data memento)
-
+        
         private Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> _graphData;
 
         public IReadOnlyDictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> GraphData { get => _graphData; }

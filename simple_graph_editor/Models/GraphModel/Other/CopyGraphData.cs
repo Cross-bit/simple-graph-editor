@@ -6,8 +6,9 @@ namespace SimpleGraphEditor.Models.GraphModel.Operations
 {
     using graphDataType = Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>;
 
+    // creates deep copy of graph
     public class CopyGraphData  {
-        private graphDataType _originalData = new graphDataType();
+        private graphDataType _originalData;
 
         private Dictionary<INode<NodeData>, INode<NodeData>> _visitedNodes;
 

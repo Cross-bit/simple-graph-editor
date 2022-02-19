@@ -52,14 +52,14 @@ namespace SimpleGraphEditor.Presenters.EditorStates
 
             var lablePosition = _editedEdge.Data.CalculateEdgeLablePosition(_editedEdge);
             _graphView.ShowValueInsertionBox(lablePosition, _editedEdge.Data.Value);
-            _graphView.ClientConfirmedOperation += OnClientAcceptedEdgeValue;
+            _graphView.ClientConfirmedOperation += ClientAcceptedEdgeValue;
         }
 
         private void SetNodeValueInsertion(INode<NodeData> nodeInteracted) {
             _isInsertingValue = true;
             _editedNode = nodeInteracted;
             _graphView.ShowValueInsertionBox((nodeInteracted.X, nodeInteracted.Y), _editedNode.Data.Value);
-            _graphView.ClientConfirmedOperation += OnClientAcceptedNodeValue;
+            _graphView.ClientConfirmedOperation += ClientAcceptedNodeValue;
         }
 
         public override void TurnOnDeletationMode() {
@@ -84,19 +84,19 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             }
             base.TurnOnIdleMode();
         }
-
         public override void TurnOnNodeInsertionMode() {
             if (_isInsertingValue) return;
             base.TurnOnNodeInsertionMode();
         }
         public override void TurnOnValueEditState() { return; }
-        public void OnClientAcceptedNodeValue(object sender, EventArgs e)
+
+        private void ClientAcceptedNodeValue(object sender, EventArgs e)
         {
             _editedNode.Data.Value = _graphView.NewLableTextValue;
             _graphPresenter.UpdataNodes();
             DisposeValueEdit();
         }
-        public void OnClientAcceptedEdgeValue(object sender, EventArgs e)
+        private void ClientAcceptedEdgeValue(object sender, EventArgs e)
         {
             _editedEdge.Data.Value = _graphView.NewLableTextValue;
             _graphPresenter.UpdateEdges();
@@ -105,8 +105,8 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         private void DisposeValueEdit() {
             _isInsertingValue = false;
             _graphView.HideValueInsertionBox();
-            _graphView.ClientConfirmedOperation -= OnClientAcceptedEdgeValue;
-            _graphView.ClientConfirmedOperation -= OnClientAcceptedNodeValue;
+            _graphView.ClientConfirmedOperation -= ClientAcceptedEdgeValue;
+            _graphView.ClientConfirmedOperation -= ClientAcceptedNodeValue;
         }
     }
 }

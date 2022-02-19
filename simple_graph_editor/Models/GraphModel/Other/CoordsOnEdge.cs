@@ -6,7 +6,7 @@ using SimpleGraphEditor.GeneralSettings;
 
 namespace SimpleGraphEditor.Models.GraphModel
 {
-
+    // Checks if given coords are on the given edge
     public class CoordsOnEdge {
         (int x, int y) _coords;
         IEdge<EdgeData, NodeData> _edge;
