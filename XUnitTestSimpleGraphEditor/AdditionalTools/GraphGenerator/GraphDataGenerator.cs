@@ -9,19 +9,20 @@ namespace XUnitTestSimpleGraphEditor.AdditionalTools.GraphGenerator
     public abstract class GraphDataGenerator {
 
         protected int _graphSize;
-        protected IGraphRepresentation<NodeData, EdgeData> _graphGenerated;
+        protected Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> _graphData;
 
-        public GraphDataGenerator(int graphSize, IGraphRepresentation<NodeData, EdgeData> emptyGraph) {
-            _graphSize = graphSize;
-            _graphGenerated = emptyGraph;
+        public Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> GraphData => _graphData;
+
+        public GraphDataGenerator(int graphSize) {
+            
+            _graphSize = graphSize < 0 ? 0 : graphSize;
+
+            _graphData ??= new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>(graphSize);
         }
 
         public virtual void GenerateGraphData() {
 
-            if (_graphGenerated.GraphData == null)
-                throw new Exception("Graph data instance does not exist!");
-
-            if (_graphGenerated.GraphData.Count >= _graphSize)
+            if (_graphData.Count >= _graphSize)
                 return;
 
             GenerateNodes();

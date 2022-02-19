@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
 
@@ -7,23 +8,21 @@ namespace XUnitTestSimpleGraphEditor.AdditionalTools.GraphGenerator
     public class CompleteGraphDataGenerator : GraphDataGenerator
     {
 
-        public CompleteGraphDataGenerator(int graphSize, IGraphRepresentation<NodeData, EdgeData> graphData) 
-            : base (graphSize, graphData) { }
+        public CompleteGraphDataGenerator(int graphSize) : base (graphSize) { }
 
         protected override void GenerateNodes() {
             for (int i = 0; i < _graphSize; i++) {
-
                 var nodeData = new NodeData() { Value = i.ToString() };
                 INode<NodeData> newNode = new Node(0, i, nodeData);
-                _graphGenerated.AddNodeToGraph(newNode);
+                _graphData.Add(newNode, new List<IEdge<EdgeData, NodeData>>());
             }
         }
 
         protected override void GenerateEdges() {
-            foreach (var baseNode in _graphGenerated.GraphData.Keys) {
-                foreach (var newNeighbour in _graphGenerated.GraphData.Keys) {
+            foreach (var baseNode in _graphData.Keys) {
+                foreach (var newNeighbour in _graphData.Keys) {
                     var newEdge = new Edge(baseNode, newNeighbour, new EdgeData());
-                    _graphGenerated.AddEdgeToGraph(newEdge, baseNode);
+                    _graphData[baseNode].Add(newEdge);
                 }
             }
         }

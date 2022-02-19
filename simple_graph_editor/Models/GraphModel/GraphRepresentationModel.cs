@@ -61,7 +61,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public void AddEdgeToGraph(IEdge<EdgeData, NodeData> newEdge, INode<NodeData> node) {
             if (node == null) throw new ArgumentNullException();
-            if(!_graphData.ContainsKey(node)) throw new Exception("Database doesn't contain given node key!");
+            if(!_graphData.ContainsKey(node) || !_graphData.ContainsKey(newEdge.Node2)) throw new Exception("Database doesn't contain given node key!");
             if (_graphData[node].Contains(newEdge)) throw new Exception("Trying to add already existing edge to database!");
 
             _graphData[node].Add(newEdge);
