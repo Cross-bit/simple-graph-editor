@@ -31,6 +31,7 @@ namespace SimpleGraphEditor.Models
         private IValueLabelTemplate _currentLableTemplate = new LableTemplate();
 
         public (int X, int Y) CanvasMousePosition { get; private set; }
+        public string CurrentHistoryState { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event EventHandler<EventArgs> MouseMove;
 

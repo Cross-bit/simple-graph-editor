@@ -17,6 +17,7 @@ namespace SimpleGraphEditor.Models.Interface
         IEdgeTemplate GetCopyOfCurrentEdgeTemplate();
         IValueLabelTemplate GetCopyOfCurrentLableTemplate();
         event EventHandler<EventArgs> MouseMove;
+        string CurrentHistoryState { get; set; }
 
 //        event EventHandler<EditorTemplateChangedEventArgs> TemplateChanged;
 

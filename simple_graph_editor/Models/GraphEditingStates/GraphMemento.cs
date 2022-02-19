@@ -10,14 +10,17 @@ namespace SimpleGraphEditor.Models
     public class GraphMemento { // (memento)
 
         private graphDataType _graphData = new graphDataType();
+        public string ActionInvokedName => _actionInvokedName;
+        private string _actionInvokedName;
 
-        public GraphMemento(graphDataType graphDataSave) {
+        public GraphMemento(graphDataType graphDataSave, string actionName = "") {
+            _actionInvokedName = actionName;
             var copyGraphData = new CopyGraphData(graphDataSave);
             _graphData = copyGraphData.CreateCopy();
         }
 
         public GraphMemento GetCopyOfMemento() {
-            return new GraphMemento(_graphData);
+            return new GraphMemento(_graphData, _actionInvokedName);
         }
         
         public graphDataType GetStateData() {
