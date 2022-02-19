@@ -38,14 +38,14 @@ namespace SimpleGraphEditor.Models.Export
         }
 
         private void ExportEdges(StreamWriter file) {
-            foreach (var node in _graphData.GraphData.Keys) {
-                if (_graphData.GraphData[node].Count == 0)
+            foreach (var node in _graphData.GetAllNodes()) {
+                if (_graphData.GetAllNeighbourEdges(node).Count == 0)
                 {
                     _nodesWithoutEdge.Add(node);
                     continue;
                 }
 
-                foreach (var edge in _graphData.GraphData[node])
+                foreach (var edge in _graphData.GetAllNeighbourEdges(node))
                 {
                     _nodesExported.Add(edge.Node1);
                     _nodesExported.Add(edge.Node2);

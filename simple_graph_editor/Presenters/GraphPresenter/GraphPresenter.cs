@@ -120,10 +120,10 @@ namespace SimpleGraphEditor.Presenters
         public void UpdateEdges() {
             //   HashSet<IEdge<EdgeData, NodeData>> updatedEdges = new HashSet<IEdge<EdgeData, NodeData>>();
             HashSet<IEdge<EdgeData, NodeData>> updatedEdges = new HashSet<IEdge<EdgeData, NodeData>>();
-            foreach (var edgeList in _graphModel.GraphData.Values) {
+            foreach (var edge in _graphModel.GetAllEdges()) {
 
-                if (edgeList != null)
-                    foreach (var edge in edgeList) {
+                //if (edgeList != null)
+                    //foreach (var edge in edgeList) {
                         if (!updatedEdges.Contains(edge)) {
                             // Bind new edgeTemplate
                             var edgeTemplate = edge.Data.Template;
@@ -144,20 +144,20 @@ namespace SimpleGraphEditor.Presenters
                             UpdateEdgeLable(edge);
 
                             // for undirected edge mark bacward edge to
-                            if (!edge.Data.Template.IsDirected) {
+                            /*if (!edge.Data.Template.IsDirected) {
                                 _graphModel.GraphData[edge.Node2].ForEach((edgeBacward) => { 
                                     if(edgeBacward.Node2 == edge.Node1) updatedEdges.Add(edgeBacward);
                                 });
-                            }
+                            }*/
 
                             updatedEdges.Add(edge);
                         }
-                    }
+                   // }
             }
         }
         public void UpdataNodes() {
 
-            foreach (var node in _graphModel.GraphData.Keys) {
+            foreach (var node in _graphModel.GetAllNodes()) {
 
                 // Bind model current node settings and view current node
                 var template = node.Data.Template;
@@ -206,10 +206,11 @@ namespace SimpleGraphEditor.Presenters
             IEdge<EdgeData, NodeData> newEdge = new Edge(startNode, endNode, edgeData);
             IEdge<EdgeData, NodeData> newEdgeBack = new Edge(endNode, startNode, edgeData);
 
-            _graphModel.GraphData[startNode].Add(newEdge);
+            //_graphModel.GraphData[startNode].Add(newEdge);
+            _graphModel.AddEdgeToGraph(newEdge, startNode); // tady
 
             if(!edgeData.Template.IsDirected)// undirected
-                _graphModel.GraphData[endNode].Add(newEdgeBack);
+                _graphModel.AddEdgeToGraph(newEdge, endNode);
 
             // save modified graph
             this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
@@ -244,7 +245,7 @@ namespace SimpleGraphEditor.Presenters
             var edge = _graphModel.GetEdgeOnCoords(coordinates);
             if (edge == null) return;
 
-            // updata model
+            // update model
             _graphModel.RemoveEdgeFromGraph(edge);
 
             // save modified graph

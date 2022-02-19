@@ -21,6 +21,7 @@ namespace SimpleGraphEditor.Models
 
         public GraphMemento GetCopyOfMemento() {
             return new GraphMemento(_graphData, _actionInvokedName);
+            
         }
         
         public graphDataType GetStateData() {

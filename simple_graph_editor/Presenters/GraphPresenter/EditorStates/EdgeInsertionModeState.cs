@@ -40,7 +40,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
                 // race condition fix: _startEdgeNode was changed before the second was selected ! (e. g. because of undo operation etc. )
                 _startEdgeNode = _graphModel.GetNodeByPosition((_startEdgeNode.X, _startEdgeNode.Y));
 
-                if (!_graphModel.AreNodesConectedByEdge(_startEdgeNode, nodeClientInteracted)) 
+                if (!_graphModel.IsEdgeBetweenTwoNodes(_startEdgeNode, nodeClientInteracted)) 
                     this.PlaceEdgeToGraph(nodeClientInteracted);
             }
         }
@@ -79,7 +79,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         private void PlaceEdgeToGraph(INode<NodeData> nodeClientInteracted) {
             _endEdgeNode = nodeClientInteracted;
 
-            var startNodeNeighbours = _graphModel.GraphData[_startEdgeNode];
+            var startNodeNeighbours = _graphModel.GetAllNeighbourEdges(_startEdgeNode); // tady
 
             _graphPresenter.AddEdge(_startEdgeNode, _endEdgeNode);
             _endEdgeNode = null;

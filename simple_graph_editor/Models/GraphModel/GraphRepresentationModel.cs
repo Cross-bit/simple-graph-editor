@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using SimpleGraphEditor.Models.Interface;
@@ -8,10 +9,9 @@ namespace SimpleGraphEditor.Models.GraphModel
 {
     public class GraphRepresentationModel : IGraphRepresentation<NodeData, EdgeData>, IMementoOriginator
     { // (originator for graph data memento)
-        
-        private Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> _graphData;
 
-        public IReadOnlyDictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> GraphData { get => _graphData; }
+        private Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> _graphData;
+        public int NodesCount => _graphData.Count;
         
         public GraphRepresentationModel() {
             _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
@@ -21,9 +21,9 @@ namespace SimpleGraphEditor.Models.GraphModel
             _graphData = initialData;
         }
 
-        private int _newNodeCtr = 0; // 
+        private int _newNodeCtr = 0;
 
-        #region history
+        #region history (memento originator implementation)
         public GraphMemento CreateMemento() { // Save current graph state
             return new GraphMemento(_graphData);
         }
@@ -38,10 +38,29 @@ namespace SimpleGraphEditor.Models.GraphModel
         }
         #endregion
 
+        public IEnumerable<INode<NodeData>> GetAllNodes() {
+            return _graphData.Keys;
+        }
+
+        public IEnumerable<IEdge<EdgeData, NodeData>> GetAllEdges() {
+            foreach (var edgeGroup in _graphData.Values) {
+                foreach (var edge in edgeGroup) {
+                    yield return edge;
+                }
+            }
+        }
+
+        public ICollection<IEdge<EdgeData, NodeData>> GetAllNeighbourEdges(INode<NodeData> baseNode) {
+            if (baseNode == null) throw new ArgumentNullException("Basenode is null!");
+            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Base node is not presented in model data!");
+
+            return _graphData[baseNode];
+        }
+
         public bool HasThisNeighbour(INode<NodeData> baseNode, INode<NodeData> searchedNeighbour) {
 
-            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Basenode does not exist in graph database!");
-
+            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Basenode does not exist in graph data model!");
+            
             var baseNodeEdges = _graphData[baseNode];
             if (baseNodeEdges == null) return false;
 
@@ -51,15 +70,21 @@ namespace SimpleGraphEditor.Models.GraphModel
             return false;
         }
 
-        public bool AreNodesConectedByEdge(INode<NodeData> node1, INode<NodeData> node2) {
+        /// <summary> Checks if there exists any connection(edge) between two given nodes. </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        /// <returns>True if nodes are connected at least by one edge(Doesn't matter on orientation).</returns>
+        public bool IsEdgeBetweenTwoNodes(INode<NodeData> node1, INode<NodeData> node2) {
             return HasThisNeighbour(node1, node2) || HasThisNeighbour(node2, node1);
         }
 
         #region Graph editing operations
-        public void AddNodeToGraph(INode<NodeData> newNode) {
+        public void AddNodeToGraph(INode<NodeData> newNode, bool createDefaultName = true) {
             if (_graphData.ContainsKey(newNode)) throw new Exception("Trying to add already existing node to database!");
 
-            newNode.Data.Name = "node" + (_newNodeCtr++).ToString("D3");
+            if(createDefaultName)
+                newNode.Data.Name = "node" + (_newNodeCtr++).ToString("D3");
+
             _graphData.Add(newNode, new List<IEdge<EdgeData, NodeData>>());
         }
 
@@ -82,7 +107,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
             _graphData.Remove(nodeToDelete);
         }
-
+        
         public void RemoveEdgeFromGraph(IEdge<EdgeData, NodeData> edgeToRemove) {
             if (edgeToRemove == null) throw new Exception("Given edge is null!");
 

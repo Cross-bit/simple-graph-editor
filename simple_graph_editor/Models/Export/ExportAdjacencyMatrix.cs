@@ -25,9 +25,9 @@ namespace SimpleGraphEditor.Models.Export
             _graphData = graphData;
             _filePath = filePath;
 
-            int dims = _graphData.GraphData.Count;
+            /*int dims = _graphData.GraphData.Count;
 
-            _matrix = new int[dims, dims];
+            _matrix = new int[dims, dims];*/
         }
 
         public void ExportData() {

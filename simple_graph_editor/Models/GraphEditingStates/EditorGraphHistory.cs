@@ -12,18 +12,15 @@ namespace SimpleGraphEditor.Models.GraphEditingStates
 
         public Stack<GraphMemento> HistoryRedo = new Stack<GraphMemento>();
 
-        private GraphMemento lastRedoCopy = null;
-
         public void AddGraphState(GraphMemento graphMemento) {
             if (Current == null) {
                 Current = graphMemento;
                 return;
             }
 
-            // stop tracking parallel history...
-            if (HistoryRedo.Count != 0) {
+            // stop tracking parallel history
+            if (HistoryRedo.Count != 0)
                 HistoryRedo.Clear();
-            }
 
             HistoryUndo.Push(Current);
 

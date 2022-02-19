@@ -22,19 +22,19 @@ namespace SimpleGraphEditor.Models.Export
         public void ExportData() {
             using (var file = new StreamWriter(_filePath)) {
 
-                foreach (var node in _graphData.GraphData.Keys) {
+                foreach (var node in _graphData.GetAllNodes()) {
                     string record = "";
                     this.AddNodeRecordToLine(node, ref record);
 
                     int e_ctr = 0;
-                    foreach (var edge in _graphData.GraphData[node]) {
+                    foreach (var edge in _graphData.GetAllNeighbourEdges(node)) {
                         if (e_ctr == 0) {
                             record += " " + DefaultDelimiter.ToString();
                         }
                         record += " ";
                         this.AddNodeRecordToLine(edge.Node2, ref record);
                         this.AddEdgeRecordToLine(edge, ref record);
-                        if (e_ctr < _graphData.GraphData[node].Count-1)
+                        if (e_ctr < _graphData.GetAllNeighbourEdges(node).Count-1)
                             record += DefaultNeighbourDelimiter;
                         e_ctr++;
                     }

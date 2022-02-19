@@ -8,7 +8,7 @@ namespace SimpleGraphEditor.Models.GraphModel.Operations
 
     // creates deep copy of graph
     public class CopyGraphData  {
-        private graphDataType _originalData;
+        private graphDataType _originalData = new graphDataType();
 
         private Dictionary<INode<NodeData>, INode<NodeData>> _visitedNodes;
 
