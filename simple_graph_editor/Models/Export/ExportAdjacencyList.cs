@@ -44,13 +44,13 @@ namespace SimpleGraphEditor.Models.Export
             }
         }
 
-        private void AddEdgeRecordToLine(IEdge<EdgeData, NodeData> edge, ref string record) {
+        protected virtual void AddEdgeRecordToLine(IEdge<EdgeData, NodeData> edge, ref string record) {
 
             if (edge.Data.Value != null && edge.Data.Value != "")
                 record += "[" + edge.Data.Value + "]";
         }
 
-        private void AddNodeRecordToLine(INode<NodeData> node, ref string record) {
+        protected virtual void AddNodeRecordToLine(INode<NodeData> node, ref string record) {
             record += node.Data.Name;
 
             if (node.Data.Value != null && node.Data.Value != "")
