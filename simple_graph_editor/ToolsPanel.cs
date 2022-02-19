@@ -59,11 +59,13 @@ namespace SimpleGraphEditor
         }
 
         private void UndoBtn_MouseClick(object sender, MouseEventArgs e) {
+            MainPresenter.EditorMachine.CurrentState.TurnOnIdleMode();
             MainPresenter.MoveInGraphsHistory(GraphPresenter.HistoryMoveDir.backward);
             UpdateCanvas();
         }
 
         private void RedoBtn_MouseClick(object sender, MouseEventArgs e) {
+            MainPresenter.EditorMachine.CurrentState.TurnOnIdleMode();
             MainPresenter.MoveInGraphsHistory(GraphPresenter.HistoryMoveDir.forward);
             UpdateCanvas();
         }

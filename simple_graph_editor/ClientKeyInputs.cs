@@ -50,9 +50,11 @@ namespace SimpleGraphEditor
 
             // back one step
             if (e.KeyCode == Keys.Z && e.Control) {
+                MainPresenter.EditorMachine.CurrentState.TurnOnIdleMode();
                 MainPresenter.MoveInGraphsHistory(GraphPresenter.HistoryMoveDir.backward);
             }
             else if (e.KeyCode == Keys.Y && e.Control) {
+                MainPresenter.EditorMachine.CurrentState.TurnOnIdleMode();
                 MainPresenter.MoveInGraphsHistory(GraphPresenter.HistoryMoveDir.forward);
             }
 
