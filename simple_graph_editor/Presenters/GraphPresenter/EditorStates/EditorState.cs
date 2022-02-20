@@ -58,5 +58,8 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             _graphPresenter.EditorMachine.CurrentState = _graphPresenter.EditorMachine.ValueEditModeState;
         }
         public abstract void OnClientInteract((int x, int y) coords);
+
+       // public abstract void OnExit();
+
     }
 }

@@ -85,5 +85,8 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             _endEdgeNode = null;
         }
 
+        /*public override void OnExit() {
+            
+        }*/
     }
 }

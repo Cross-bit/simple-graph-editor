@@ -48,6 +48,7 @@ namespace XUnitTestSimpleGraphEditor
         [Fact]
         public void TestRemoveEdgeFromGraph()
         {
+            graph.Clear();
             var nd1 = new Node(0, 0, new NodeData());
             var nd2 = new Node(0, 6, new NodeData());
 
@@ -63,10 +64,58 @@ namespace XUnitTestSimpleGraphEditor
             graph.AddEdgeToGraph(e1_2, nd1);
             graph.AddEdgeToGraph(e2_1, nd2);
 
+            Assert.True(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
+
             graph.RemoveEdgeFromGraph(e2_1);
 
             Assert.False(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
         }
+
+        [Fact]
+        public void TestAddDirectedEdge() {
+            
+          //  Dictionary<Node,>
+
+
+            var nd1 = new Node(0, 0, new NodeData());
+            var nd2 = new Node(0, 6, new NodeData());
+
+            graph.AddNodeToGraph(nd1);
+            graph.AddNodeToGraph(nd2);
+
+            Assert.False(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
+
+            graph.AddDirectedEdgeToGraph(nd1, nd2, new EdgeData());
+            
+            Assert.True(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
+
+            Assert.Throws<ArgumentNullException>(() => graph.AddDirectedEdgeToGraph(null, nd2, new EdgeData()));
+            Assert.Throws<ArgumentNullException>(() => graph.AddDirectedEdgeToGraph(nd1, null, new EdgeData()));
+
+            
+
+
+            Assert.Throws<Exception>(() => graph.AddDirectedEdgeToGraph(nd1, nd2, new EdgeData())); // already should be in the graph
+        }
+
+
+        [Fact]
+        public void TestAddUnDirectedEdge() {
+            graph.Clear();
+
+            var nd1 = new Node(0, 0, new NodeData());
+            var nd2 = new Node(0, 6, new NodeData());
+
+            graph.AddNodeToGraph(nd1);
+            graph.AddNodeToGraph(nd2);
+
+            Assert.False(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
+
+            graph.AddDirectedEdgeToGraph(nd1, nd2, new EdgeData());
+
+            Assert.True(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
+        }
+
 
 
     }

@@ -42,6 +42,9 @@ namespace SimpleGraphEditor.Models.Interface
         /// <param name="edgeToRemove"></param>
         void RemoveEdgeFromGraph(IEdge<EdgeData, NodeData> edgeToDelete);
 
+        /// <summary> Removes all data from the graph. </summary>
+        void Clear();
+
         /// <summary> Returns all edges that origins in the base nodes. </summary>
         /// <param name="baseNode"></param>
         ICollection<IEdge<EdgeData, NodeData>> GetAllNeighbourEdges(INode<NodeData> baseNode);

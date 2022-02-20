@@ -122,37 +122,34 @@ namespace SimpleGraphEditor.Presenters
             HashSet<IEdge<EdgeData, NodeData>> updatedEdges = new HashSet<IEdge<EdgeData, NodeData>>();
             foreach (var edge in _graphModel.GetAllEdges()) {
 
-                //if (edgeList != null)
-                    //foreach (var edge in edgeList) {
-                        if (!updatedEdges.Contains(edge)) {
-                            // Bind new edgeTemplate
-                            var edgeTemplate = edge.Data.Template;
+                if (!updatedEdges.Contains(edge)) {
+                    // Bind new edgeTemplate
+                    var edgeTemplate = edge.Data.Template;
 
-                            // Bind end node data e. g. for the line cap of oriented edges, ( the start is based on nodes data)
-                            BindNewNodePosition(_editorModel.CanvasMousePosition);
-                            BindNewNodeShapeTemplate(edge.Node2.Data.Template);
+                    // Bind end node data e. g. for the line cap of oriented edges, ( the start is based on nodes data)
+                    BindNewNodePosition(_editorModel.CanvasMousePosition);
+                    BindNewNodeShapeTemplate(edge.Node2.Data.Template);
 
-                            BindNewEdgeShapeTemplate(edgeTemplate);
+                    BindNewEdgeShapeTemplate(edgeTemplate);
                             
-                            var edgeStartCoords = (edge.Node1.X, edge.Node1.Y);
-                            var edgeEndCoords = (edge.Node2.X, edge.Node2.Y);
+                    var edgeStartCoords = (edge.Node1.X, edge.Node1.Y);
+                    var edgeEndCoords = (edge.Node2.X, edge.Node2.Y);
 
-                            // Update view
-                            if (edge.Data.CanBeRendered)
-                                _graphView.AddEdgeShape(edgeStartCoords, edgeEndCoords);
+                    // Update view
+                    if (edge.Data.CanBeRendered)
+                        _graphView.AddEdgeShape(edgeStartCoords, edgeEndCoords);
 
-                            UpdateEdgeLable(edge);
+                    UpdateEdgeLable(edge);
 
-                            // for undirected edge mark bacward edge to
-                            /*if (!edge.Data.Template.IsDirected) {
-                                _graphModel.GraphData[edge.Node2].ForEach((edgeBacward) => { 
-                                    if(edgeBacward.Node2 == edge.Node1) updatedEdges.Add(edgeBacward);
-                                });
-                            }*/
-
-                            updatedEdges.Add(edge);
+                    // for undirected edge mark bacward edge to
+                    if (!edge.IsDirected) {
+                        foreach (var edgeBacward in _graphModel.GetAllNeighbourEdges(edge.Node2)) {
+                            if(edgeBacward.Node2 == edge.Node1) updatedEdges.Add(edgeBacward);
                         }
-                   // }
+                    }
+
+                    updatedEdges.Add(edge);
+                }
             }
         }
         public void UpdataNodes() {

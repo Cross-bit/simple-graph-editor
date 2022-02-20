@@ -59,6 +59,11 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             base.TurnOnNodeInsertionMode();
         }
 
+        public override void TurnOnDeletationMode() {
+            this.ClearOperation();
+            base.TurnOnDeletationMode();
+        }
+
         private void OnMouseMoved(object sender, EventArgs e) {
             if (_editorModel.SelectedNode == null) return;
             _editorModel.SelectedNode.X = _editorModel.CanvasMousePosition.X;

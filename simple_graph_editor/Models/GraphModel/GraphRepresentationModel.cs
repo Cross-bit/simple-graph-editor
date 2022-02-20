@@ -176,7 +176,13 @@ namespace SimpleGraphEditor.Models.GraphModel
             return searchResult;
         }
 
+        public void Clear() {
+            _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>(); // and let GC to take care about the rest?
+        }
+
         #endregion
+
+
 
         public INode<NodeData> GetNodeOnCoordsBySize((int x, int y) coord) {
             foreach (var node in _graphData.Keys) {
