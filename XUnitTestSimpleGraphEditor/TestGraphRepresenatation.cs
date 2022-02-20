@@ -30,7 +30,7 @@ namespace XUnitTestSimpleGraphEditor
         }
 
         [Fact]
-        public void TestAreNodesConectedByEdge() {
+        public void TestIsEdgeBetweenTwoNodes() {
 
             var nd1 = new Node(0, 0, new NodeData());
             var nd2 = new Node(1, 1, new NodeData());
@@ -49,10 +49,10 @@ namespace XUnitTestSimpleGraphEditor
         public void TestRemoveEdgeFromGraph()
         {
             var nd1 = new Node(0, 0, new NodeData());
-            var nd2 = new Node(1, 1, new NodeData());
+            var nd2 = new Node(0, 6, new NodeData());
 
-            var e_temp1 = new EdgeTemplate() { IsDirected = true };
-            var e_temp2 = new EdgeTemplate() { IsDirected = true };
+            var e_temp1 = new EdgeTemplate();
+            var e_temp2 = new EdgeTemplate();
 
             var e1_2 = new Edge(nd1, nd2, new EdgeData() { Template = e_temp1 });
             var e2_1 = new Edge(nd2, nd1, new EdgeData() { Template = e_temp2 });
@@ -63,7 +63,9 @@ namespace XUnitTestSimpleGraphEditor
             graph.AddEdgeToGraph(e1_2, nd1);
             graph.AddEdgeToGraph(e2_1, nd2);
 
-            Assert.True(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
+            graph.RemoveEdgeFromGraph(e2_1);
+
+            Assert.False(graph.IsEdgeBetweenTwoNodes(nd1, nd2));
         }
 
 
