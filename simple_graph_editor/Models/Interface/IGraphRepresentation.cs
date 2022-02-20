@@ -56,9 +56,9 @@ namespace SimpleGraphEditor.Models.Interface
         IEnumerable<INode<NodeData>> GetAllNodes();
 
         /// <summary> Current number of nodes in the graph. </summary>
-        int NodesCount { get; }
+        int Size { get; }
         
-        /// <summary>  </summary>
+        /// <summary> Gets edge based on position and edge line width.</summary>
         /// <param name="coordinates"></param>
         /// <returns></returns>
         IEdge<EdgeData, NodeData> GetEdgeOnCoords((int x, int y) coordinates);

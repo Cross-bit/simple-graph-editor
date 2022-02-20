@@ -21,8 +21,11 @@ namespace XUnitTestSimpleGraphEditor.AdditionalTools.GraphGenerator
         protected override void GenerateEdges() {
             foreach (var baseNode in _graphData.Keys) {
                 foreach (var newNeighbour in _graphData.Keys) {
-                    var newEdge = new Edge(baseNode, newNeighbour, new EdgeData());
+                    if(baseNode != newNeighbour)
+                    {
+                    var newEdge = new Edge(baseNode, newNeighbour, new EdgeData(), false);
                     _graphData[baseNode].Add(newEdge);
+                    }
                 }
             }
         }

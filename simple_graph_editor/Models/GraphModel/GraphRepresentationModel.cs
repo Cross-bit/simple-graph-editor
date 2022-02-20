@@ -12,7 +12,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         private Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> _graphData;
 
-        public int NodesCount => _graphData.Count;
+        public int Size => _graphData.Count;
         
         public GraphRepresentationModel() {
             _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
@@ -53,15 +53,17 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public ICollection<IEdge<EdgeData, NodeData>> GetAllNeighbourEdges(INode<NodeData> baseNode) {
             if (baseNode == null) throw new ArgumentNullException("Basenode is null!");
-            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Base node is not presented in model data!");
+            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Base node is not presented in the data model!");
 
             return _graphData[baseNode];
         }
 
         public bool HasThisNeighbour(INode<NodeData> baseNode, INode<NodeData> searchedNeighbour) {
+            if (baseNode == null) throw new ArgumentNullException("basenode is null!");
+            if (searchedNeighbour == null) throw new ArgumentNullException("searchedNeighbour is null!");
+            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Basenode does not exist in the graph data model!");
+            if (!_graphData.ContainsKey(searchedNeighbour)) throw new Exception("SearchedNeighbour does not exist in the graph data model!");
 
-            if (!_graphData.ContainsKey(baseNode)) throw new Exception("Basenode does not exist in graph data model!");
-            
             var baseNodeEdges = _graphData[baseNode];
             if (baseNodeEdges == null) return false;
 
@@ -77,7 +79,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         #region Graph editing operations
         public void AddNodeToGraph(INode<NodeData> newNode, bool createDefaultName = true) {
-            if (_graphData.ContainsKey(newNode)) throw new Exception("Trying to add already existing node to database!");
+            if (_graphData.ContainsKey(newNode)) throw new Exception("Node already exists!");
 
             if(createDefaultName)
                 newNode.Data.Name = "node" + (_newNodeCtr++).ToString("D3");
@@ -122,6 +124,7 @@ namespace SimpleGraphEditor.Models.GraphModel
             if(nodeToDelete == null) throw new ArgumentNullException("Given node is null!");
             if (!_graphData.ContainsKey(nodeToDelete)) throw new Exception("Node is not in the data model!");
 
+            
             // remove incident edges
             foreach (var edges in _graphData.Values) {
                 edges?.RemoveAll(edge => edge.Node1 == nodeToDelete || edge.Node2 == nodeToDelete);

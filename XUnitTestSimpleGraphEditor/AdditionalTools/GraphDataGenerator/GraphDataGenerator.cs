@@ -29,6 +29,14 @@ namespace XUnitTestSimpleGraphEditor.AdditionalTools.GraphGenerator
             GenerateEdges();
         }
 
+        public virtual IEnumerable<IEdge<EdgeData, NodeData>> GetAllEdges() {
+            foreach (var edgeGroup in _graphData.Values) {
+                foreach (var edge in edgeGroup) {
+                    yield return edge;
+                }
+            }
+        }
+
         protected abstract void GenerateNodes();
 
         protected abstract void GenerateEdges();

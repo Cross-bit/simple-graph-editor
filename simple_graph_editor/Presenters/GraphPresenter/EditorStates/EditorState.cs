@@ -59,7 +59,5 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         }
         public abstract void OnClientInteract((int x, int y) coords);
 
-       // public abstract void OnExit();
-
     }
 }
