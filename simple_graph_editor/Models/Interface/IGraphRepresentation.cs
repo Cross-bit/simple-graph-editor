@@ -5,7 +5,7 @@ using System.Text;
 namespace SimpleGraphEditor.Models.Interface
 {
     /// <summary>
-    /// Base interface for graph with givne representation 
+    /// Base interface for graph representation.
     /// </summary>
     /// <typeparam name="T">Node data</typeparam>
     /// <typeparam name="S">Edge data</typeparam>

@@ -1,4 +1,5 @@
 ﻿using SimpleGraphEditor.Models.Interface;
+
 namespace SimpleGraphEditor.Models
 {
 
