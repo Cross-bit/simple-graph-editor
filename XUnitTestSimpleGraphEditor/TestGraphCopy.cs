@@ -63,7 +63,7 @@ namespace XUnitTestSimpleGraphEditor
         [Fact]
         public void TestCreateCopyCompleteGraphOriented() {
 
-            var graphDataGenerator = new RandomDirectedCompGraphDataCreator(5);
+            var graphDataGenerator = new RandomDirectedCompGraphDataGenerator(5);
             graphDataGenerator.GenerateGraphData();
 
             var graphCopier = new CopyGraphData(graphDataGenerator.GraphData);

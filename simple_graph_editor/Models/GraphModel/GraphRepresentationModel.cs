@@ -11,6 +11,7 @@ namespace SimpleGraphEditor.Models.GraphModel
     { // (originator for graph data memento)
 
         private Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> _graphData;
+
         public int NodesCount => _graphData.Count;
         
         public GraphRepresentationModel() {
@@ -86,15 +87,40 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public void AddEdgeToGraph(IEdge<EdgeData, NodeData> newEdge, INode<NodeData> node) {
             if (node == null) throw new ArgumentNullException();
-            if(!_graphData.ContainsKey(node)) throw new Exception("Database doesn't contain given node key!");
-            if(!_graphData.ContainsKey(newEdge.Node2)) throw new Exception("Database doesn't contain second node of given edge!");
-            if (_graphData[node].Contains(newEdge)) throw new Exception("Trying to add already existing edge to database!");
+            if(!_graphData.ContainsKey(node)) throw new Exception("Graph data model doesn't contain given node key!");
+            if(!_graphData.ContainsKey(newEdge.Node2)) throw new Exception("Graph data model doesn't contain second node of given edge!");
+            if (_graphData[node].Contains(newEdge)) throw new Exception("Trying to add already existing edge!");
 
             _graphData[node].Add(newEdge);
         }
+
+        public void AddDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, EdgeData edgeData) {
+            if (node1 == null) throw new ArgumentNullException("Can not create edge with null Node1!");
+            if (node2 == null) throw new ArgumentNullException("Can not create edge with null Node2!");
+            if (!_graphData.ContainsKey(node1)) throw new Exception("Graph data model doesn't contain node1!");
+            if (!_graphData.ContainsKey(node2)) throw new Exception("Graph data model doesn't contain node2!");
+
+            var newEdge = new Edge(node1, node2, edgeData);
+            _graphData[node1].Add(newEdge);
+        }
+
+        public void AddUnDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, EdgeData edgeData) {
+            if (node1 == null) throw new ArgumentNullException("Can not create edge with null Node1!");
+            if (node2 == null) throw new ArgumentNullException("Can not create edge with null Node2!");
+            if (!_graphData.ContainsKey(node1)) throw new Exception("Graph data model doesn't contain node1!");
+            if (!_graphData.ContainsKey(node2)) throw new Exception("Graph data model doesn't contain node2!");
+
+            var newEdge = new Edge(node1, node2, edgeData, false);
+            var newEdgeBacward = new Edge(node2, node1, edgeData, false);
+
+            _graphData[node1].Add(newEdge);
+            _graphData[node2].Add(newEdgeBacward);
+        }
+
+
         public void RemoveNodeFromGraph(INode<NodeData> nodeToDelete) {
-            if(nodeToDelete == null) throw new Exception("Given node is null!");
-            if (!_graphData.ContainsKey(nodeToDelete)) throw new Exception("Node is not in database!");
+            if(nodeToDelete == null) throw new ArgumentNullException("Given node is null!");
+            if (!_graphData.ContainsKey(nodeToDelete)) throw new Exception("Node is not in the data model!");
 
             // remove incident edges
             foreach (var edges in _graphData.Values) {
@@ -105,13 +131,27 @@ namespace SimpleGraphEditor.Models.GraphModel
         }
         
         public void RemoveEdgeFromGraph(IEdge<EdgeData, NodeData> edgeToRemove) {
-            if (edgeToRemove == null) throw new Exception("Given edge is null!");
+            if (edgeToRemove == null) throw new ArgumentNullException("Edge to remove is null!");
 
-            foreach (var edges in _graphData.Values) {
-                 edges?.RemoveAll(edge => edge == edgeToRemove);
-                
+            var node1 = edgeToRemove.Node1;
+            var node2 = edgeToRemove.Node2;
+
+            foreach (var edge in _graphData[node1]) {
+                if(edge.Node2 == node2) {
+                    _graphData[node1].Remove(edge);
+                    break;
+                }
             }
+
+            if(!edgeToRemove.IsDirected)
+                foreach (var edge in _graphData[node2]) {
+                    if (edge.Node2 == node1) {
+                        _graphData[node2].Remove(edge);
+                        break;
+                    }
+                }
         }
+
 
         // Undirectly returns all edges incident with given node
         public HashSet<(INode<NodeData>, IEdge<EdgeData, NodeData>)> GetConnectionsUndirected(INode<NodeData> baseNode) {

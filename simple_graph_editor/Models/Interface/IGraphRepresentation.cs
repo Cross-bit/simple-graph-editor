@@ -23,8 +23,21 @@ namespace SimpleGraphEditor.Models.Interface
         /// <summary> Add new edge to the graph. </summary>
         /// <param name="newEdge"></param>
         /// <param name="node"></param>
+        [Obsolete]
         void AddEdgeToGraph(IEdge<S, T> newEdge, INode<NodeData> node);
-        
+
+        /// <summary> Add new edge to the graph, between node1 and node2. </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        /// <param name="edgeData"></param>
+        void AddDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, S edgeData);
+
+        /// <summary> Add new edge to the graph, between node1 and node2. </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        /// <param name="edgeData"></param>
+        void AddUnDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, S edgeData);
+
         /// <summary> Removes given edge from the graph. </summary>
         /// <param name="edgeToRemove"></param>
         void RemoveEdgeFromGraph(IEdge<EdgeData, NodeData> edgeToDelete);

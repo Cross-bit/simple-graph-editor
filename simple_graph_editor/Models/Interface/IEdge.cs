@@ -19,6 +19,9 @@ namespace SimpleGraphEditor.Models.Interface
 
         /// <summary> Represents data of this edge. </summary>
         T Data { get; set; }
+
+        /// <summary> Wheter this edge is directed. </summary>
+        bool IsDirected { get; }
     }
 }
 

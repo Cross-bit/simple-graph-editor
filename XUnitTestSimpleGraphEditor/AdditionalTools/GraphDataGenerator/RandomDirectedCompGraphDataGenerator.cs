@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace XUnitTestSimpleGraphEditor.AdditionalTools.GraphGenerator
 {
-    public class RandomDirectedCompGraphDataCreator : CompleteGraphDataGenerator {
+    public class RandomDirectedCompGraphDataGenerator : CompleteGraphDataGenerator {
 
-        public RandomDirectedCompGraphDataCreator(int graphSize) : base(graphSize) { }
+        public RandomDirectedCompGraphDataGenerator(int graphSize) : base(graphSize) { }
 
         protected override void GenerateEdges() {
 

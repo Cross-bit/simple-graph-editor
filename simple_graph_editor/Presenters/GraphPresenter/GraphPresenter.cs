@@ -203,14 +203,10 @@ namespace SimpleGraphEditor.Presenters
             var edgeData = new EdgeData();
             edgeData.Template = _editorModel.GetCopyOfCurrentEdgeTemplate();
 
-            IEdge<EdgeData, NodeData> newEdge = new Edge(startNode, endNode, edgeData);
-            IEdge<EdgeData, NodeData> newEdgeBack = new Edge(endNode, startNode, edgeData);
-
-            //_graphModel.GraphData[startNode].Add(newEdge);
-            _graphModel.AddEdgeToGraph(newEdge, startNode); // tady
-
-            if(!edgeData.Template.IsDirected)// undirected
-                _graphModel.AddEdgeToGraph(newEdgeBack, endNode);
+            if (edgeData.Template.IsDirected)
+                _graphModel.AddDirectedEdgeToGraph(startNode, endNode, edgeData);
+            else
+                _graphModel.AddUnDirectedEdgeToGraph(endNode, startNode, edgeData);
 
             // save modified graph
             this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
