@@ -122,6 +122,7 @@ namespace XUnitTestSimpleGraphEditor
 
                         //+ check if the value stayed preserved
                         Assert.Equal(oldEdge.Data.Value, copiedEdge.Data.Value);
+                        Assert.Equal(oldEdge.IsDirected, copiedEdge.IsDirected);
                     }
                 }
             }

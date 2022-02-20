@@ -28,6 +28,5 @@ namespace SimpleGraphEditor.Models
             return _graphData;
         }
 
-
     }
 }

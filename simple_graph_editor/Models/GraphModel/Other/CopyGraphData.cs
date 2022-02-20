@@ -52,7 +52,7 @@ namespace SimpleGraphEditor.Models.GraphModel.Operations
                     newNode2 = SetGraphCopy(edge.Node2);
                 }
 
-                _newGraphData[newNode1].Add(new Edge(newNode1, newNode2, edge.Data));
+                _newGraphData[newNode1].Add(new Edge(newNode1, newNode2, edge.Data, edge.IsDirected));
             }
 
             return newNode1;

@@ -81,7 +81,7 @@ namespace SimpleGraphEditor.Models.GraphModel
         public void AddNodeToGraph(INode<NodeData> newNode, bool createDefaultName = true) {
             if (_graphData.ContainsKey(newNode)) throw new Exception("Node already exists!");
 
-            if(createDefaultName)
+            if (createDefaultName)
                 newNode.Data.Name = "node" + (_newNodeCtr++).ToString("D3");
             
             _graphData.Add(newNode, new List<IEdge<EdgeData, NodeData>>());
@@ -89,8 +89,8 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public void AddEdgeToGraph(IEdge<EdgeData, NodeData> newEdge, INode<NodeData> node) {
             if (node == null) throw new ArgumentNullException();
-            if(!_graphData.ContainsKey(node)) throw new Exception("Graph data model doesn't contain given node key!");
-            if(!_graphData.ContainsKey(newEdge.Node2)) throw new Exception("Graph data model doesn't contain second node of given edge!");
+            if (!_graphData.ContainsKey(node)) throw new Exception("Graph data model doesn't contain given node key!");
+            if (!_graphData.ContainsKey(newEdge.Node2)) throw new Exception("Graph data model doesn't contain second node of given edge!");
             if (_graphData[node].Contains(newEdge)) throw new Exception("Trying to add already existing edge!");
 
             _graphData[node].Add(newEdge);
@@ -146,7 +146,7 @@ namespace SimpleGraphEditor.Models.GraphModel
                 }
             }
 
-            if(!edgeToRemove.IsDirected)
+            if (!edgeToRemove.IsDirected)
                 foreach (var edge in _graphData[node2]) {
                     if (edge.Node2 == node1) {
                         _graphData[node2].Remove(edge);
