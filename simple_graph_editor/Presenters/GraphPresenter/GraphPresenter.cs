@@ -210,7 +210,7 @@ namespace SimpleGraphEditor.Presenters
             _graphModel.AddEdgeToGraph(newEdge, startNode); // tady
 
             if(!edgeData.Template.IsDirected)// undirected
-                _graphModel.AddEdgeToGraph(newEdge, endNode);
+                _graphModel.AddEdgeToGraph(newEdgeBack, endNode);
 
             // save modified graph
             this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());

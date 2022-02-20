@@ -70,10 +70,6 @@ namespace SimpleGraphEditor.Models.GraphModel
             return false;
         }
 
-        /// <summary> Checks if there exists any connection(edge) between two given nodes. </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        /// <returns>True if nodes are connected at least by one edge(Doesn't matter on orientation).</returns>
         public bool IsEdgeBetweenTwoNodes(INode<NodeData> node1, INode<NodeData> node2) {
             return HasThisNeighbour(node1, node2) || HasThisNeighbour(node2, node1);
         }
@@ -84,7 +80,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
             if(createDefaultName)
                 newNode.Data.Name = "node" + (_newNodeCtr++).ToString("D3");
-
+            
             _graphData.Add(newNode, new List<IEdge<EdgeData, NodeData>>());
         }
 
@@ -113,6 +109,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
             foreach (var edges in _graphData.Values) {
                  edges?.RemoveAll(edge => edge == edgeToRemove);
+                
             }
         }
 
@@ -143,7 +140,7 @@ namespace SimpleGraphEditor.Models.GraphModel
 
         public INode<NodeData> GetNodeOnCoordsBySize((int x, int y) coord) {
             foreach (var node in _graphData.Keys) {
-                if (IsCoordsInNodesRadius(coord, node)) return node;
+                if (CheckCoordsInNodesRadius(coord, node)) return node;
             }
             return null;
         }
@@ -156,7 +153,7 @@ namespace SimpleGraphEditor.Models.GraphModel
         }
 
 
-        private bool IsCoordsInNodesRadius((int x, int y) coord, INode<NodeData> node){
+        private bool CheckCoordsInNodesRadius((int x, int y) coord, INode<NodeData> node){
             var distance = Math.Sqrt(Math.Pow(node.X - coord.x, 2d) + Math.Pow(node.Y - coord.y, 2d));
             return distance < node.Data.Template.Size / 2 && node.Data.IsEnabled;
         }
