@@ -113,7 +113,7 @@ namespace SimpleGraphEditor.Models.GraphModel
             }
         }
 
-        // Undirectly
+        // Undirectly returns all edges incident with given node
         public HashSet<(INode<NodeData>, IEdge<EdgeData, NodeData>)> GetConnectionsUndirected(INode<NodeData> baseNode) {
             if (baseNode == null) throw new ArgumentNullException("baseNode is null");
             if (!_graphData.ContainsKey(baseNode)) throw new Exception("baseNode is not in graph!");

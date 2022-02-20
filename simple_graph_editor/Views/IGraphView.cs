@@ -5,6 +5,8 @@ using System.Drawing;
 
 namespace SimpleGraphEditor.Views
 {
+    // todo: should be splitted in to more smaller views, one for canvas, one for graph, one for other application things...
+    /// <summary> Represents interface for the canvas/graph rendering view.</summary> 
     public interface IGraphView {
         GraphPresenter MainPresenter { set; }
         void AddNodeShape((int x, int y) coordinates);

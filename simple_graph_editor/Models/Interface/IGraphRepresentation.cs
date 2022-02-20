@@ -42,6 +42,9 @@ namespace SimpleGraphEditor.Models.Interface
         /// <summary> Current number of nodes in the graph. </summary>
         int NodesCount { get; }
         
+        /// <summary>  </summary>
+        /// <param name="coordinates"></param>
+        /// <returns></returns>
         IEdge<EdgeData, NodeData> GetEdgeOnCoords((int x, int y) coordinates);
         INode<T> GetNodeOnCoordsBySize((int x, int y) coords);
         INode<T> GetNodeByPosition((int x, int y) coords);

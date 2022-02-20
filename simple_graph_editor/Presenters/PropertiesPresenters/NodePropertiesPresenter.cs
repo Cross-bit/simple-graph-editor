@@ -21,7 +21,7 @@ namespace SimpleGraphEditor.Presenters
             _propertiesView = propView;
             _editorModel = editorModel;
 
-            _propertiesView.PropPresenter = this;
+            _propertiesView.PropertiesPresenter = this;
         }
 
         #region update Models

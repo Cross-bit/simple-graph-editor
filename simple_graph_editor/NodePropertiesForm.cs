@@ -35,7 +35,7 @@ namespace SimpleGraphEditor
         public Color NewBorderColor { get; set; } = Settings.DefaultNodeBorderColor;
         public int NewBorderWidth { get; set; } = Settings.DefaultNodeBorderWidth;
         public (int X, int Y) NewNodeCoords { get; set; }
-        public NodePropertiesPresenter PropPresenter { get; set; }
+        public NodePropertiesPresenter PropertiesPresenter { get; set; }
         public Settings.NodeShape NewNodeShape { get; set; } = Settings.NodeShape.Circle;
 
         ColorDialog ColorPicker = new ColorDialog();
@@ -47,7 +47,7 @@ namespace SimpleGraphEditor
             if (ColorPicker.ShowDialog(this) == DialogResult.OK) {
                 NdBorderColorBtn.BackColor = ColorPicker.Color;
                 NewBorderColor = ColorPicker.Color;
-                PropPresenter.UpdateCurrentTemplate();
+                PropertiesPresenter.UpdateCurrentTemplate();
             }
         }
 
@@ -55,17 +55,17 @@ namespace SimpleGraphEditor
             if (ColorPicker.ShowDialog(this) == DialogResult.OK) {
                 NdBackColorBtn.BackColor = ColorPicker.Color;
                 NewBackColor = ColorPicker.Color;
-                PropPresenter.UpdateCurrentTemplate();
+                PropertiesPresenter.UpdateCurrentTemplate();
             }
         }
         #region node size control
         private void SizeUpDown_ValueChanged(object sender, EventArgs e) {
             NewNodeSize = (int)SizeUpDown.Value;
-            PropPresenter.UpdateCurrentTemplate();
+            PropertiesPresenter.UpdateCurrentTemplate();
         }
         private void SizeUpDown_ClientEntery(object sender, KeyEventArgs e) {
             NewNodeSize = (int)SizeUpDown.Value;
-            PropPresenter.UpdateCurrentTemplate();
+            PropertiesPresenter.UpdateCurrentTemplate();
         }
         #endregion
 
@@ -73,14 +73,14 @@ namespace SimpleGraphEditor
 
         private void BorderWidthUpDown_ValueChanged(object sender, EventArgs e) {            
             NewBorderWidth = (int)BorderWidthUpDown.Value;
-            PropPresenter.UpdateCurrentTemplate();
+            PropertiesPresenter.UpdateCurrentTemplate();
         }
 
         #endregion
 
         private void ShapeSelection_ClientSelected(object sender, EventArgs e) {
             NewNodeShape = (Settings.NodeShape)ShapeSelection.SelectedItem;
-            PropPresenter.UpdateCurrentTemplate();
+            PropertiesPresenter.UpdateCurrentTemplate();
         }
 
         public void UpdatePropertiesControls() {
