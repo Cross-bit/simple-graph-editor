@@ -7,8 +7,8 @@ namespace SimpleGraphEditor.Models.Interface
     /// <summary>
     /// Node representation interface.
     /// </summary>
-    /// <typeparam name="T">Node data type.</typeparam>
-    public interface INode<T> {
+    /// <typeparam name="TNodeData">Node data type.</typeparam>
+    public interface INode<TNodeData> {
 
         /// <summary>Specifice Y coordinate of the nodes location.</summary>
         int Y { get; set; }
@@ -17,6 +17,6 @@ namespace SimpleGraphEditor.Models.Interface
         int X { get; set; }
 
         /// <summary> Represents data of this node. </summary>
-        T Data { get; set; }
+        TNodeData Data { get; set; }
     }
 }

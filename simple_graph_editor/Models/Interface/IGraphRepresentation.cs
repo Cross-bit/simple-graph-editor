@@ -7,36 +7,36 @@ namespace SimpleGraphEditor.Models.Interface
     /// <summary>
     /// Base interface for graph representation.
     /// </summary>
-    /// <typeparam name="T">Node data</typeparam>
-    /// <typeparam name="S">Edge data</typeparam>
-    public interface IGraphRepresentation<T, S> {
+    /// <typeparam name="TNodeData">Node data</typeparam>
+    /// <typeparam name="TEdgeData">Edge data</typeparam>
+    public interface IGraphRepresentation<TNodeData, TEdgeData> {
 
         /// <summary>Adds new node to the graph. </summary>
         /// <param name="newNode"></param>
         /// <param name="createDefaultName">Whether to override name by automatically generated in the graph model.</param>
-        void AddNodeToGraph(INode<T> newNode, bool createDefaultName = true);
+        void AddNodeToGraph(INode<TNodeData> newNode, bool createDefaultName = true);
 
         /// <summary>Removes given node from the graph.</summary>
         /// <param name="nodeToRemove"></param>
-        void RemoveNodeFromGraph(INode<T> nodeToRemove);
+        void RemoveNodeFromGraph(INode<TNodeData> nodeToRemove);
 
         /// <summary> Add new edge to the graph. </summary>
         /// <param name="newEdge"></param>
         /// <param name="node"></param>
         [Obsolete]
-        void AddEdgeToGraph(IEdge<S, T> newEdge, INode<NodeData> node);
+        void AddEdgeToGraph(IEdge<TEdgeData, TNodeData> newEdge, INode<NodeData> node);
 
         /// <summary> Add new edge to the graph, between node1 and node2. </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <param name="edgeData"></param>
-        void AddDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, S edgeData);
+        void AddDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, TEdgeData edgeData);
 
         /// <summary> Add new edge to the graph, between node1 and node2. </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <param name="edgeData"></param>
-        void AddUnDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, S edgeData);
+        void AddUnDirectedEdgeToGraph(INode<NodeData> node1, INode<NodeData> node2, TEdgeData edgeData);
 
         /// <summary> Removes given edge from the graph. </summary>
         /// <param name="edgeToRemove"></param>
@@ -62,9 +62,9 @@ namespace SimpleGraphEditor.Models.Interface
         /// <param name="coordinates"></param>
         /// <returns></returns>
         IEdge<EdgeData, NodeData> GetEdgeOnCoords((int x, int y) coordinates);
-        INode<T> GetNodeOnCoordsBySize((int x, int y) coords);
-        INode<T> GetNodeByPosition((int x, int y) coords);
-        HashSet<(INode<T>, IEdge<S, T>)> GetConnectionsUndirected(INode<T> baseNode);
+        INode<TNodeData> GetNodeOnCoordsBySize((int x, int y) coords);
+        INode<TNodeData> GetNodeByPosition((int x, int y) coords);
+        HashSet<(INode<TNodeData>, IEdge<TEdgeData, TNodeData>)> GetConnectionsUndirected(INode<TNodeData> baseNode);
         // directed check for neighbour of baseNode
         bool HasThisNeighbour(INode<NodeData> baseNode, INode<NodeData> searchedNeighbour);
         
