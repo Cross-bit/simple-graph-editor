@@ -37,7 +37,7 @@ namespace SimpleGraphEditor.Presenters
             this.GraphHistory = new EditorGraphHistory();
 
             // save intial empty graph state
-            this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
+            this.GraphHistory.AddState(((IMementoOriginator)_graphModel).CreateMemento());
         }
 
         public void MoveInGraphsHistory(HistoryMoveDir direction, int steps = 1) {
@@ -206,7 +206,7 @@ namespace SimpleGraphEditor.Presenters
                 _graphModel.AddUnDirectedEdgeToGraph(endNode, startNode, edgeData);
 
             // save modified graph
-            this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
+            this.GraphHistory.AddState(((IMementoOriginator)_graphModel).CreateMemento());
         }
         
         public void AddNode((int x, int y) coordinates) {
@@ -220,7 +220,7 @@ namespace SimpleGraphEditor.Presenters
             _graphModel.AddNodeToGraph(newNode);
 
             // save modified graph
-            this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
+            this.GraphHistory.AddState(((IMementoOriginator)_graphModel).CreateMemento());
 
         }
         public void DeleteNode((int x, int y) coordinates) {
@@ -231,7 +231,7 @@ namespace SimpleGraphEditor.Presenters
             _graphModel.RemoveNodeFromGraph(nodeToDelete);
 
             // save modified graph
-            this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
+            this.GraphHistory.AddState(((IMementoOriginator)_graphModel).CreateMemento());
         }
 
         public void DeleteEdge((int x, int y) coordinates) {
@@ -242,7 +242,7 @@ namespace SimpleGraphEditor.Presenters
             _graphModel.RemoveEdgeFromGraph(edge);
 
             // save modified graph
-            this.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
+            this.GraphHistory.AddState(((IMementoOriginator)_graphModel).CreateMemento());
         }
 
         public void UpdateMousePosition() => // Update mouse position in editor model

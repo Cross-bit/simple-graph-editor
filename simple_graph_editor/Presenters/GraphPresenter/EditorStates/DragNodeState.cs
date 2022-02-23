@@ -36,7 +36,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             // Place selected node;
             if (_editorModel.SelectedNode != null && nodeClientInteracted == null) {
                 this.PlaceSelectedNode();
-                _graphPresenter.GraphHistory.AddGraphState(((IMementoOriginator)_graphModel).CreateMemento());
+                _graphPresenter.GraphHistory.AddState(((IMementoOriginator)_graphModel).CreateMemento());
             }
             // Set proper renderer
             _graphPresenter.CanvasRenderer.SetCurrentRenderTo(CanvasRenderMachine.RenderState.REND1);

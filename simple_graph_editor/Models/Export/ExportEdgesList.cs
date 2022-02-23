@@ -33,7 +33,6 @@ namespace SimpleGraphEditor.Models.Export
                 this.ExportEdges(file);
 
                 this.ExportSingleNodes(file);
-
             }
         }
 

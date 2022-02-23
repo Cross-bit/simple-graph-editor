@@ -23,7 +23,6 @@ namespace SimpleGraphEditor
     partial class EditorForm : System.Windows.Forms.Form, IToolsPanelView  {
 
         ToolTip NodeBtnToolTip = new ToolTip();
-        ToolTip edgeBtnToolTip = new ToolTip();
 
         private ColorDialog _colorPicker = new ColorDialog();
 
@@ -102,8 +101,6 @@ namespace SimpleGraphEditor
                 CanvasBackColor = _colorPicker.Color;
                 UpdateCanvas();
             }
-
-
         }
 
     }

@@ -5,51 +5,58 @@ using System.Text;
 
 namespace SimpleGraphEditor.Models.GraphEditingStates
 {
-    public class EditorGraphHistory //(careTaker for graph data memento pattern)
+    public class EditorGraphHistory : IMementoCareTaker
     {
-        public Stack<GraphMemento> HistoryUndo = new Stack<GraphMemento>();
-        public GraphMemento Current { get; private set; } = null;
+        //(careTaker for graph data memento pattern)
 
-        public Stack<GraphMemento> HistoryRedo = new Stack<GraphMemento>();
+        private Stack<GraphMemento> _historyUndo = new Stack<GraphMemento>();
+        private GraphMemento _current { get; set; } = null;
 
-        public void AddGraphState(GraphMemento graphMemento) {
-            if (Current == null) {
-                Current = graphMemento;
+        private Stack<GraphMemento> _historyRedo = new Stack<GraphMemento>();
+
+        public void AddState(GraphMemento graphMemento)
+        {
+            if (_current == null)
+            {
+                _current = graphMemento;
                 return;
             }
 
             // stop tracking parallel history
-            if (HistoryRedo.Count != 0)
-                HistoryRedo.Clear();
+            if (_historyRedo.Count != 0)
+                _historyRedo.Clear();
 
-            HistoryUndo.Push(Current);
+            _historyUndo.Push(_current);
 
-            Current = graphMemento;
+            _current = graphMemento;
 
         }
 
-        public GraphMemento GetPrewiousState(int steps = 1) {
-            if (HistoryUndo.Count == 0) return null;
-
-            for (int i = 0; i < steps; i++) {
-                HistoryRedo.Push(Current);
-                Current = HistoryUndo.Pop();
-            }
-
-            return Current.GetCopyOfMemento();
-        }
-
-        public GraphMemento GetFutureState(int steps = 1) {
-
-            if (HistoryRedo.Count == 0) return null;
+        public GraphMemento GetPrewiousState(int steps = 1)
+        {
+            if (_historyUndo.Count == 0) return null;
 
             for (int i = 0; i < steps; i++)
             {
-                HistoryUndo.Push(Current);
-                Current = HistoryRedo.Pop();
+                _historyRedo.Push(_current);
+                _current = _historyUndo.Pop();
             }
 
-            return Current.GetCopyOfMemento();
+            return _current.GetCopyOfMemento();
+        }
+
+        public GraphMemento GetFutureState(int steps = 1)
+        {
+
+            if (_historyRedo.Count == 0) return null;
+
+            for (int i = 0; i < steps; i++)
+            {
+                _historyUndo.Push(_current);
+                _current = _historyRedo.Pop();
+            }
+
+            return _current.GetCopyOfMemento();
         }
     }
 }

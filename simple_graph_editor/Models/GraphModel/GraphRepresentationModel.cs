@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using SimpleGraphEditor.Models.Interface;
 
-
 namespace SimpleGraphEditor.Models.GraphModel
 {
     public class GraphRepresentationModel : IGraphRepresentation<NodeData, EdgeData>, IMementoOriginator
@@ -15,6 +14,9 @@ namespace SimpleGraphEditor.Models.GraphModel
         public int Size => _graphData.Count;
         
         public GraphRepresentationModel() {
+            /*var graphDataGen = new EmptyGraphDataGenerator(10);
+            graphDataGen.GenerateGraphData();
+            _graphData = graphDataGen.GraphData;*/
             _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
         }
 

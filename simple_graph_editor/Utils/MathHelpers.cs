@@ -9,7 +9,7 @@ namespace SimpleGraphEditor.Utils
         /// <param name="dirVector"></param>
         /// <returns></returns>
         public static (int x, int y) GetProjectionOnLine((int x, int y) projectedVect, (int x, int y) dirVector){
-
+            
             int projectedVectDotProduct = GetDotProduct(dirVector, projectedVect);
             int dirVectDotProd = GetDotProduct(dirVector, dirVector);
 
@@ -36,6 +36,7 @@ namespace SimpleGraphEditor.Utils
 
             return ((int)(len * (vec.x / (double)initialVecNorm)), (int)(len * (vec.y / (double)initialVecNorm)));
         }
+
         /// <summary> Calculates vectors norm(size). </summary>
         /// <param name="vec"></param>
         /// <returns></returns>

@@ -52,7 +52,7 @@ namespace SimpleGraphEditor.Views
             this.EdgePropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.EdgePropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.EdgePropertiesPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.EdgePropertiesPanel.Size = new System.Drawing.Size(284, 379);
+            this.EdgePropertiesPanel.Size = new System.Drawing.Size(260, 379);
             this.EdgePropertiesPanel.TabIndex = 9;
             this.EdgePropertiesPanel.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.EdgeProperties_CellPaint);
             // 
@@ -91,7 +91,7 @@ namespace SimpleGraphEditor.Views
             this.NodePropetiesInner1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.NodePropetiesInner1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.NodePropetiesInner1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.NodePropetiesInner1.Size = new System.Drawing.Size(278, 124);
+            this.NodePropetiesInner1.Size = new System.Drawing.Size(254, 124);
             this.NodePropetiesInner1.TabIndex = 2;
             this.NodePropetiesInner1.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.EdgeProperties_CellPaint);
             // 
@@ -106,7 +106,7 @@ namespace SimpleGraphEditor.Views
             this.label2.Location = new System.Drawing.Point(3, 3);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 34);
+            this.label2.Size = new System.Drawing.Size(99, 34);
             this.label2.TabIndex = 0;
             this.label2.Text = "Directed:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -118,7 +118,7 @@ namespace SimpleGraphEditor.Views
             this.EdgeBackColorBtn.FlatAppearance.BorderSize = 0;
             this.EdgeBackColorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EdgeBackColorBtn.ForeColor = System.Drawing.Color.Red;
-            this.EdgeBackColorBtn.Location = new System.Drawing.Point(120, 85);
+            this.EdgeBackColorBtn.Location = new System.Drawing.Point(110, 85);
             this.EdgeBackColorBtn.Margin = new System.Windows.Forms.Padding(5);
             this.EdgeBackColorBtn.Name = "EdgeBackColorBtn";
             this.EdgeBackColorBtn.Size = new System.Drawing.Size(30, 30);
@@ -138,7 +138,7 @@ namespace SimpleGraphEditor.Views
             this.label3.Location = new System.Drawing.Point(3, 43);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 34);
+            this.label3.Size = new System.Drawing.Size(99, 34);
             this.label3.TabIndex = 2;
             this.label3.Text = "Width:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -148,7 +148,7 @@ namespace SimpleGraphEditor.Views
             this.WidthUpDown.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.WidthUpDown.Dock = System.Windows.Forms.DockStyle.Left;
             this.WidthUpDown.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.WidthUpDown.Location = new System.Drawing.Point(120, 50);
+            this.WidthUpDown.Location = new System.Drawing.Point(110, 50);
             this.WidthUpDown.Margin = new System.Windows.Forms.Padding(5, 10, 5, 5);
             this.WidthUpDown.Maximum = new decimal(new int[] {
             5,
@@ -185,7 +185,7 @@ namespace SimpleGraphEditor.Views
             this.label4.Location = new System.Drawing.Point(3, 83);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 38);
+            this.label4.Size = new System.Drawing.Size(99, 38);
             this.label4.TabIndex = 4;
             this.label4.Text = "Color:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,7 +196,7 @@ namespace SimpleGraphEditor.Views
             this.IsDirectedCheckBox.Checked = true;
             this.IsDirectedCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.IsDirectedCheckBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.IsDirectedCheckBox.Location = new System.Drawing.Point(120, 5);
+            this.IsDirectedCheckBox.Location = new System.Drawing.Point(110, 5);
             this.IsDirectedCheckBox.Margin = new System.Windows.Forms.Padding(5);
             this.IsDirectedCheckBox.Name = "IsDirectedCheckBox";
             this.IsDirectedCheckBox.Size = new System.Drawing.Size(15, 30);
@@ -204,12 +204,12 @@ namespace SimpleGraphEditor.Views
             this.IsDirectedCheckBox.UseVisualStyleBackColor = true;
             this.IsDirectedCheckBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.IsDirectedCheckBox_MouseClick);
             // 
-            // EdgeProperties
+            // EdgePropertiesForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 379);
+            this.ClientSize = new System.Drawing.Size(260, 379);
             this.Controls.Add(this.EdgePropertiesPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "EdgeProperties";
+            this.Name = "EdgePropertiesForm";
             this.EdgePropertiesPanel.ResumeLayout(false);
             this.EdgePropertiesPanel.PerformLayout();
             this.NodePropetiesInner1.ResumeLayout(false);

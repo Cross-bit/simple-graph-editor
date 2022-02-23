@@ -22,6 +22,7 @@ namespace SimpleGraphEditor
 
         private string _txtFileFilter= "txt files(*.txt)|*.txt|All files(*.*)|*.*";
         private string _jpgFileFilter = "jpg files(*.jpg)|*.jpg|All files(*.*)|*.*";
+
         public void InitializeToolStrip() {
             ExportAdjacencyListBtn.Click += (sender, e) => ExportAdjacencyListItemClicked();
             ExportEdgeListBtn.Click += (sender, e) => ExportEdgeListItemClicked();
@@ -57,7 +58,6 @@ namespace SimpleGraphEditor
 
     public class CustomToolStripRenderer : ToolStripProfessionalRenderer
     {
-
         public CustomToolStripRenderer() {
             this.RoundedEdges = false;
         }

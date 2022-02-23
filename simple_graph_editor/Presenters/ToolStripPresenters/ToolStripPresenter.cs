@@ -35,7 +35,7 @@ namespace SimpleGraphEditor.Presenters
         }
 
         public void ExportPrintScreen(string savePath) {
-            
+            // not needed because of forms api            
         }
 
     }

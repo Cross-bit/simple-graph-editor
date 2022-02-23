@@ -5,7 +5,8 @@ using System.Text;
 namespace SimpleGraphEditor.Models.Interface
 {
     /// <summary> Defines memento originator in memento pattern. </summary>
-    public interface IMementoOriginator {
+    public interface IMementoOriginator
+    {
 
         /// <summary>Captures current state of originator into memento.</summary>
         /// <returns>Memento containing data of current object. </returns>
