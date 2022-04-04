@@ -39,13 +39,13 @@ namespace SimpleGraphEditor.Presenters.CanvasRendererMachine
                 _rendererMap.Add(RenderState.REND1, () => { // default renderer
                     CurrentRenderQueue.Enqueue(_graphPresenter.ClearCanvas);
                     CurrentRenderQueue.Enqueue(_graphPresenter.UpdateEdges);
-                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdataNodes);
+                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdateNodes);
                 });
 
                 _rendererMap.Add(RenderState.REND2, () => { // e. g. new node insertion
                     CurrentRenderQueue.Enqueue(_graphPresenter.ClearCanvas);
                     CurrentRenderQueue.Enqueue(_graphPresenter.UpdateEdges);
-                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdataNodes);
+                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdateNodes);
                     CurrentRenderQueue.Enqueue(_graphPresenter.UpdateMouseDummyNode);
                 });
 
@@ -53,7 +53,7 @@ namespace SimpleGraphEditor.Presenters.CanvasRendererMachine
                     CurrentRenderQueue.Enqueue(_graphPresenter.ClearCanvas);
                     CurrentRenderQueue.Enqueue(_graphPresenter.UpdateMouseDummyEdge);
                     CurrentRenderQueue.Enqueue(_graphPresenter.UpdateEdges);
-                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdataNodes);
+                    CurrentRenderQueue.Enqueue(_graphPresenter.UpdateNodes);
                 });
 
             #endregion

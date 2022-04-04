@@ -6,6 +6,9 @@ using SimpleGraphEditor.Models.Interface;
 using SimpleGraphEditor.Models.GraphEditingStates;
 using System.Diagnostics;
 
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+
 namespace SimpleGraphEditor.Presenters
 {
     public class GraphPresenter {
@@ -46,7 +49,7 @@ namespace SimpleGraphEditor.Presenters
             else if(direction == HistoryMoveDir.backward)
                 ((IMementoOriginator)_graphModel).RestoreFromMemento(GraphHistory.GetPrewiousState());
 
-            this.UpdataNodes();
+            this.UpdateNodes();
             this.UpdateEdges();
         }
 
@@ -116,6 +119,7 @@ namespace SimpleGraphEditor.Presenters
             _graphView.AddEdgeShape(startCords, _editorModel.CanvasMousePosition); // update view
         }
         #endregion
+
         // updates all edges/nodes (better approach: update just part of the canvas)
         public void UpdateEdges() {
             //   HashSet<IEdge<EdgeData, NodeData>> updatedEdges = new HashSet<IEdge<EdgeData, NodeData>>();
@@ -150,9 +154,10 @@ namespace SimpleGraphEditor.Presenters
 
                     updatedEdges.Add(edge);
                 }
-            }
+            }           
         }
-        public void UpdataNodes() {
+
+        public void UpdateNodes() {
 
             foreach (var node in _graphModel.GetAllNodes()) {
 

@@ -64,7 +64,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             base.TurnOnDeletationMode();
         }
 
-        private void OnMouseMoved(object sender, EventArgs e) {
+        private void MouseMoved(object sender, EventArgs e) {
             if (_editorModel.SelectedNode == null) return;
             _editorModel.SelectedNode.X = _editorModel.CanvasMousePosition.X;
             _editorModel.SelectedNode.Y = _editorModel.CanvasMousePosition.Y;
@@ -84,12 +84,12 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         }
         private void SetSelectedNode(INode<NodeData> nodeClientInteracted) {
             _initialNodePos = (nodeClientInteracted.X, nodeClientInteracted.Y);
-            _editorModel.MouseMove += OnMouseMoved;
+            _editorModel.MouseMove += MouseMoved;
             _editorModel.SelectedNode = nodeClientInteracted;
             _editorModel.SelectedNode.Data.IsEnabled = false;
         }
         private void PlaceSelectedNode() {
-            _editorModel.MouseMove -= OnMouseMoved;
+            _editorModel.MouseMove -= MouseMoved;
 
             if (_editorModel.SelectedNode == null) return;
             _editorModel.SelectedNode.Data.IsEnabled = true;

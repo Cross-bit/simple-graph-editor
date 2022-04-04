@@ -46,6 +46,5 @@ namespace SimpleGraphEditor.Views
         Color NewEdgeColor { get; set; }
         int NewEdgeWidth { get; set; }
         (int X, int Y) MouseCoords { get; set; }
-
     }
 }

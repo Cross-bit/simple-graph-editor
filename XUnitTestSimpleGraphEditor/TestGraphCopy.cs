@@ -4,7 +4,6 @@ using Xunit;
 using SimpleGraphEditor.Models.GraphModel;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
-using XUnitTestSimpleGraphEditor.AdditionalTools.GraphGenerator;
 using SimpleGraphEditor.Models.GraphModel.Operations;
 
 namespace XUnitTestSimpleGraphEditor

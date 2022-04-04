@@ -13,8 +13,7 @@ namespace SimpleGraphEditor.Models
             this.Node1 = newNode1;
             this.Node2 = newNode2;
             this.Data = newData;
-            IsDirected = isDirected;
-
+            this.IsDirected = isDirected;
         }
     }
 }

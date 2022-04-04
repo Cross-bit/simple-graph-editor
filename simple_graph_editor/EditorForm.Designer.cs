@@ -177,7 +177,6 @@ namespace SimpleGraphEditor
             // 
             this.MoveNodeBtn.BackColor = System.Drawing.Color.Transparent;
             this.MoveNodeBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MoveNodeBtn.BackgroundImage")));
-            this.MoveNodeBtn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MoveNodeBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.MoveNodeBtn.FlatAppearance.BorderSize = 0;
             this.MoveNodeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -200,7 +199,6 @@ namespace SimpleGraphEditor
             // 
             this.EraseBtn.BackColor = System.Drawing.Color.Transparent;
             this.EraseBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("EraseBtn.BackgroundImage")));
-            this.EraseBtn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.EraseBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.EraseBtn.FlatAppearance.BorderSize = 0;
             this.EraseBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -223,7 +221,6 @@ namespace SimpleGraphEditor
             // 
             this.AddNodeBtn.BackColor = System.Drawing.Color.Transparent;
             this.AddNodeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.AddNodeBtn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.AddNodeBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.AddNodeBtn.FlatAppearance.BorderSize = 0;
             this.AddNodeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -246,7 +243,6 @@ namespace SimpleGraphEditor
             // 
             this.AddEdgeBtn.BackColor = System.Drawing.Color.Transparent;
             this.AddEdgeBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("AddEdgeBtn.BackgroundImage")));
-            this.AddEdgeBtn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.AddEdgeBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.AddEdgeBtn.FlatAppearance.BorderSize = 0;
             this.AddEdgeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -269,7 +265,6 @@ namespace SimpleGraphEditor
             // 
             this.InsertValueBtn.BackColor = System.Drawing.Color.Transparent;
             this.InsertValueBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("InsertValueBtn.BackgroundImage")));
-            this.InsertValueBtn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.InsertValueBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.InsertValueBtn.FlatAppearance.BorderSize = 0;
             this.InsertValueBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -291,7 +286,6 @@ namespace SimpleGraphEditor
             // UndoBtn
             // 
             this.UndoBtn.BackColor = System.Drawing.Color.Transparent;
-            this.UndoBtn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.UndoBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.UndoBtn.FlatAppearance.BorderSize = 0;
             this.UndoBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -313,7 +307,6 @@ namespace SimpleGraphEditor
             // RedoBtn
             // 
             this.RedoBtn.BackColor = System.Drawing.Color.Transparent;
-            this.RedoBtn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.RedoBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.RedoBtn.FlatAppearance.BorderSize = 0;
             this.RedoBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;

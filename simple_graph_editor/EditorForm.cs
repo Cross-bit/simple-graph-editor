@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using SimpleGraphEditor.Presenters;
 using SimpleGraphEditor.Views;
 using SimpleGraphEditor.GeneralSettings;
+using System.Threading.Tasks;
 
 namespace SimpleGraphEditor
 {
@@ -138,15 +139,25 @@ namespace SimpleGraphEditor
         #endregion
 
         #region Edge Creation
+
+
+        GraphicsPath graphPath = new GraphicsPath();
+
+
+
+
         public void AddEdgeShape((int x, int y) startNodeCoordinates, (int x, int y) endNodeCoordinates) {
             var startPoint = new Point(startNodeCoordinates.x, startNodeCoordinates.y);
             var endPoint = new Point(endNodeCoordinates.x, endNodeCoordinates.y);
+
+            // Create array of points that define lines to draw.
             _canvasGraphics.DrawLine(_currentEdgePen, startPoint, endPoint);
         }
+
         #endregion
 
         #region Value lable creation
-            public void AddElementValueText((int x, int y) textPosition, string value) {
+        public void AddElementValueText((int x, int y) textPosition, string value) {
 
             var font = new Font(Settings.DefaultLableFont, Settings.DefaultLableFontSize, FontStyle.Bold);
             var sizeOfString = _canvasGraphics.MeasureString(value, font);
@@ -165,7 +176,7 @@ namespace SimpleGraphEditor
         public void UpdateCanvas() {
             InitializeCanvas();
             MainPresenter?.UpdateEdges();
-            MainPresenter?.UpdataNodes();
+            MainPresenter?.UpdateNodes();
         }
 
         public void ClearCanvas() => _canvasGraphics.Clear(CanvasBackColor);
@@ -176,7 +187,6 @@ namespace SimpleGraphEditor
             MouseCoords = (e.X , e.Y);
 
             MainPresenter.UpdateMousePosition();
-
             MainCanvas.Invalidate();
         }
 

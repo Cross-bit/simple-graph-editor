@@ -93,7 +93,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
         private void ClientAcceptedNodeValue(object sender, EventArgs e)
         {
             _editedNode.Data.Value = _graphView.NewLableTextValue;
-            _graphPresenter.UpdataNodes();
+            _graphPresenter.UpdateNodes();
             DisposeValueEdit();
         }
         private void ClientAcceptedEdgeValue(object sender, EventArgs e)

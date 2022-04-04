@@ -11,7 +11,7 @@ namespace SimpleGraphEditor.Models
         public INodeTemplate CurrentNewNodeTemplate { private get => _currentNodeTemplate; set {
                 _currentNodeTemplate = value;
                 OnPropertyChanged(EditorTemplateChangedEventArgs.PropChanged.currNdTemplate);
-            } 
+            }
         }
 
         private INodeTemplate _currentNodeTemplate = new NodeTemplate();

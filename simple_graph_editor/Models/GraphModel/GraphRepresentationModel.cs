@@ -14,10 +14,12 @@ namespace SimpleGraphEditor.Models.GraphModel
         public int Size => _graphData.Count;
         
         public GraphRepresentationModel() {
-            /*var graphDataGen = new EmptyGraphDataGenerator(10);
+            /*var graphDataGen = new RandomDirectedCompGraphDataGenerator(150);
             graphDataGen.GenerateGraphData();
             _graphData = graphDataGen.GraphData;*/
-            _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
+            
+              
+           _graphData = new Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>>();
         }
 
         public GraphRepresentationModel(Dictionary<INode<NodeData>, List<IEdge<EdgeData, NodeData>>> initialData) {

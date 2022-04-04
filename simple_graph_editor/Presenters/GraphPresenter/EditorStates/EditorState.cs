@@ -57,7 +57,7 @@ namespace SimpleGraphEditor.Presenters.EditorStates
             _graphPresenter.CanvasRenderer.SetCurrentRenderTo(CanvasRenderMachine.RenderState.REND1);
             _graphPresenter.EditorMachine.CurrentState = _graphPresenter.EditorMachine.ValueEditModeState;
         }
-        public abstract void OnClientInteract((int x, int y) coords);
 
+        public abstract void OnClientInteract((int x, int y) coords);
     }
 }

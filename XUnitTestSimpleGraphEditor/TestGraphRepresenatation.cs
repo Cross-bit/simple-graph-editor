@@ -4,7 +4,6 @@ using SimpleGraphEditor.Models.GraphModel;
 using SimpleGraphEditor.Models;
 using SimpleGraphEditor.Models.Interface;
 using System.Collections.Generic;
-using XUnitTestSimpleGraphEditor.AdditionalTools.GraphGenerator;
 using System.Linq;
 
 namespace XUnitTestSimpleGraphEditor
@@ -170,7 +169,6 @@ namespace XUnitTestSimpleGraphEditor
 
             graphTest.AddNodeToGraph(nd1);
             Assert.Equal(1, graphTest.Size);
-
 
             // can not add same node twice
             Assert.Throws<Exception>(() => graphTest.AddNodeToGraph(nd1));
