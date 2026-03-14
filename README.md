@@ -8,6 +8,25 @@ them in several formats.
 
 ---
 
+## Screenshot
+
+### Editor interface
+
+![Editor UI](docs/images/editor_ui.png)
+
+Main components of the editor:
+
+1. **Toolstrip** – main application menu  
+2. **Canvas** – workspace where the graph is created  
+3. **Info panel** – displays information and coordinates  
+4. **Tools panel** – graph editing tools  
+
+### Example graph
+
+![Example Graph](docs/images/example_graph.png)
+
+---
+
 ## Features
 
 - Visual creation of graph nodes
@@ -21,32 +40,6 @@ them in several formats.
   - adjacency list
   - canvas screenshot (.jpg)
 
-The application provides a simple UI consisting of a drawing canvas, tool panel
-and a properties panel for editing graph elements. :contentReference[oaicite:0]{index=0}
-
----
-
-## User Interface
-
-The editor contains several main components:
-
-- **Toolstrip** – main application menu
-- **Canvas** – area where the graph is created
-- **Info panel** – displays information for the user
-- **Tools panel** – graph editing tools :contentReference[oaicite:1]{index=1}
-
----
-
-## Export
-
-Graphs can be exported as:
-
-- **Edge list**
-- **Adjacency list**
-- **Canvas image (.jpg)**
-
-Nodes are automatically assigned identifiers such as `node000`, `node001`, etc. :contentReference[oaicite:2]{index=2}
-
 ---
 
 ## Architecture
@@ -59,7 +52,7 @@ Main parts of the system:
 - **Views** – Windows Forms UI components
 - **Presenters** – application logic and state machines
 
-Graph editing modes are handled by a **state machine** (`GraphEditorMachine`). :contentReference[oaicite:3]{index=3}
+Graph editing modes are handled by a **state machine** (`GraphEditorMachine`).
 
 ---
 
